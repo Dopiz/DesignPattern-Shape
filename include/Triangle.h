@@ -15,8 +15,8 @@ class Triangle : public Shape
                  double thirdPointX, double thirdPointY);
 
         void computeLength();
-        virtual double perimeter() const;
-        virtual double area() const;
+        double perimeter() const;
+        double area() const;
         virtual ~Triangle();
 };
 

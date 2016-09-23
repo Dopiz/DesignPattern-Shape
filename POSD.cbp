@@ -17,7 +17,7 @@
 					<Add directory="include" />
 				</Compiler>
 				<Linker>
-					<Add library="C:/Users/R.J.Liu/Desktop/POSD HW/1/HW1/cppunitlite/libCppUnitLite.a" />
+					<Add library="cppunitlite/libCppUnitLite.a" />
 				</Linker>
 			</Target>
 			<Target title="Release">
