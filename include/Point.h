@@ -8,9 +8,9 @@ class Point : public Shape
         double _x, _y;
 
     public:
-        Point(int x, int y);
-        int x();
-        int y();
+        Point(double x, double y);
+        double x();
+        double y();
         virtual ~Point();
 };
 

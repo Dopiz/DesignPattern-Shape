@@ -8,8 +8,6 @@ Triangle::Triangle( double firstPointX, double firstPointY, double secondPointX,
     computeLength();
 }
 
-
-
 void Triangle::computeLength() {
     _lengthA = sqrt( pow(_firstPoint.x() - _secondPoint.x(), 2) + pow(_firstPoint.y() - _secondPoint.y(), 2) );
     _lengthB = sqrt( pow(_firstPoint.x() - _thirdPoint.x() , 2) + pow(_firstPoint.y() - _thirdPoint.y() , 2) );

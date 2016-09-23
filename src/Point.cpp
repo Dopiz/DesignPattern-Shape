@@ -1,15 +1,15 @@
 #include "Point.h"
 
-Point::Point(int x, int y)
+Point::Point(double x, double y)
     : Shape("Point"), _x(x), _y(y) {
 
 }
 
-int Point::x() {
+double Point::x() {
     return this->_x;
 }
 
-int Point::y() {
+double Point::y() {
     return this->_y;
 }
 
