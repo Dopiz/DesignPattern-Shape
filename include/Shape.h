@@ -19,5 +19,7 @@ class Shape
 
 double sumOfArea(vector<Shape *> shapes);
 double sumOfPerimeter(vector<Shape *> shapes);
+Shape *findLargestArea(vector<Shape *> shapes);
+void sortShapes(vector<Shape *> shapes);
 
 #endif // SHAPE_H

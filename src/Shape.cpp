@@ -32,3 +32,30 @@ double sumOfPerimeter(vector<Shape *> shapes)
         areaPerimeter += s->perimeter();
     return areaPerimeter;
 }
+
+Shape *findLargestArea(vector<Shape *> shapes)
+{
+    double maxArea = 0;
+    Shape* maxAreaShape;
+
+    for (Shape *s: shapes)
+        if (s->area() > maxArea) {
+            maxArea = s->area();
+            maxAreaShape = s;
+        }
+
+    return maxAreaShape;
+}
+
+void sortShapes(vector<Shape *> shapes)
+{
+    Shape* tempShape;
+
+    for(Shape *s: shapes)
+        for(Shape *ss: shapes)
+            if(s->area() > ss->area()) {
+                tempShape = s;
+                s = ss;
+                ss = tempShape;
+            }
+}

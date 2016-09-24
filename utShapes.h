@@ -1,6 +1,7 @@
 #ifndef UTSHAPES_H_INCLUDED
 #define UTSHAPES_H_INCLUDED
 #include <vector>
+#include <iostream>
 #include "Shape.h"
 #include "Circle.h"
 #include "Rectangle.h"
@@ -73,5 +74,35 @@ TEST (sumOfPerimeter, Shape)
     ss.push_back(&r);
     ss.push_back(&t);
     DOUBLES_EQUAL(43.84, sumOfPerimeter(ss), deviation);
+}
+
+TEST (findLargestArea, Shape)
+{
+    Circle c(0, 0, 3);              //  Area: 28.26
+    Rectangle r(0, 0, 4, 2.5);      //  Area: 10
+    Triangle t(1, 0, 4, 0, 1, 4);   //  Area: 6
+
+    std::vector<Shape *> ss;
+    ss.push_back(&c);
+    ss.push_back(&r);
+    ss.push_back(&t);
+
+    DOUBLES_EQUAL(28.26, findLargestArea(ss)->area(), deviation);
+}
+
+TEST (sortShapes, Shape)
+{
+    Circle c(0, 0, 3);              //  Area: 28.26
+    Rectangle r(0, 0, 4, 2.5);      //  Area: 10
+    Triangle t(1, 0, 4, 0, 1, 4);   //  Area: 6
+
+    std::vector<Shape *> ss;
+    ss.push_back(&c);
+    ss.push_back(&r);
+    ss.push_back(&t);
+
+    sortShapes(ss);
+
+    DOUBLES_EQUAL(6, ss[0]->area(), deviation);
 }
 #endif // UTSHAPES_H_INCLUDED
