@@ -13,14 +13,14 @@ const double deviation = 0.00001;
 // Circle Test.
 TEST (circlePerimeter, Circle)
 {
-    Circle c(0, 0, 3);
-    DOUBLES_EQUAL(18.84, c.perimeter(), deviation);
+    Circle c(0, 0, 10);
+    DOUBLES_EQUAL(62.8, c.perimeter(), deviation);
 }
 
 TEST (circleArea, Circle)
 {
-    Circle c(0, 0, 3);
-    DOUBLES_EQUAL(28.26, c.area(), deviation);
+    Circle c(0, 0, 10);
+    DOUBLES_EQUAL(314, c.area(), deviation);
 }
 
 // Rectangle Test.
@@ -76,6 +76,7 @@ TEST (sumOfPerimeter, Shape)
     DOUBLES_EQUAL(43.84, sumOfPerimeter(ss), deviation);
 }
 
+// find the shapes in a vector which has the largest area.
 TEST (findLargestArea, Shape)
 {
     Circle c(0, 0, 3);              //  Area: 28.26
@@ -90,6 +91,7 @@ TEST (findLargestArea, Shape)
     DOUBLES_EQUAL(28.26, findLargestArea(ss)->area(), deviation);
 }
 
+// sorts the list of shapes by decreasing order, i.e., smallest area first.
 TEST (sortShapes, Shape)
 {
     Circle c(0, 0, 3);              //  Area: 28.26
