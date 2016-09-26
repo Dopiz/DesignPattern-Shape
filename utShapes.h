@@ -95,14 +95,16 @@ TEST (sortShapes, Shape)
     Circle c(0, 0, 3);              //  Area: 28.26
     Rectangle r(0, 0, 4, 2.5);      //  Area: 10
     Triangle t(1, 0, 4, 0, 1, 4);   //  Area: 6
+    Rectangle r2(0, 0, 4, 1);       //  Area: 4
 
     std::vector<Shape *> ss;
-    ss.push_back(&c);
     ss.push_back(&r);
+    ss.push_back(&c);
     ss.push_back(&t);
+    ss.push_back(&r2);
 
     sortShapes(ss);
 
-    DOUBLES_EQUAL(6, ss[0]->area(), deviation);
+    DOUBLES_EQUAL(4, ss[0]->area(), deviation);
 }
 #endif // UTSHAPES_H_INCLUDED

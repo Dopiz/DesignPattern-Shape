@@ -47,15 +47,17 @@ Shape *findLargestArea(vector<Shape *> shapes)
     return maxAreaShape;
 }
 
-void sortShapes(vector<Shape *> shapes)
+void sortShapes(vector<Shape *> &shapes)
 {
     Shape* tempShape;
 
-    for(Shape *s: shapes)
-        for(Shape *ss: shapes)
-            if(s->area() > ss->area()) {
-                tempShape = s;
-                s = ss;
-                ss = tempShape;
+    for(int i = 0; i < shapes.size(); ++i) {
+        for(int j = i + 1; j < shapes.size(); ++j) {
+            if(shapes[i]->area() > shapes[j]->area()) {
+                tempShape = shapes[i];
+                shapes[i] = shapes[j];
+                shapes[j] = tempShape;
             }
+        }
+    }
 }
