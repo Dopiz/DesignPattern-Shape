@@ -12,14 +12,18 @@ class Shape
 
     public:
         Shape(string name);
+        string getName();
+        void setName(string name);
+        virtual string content();
         virtual double perimeter() const;
         virtual double area() const;
         virtual ~Shape();
 };
 
-double sumOfArea(vector<Shape *> shapes);
-double sumOfPerimeter(vector<Shape *> shapes);
-Shape *findLargestArea(vector<Shape *> shapes);
-void sortShapes(vector<Shape *> &shapes);
+double sumOfArea(const vector<Shape *> &shapes);
+double sumOfPerimeter(const vector<Shape *> &shapes);
+Shape *maxArea(const vector<Shape *> &shapes);
+void sortByDecreasingPerimeter(vector<Shape *> &shapes);
 
+ostream & operator << (ostream &, Shape & s);
 #endif // SHAPE_H

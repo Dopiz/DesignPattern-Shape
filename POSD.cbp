@@ -43,6 +43,7 @@
 			<Add library="cppunitlite/libCppUnitLite.a" />
 		</Linker>
 		<Unit filename="include/Circle.h" />
+		<Unit filename="include/CompositeShape.h" />
 		<Unit filename="include/Point.h" />
 		<Unit filename="include/Rectangle.h" />
 		<Unit filename="include/Shape.h" />
@@ -50,6 +51,7 @@
 		<Unit filename="include/Triangle.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Circle.cpp" />
+		<Unit filename="src/CompositeShape.cpp" />
 		<Unit filename="src/Point.cpp" />
 		<Unit filename="src/Rectangle.cpp" />
 		<Unit filename="src/Shape.cpp" />

@@ -11,6 +11,7 @@ class Square : public Shape
 
     public:
         Square(double ulx, double uly, double length);
+        string content();
         double perimeter() const;
         double area() const;
         virtual ~Square();

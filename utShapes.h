@@ -7,6 +7,7 @@
 #include "Rectangle.h"
 #include "Square.h"
 #include "Triangle.h"
+#include "CompositeShape.h"
 
 const double deviation = 0.00001;
 
@@ -88,25 +89,40 @@ TEST (findLargestArea, Shape)
     ss.push_back(&r);
     ss.push_back(&t);
 
-    DOUBLES_EQUAL(28.26, findLargestArea(ss)->area(), deviation);
+    DOUBLES_EQUAL(28.26, maxArea(ss)->area(), deviation);
 }
 
-// sorts the list of shapes by decreasing order, i.e., smallest area first.
+// sorts the list of shapes by decreasing order in perimeter, i.e., smallest area first.
 TEST (sortShapes, Shape)
 {
-    Circle c(0, 0, 3);              //  Area: 28.26
-    Rectangle r(0, 0, 4, 2.5);      //  Area: 10
-    Triangle t(1, 0, 4, 0, 1, 4);   //  Area: 6
-    Rectangle r2(0, 0, 4, 1);       //  Area: 4
+    Circle c(0, 0, 3);              //  Area: 28.26 , Perimeter: 18.84
+    Rectangle r(0, 0, 4, 2.5);      //  Area: 10    , Perimeter: 13
+    Rectangle r2(0, 0, 4, 1);       //  Area: 4     , Perimeter: 10
+    Triangle t(1, 0, 4, 0, 1, 4);   //  Area: 6     , Perimeter: 12
 
     std::vector<Shape *> ss;
-    ss.push_back(&r);
     ss.push_back(&c);
-    ss.push_back(&t);
+    ss.push_back(&r);
     ss.push_back(&r2);
+    ss.push_back(&t);
 
-    sortShapes(ss);
+    sortByDecreasingPerimeter(ss);
+    //  cout << r.content() << endl << c.content() << endl << t.content() << endl;
 
-    DOUBLES_EQUAL(4, ss[0]->area(), deviation);
+    DOUBLES_EQUAL(10, ss[0]->perimeter(), deviation);
+}
+
+TEST (testCombo, CompositeShape)
+{
+    Circle c(0, 0, 3);              //  Area: 28.26 , Perimeter: 18.84
+    Rectangle r(0, 0, 4, 2.5);      //  Area: 10    , Perimeter: 13
+
+    CompositeShape combo;
+    combo.addShape(&c, "cSmall");
+    combo.addShape(&r, "rTall");
+
+    cout << combo.content();
+
+    DOUBLES_EQUAL(38.26, combo.area(), deviation);
 }
 #endif // UTSHAPES_H_INCLUDED

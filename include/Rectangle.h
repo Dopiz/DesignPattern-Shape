@@ -11,6 +11,7 @@ class Rectangle : public Shape
 
     public:
         Rectangle(double ulx, double uly, double length, double width);
+        string content();
         double perimeter() const;
         double area() const;
         virtual ~Rectangle();

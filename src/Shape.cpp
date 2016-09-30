@@ -5,6 +5,18 @@ Shape::Shape(string name)
 
 }
 
+string Shape::getName() {
+    return this->_name;
+}
+
+void Shape::setName(string name) {
+    this->_name = name;
+}
+
+string Shape::content() {
+    return getName();
+}
+
 double Shape::perimeter() const {
     return 0;
 }
@@ -18,7 +30,7 @@ Shape::~Shape()
     //dtor
 }
 
-double sumOfArea(vector<Shape *> shapes)
+double sumOfArea(const vector<Shape *> &shapes)
 {
     double areaSum = 0;
 
@@ -29,7 +41,7 @@ double sumOfArea(vector<Shape *> shapes)
     return areaSum;
 }
 
-double sumOfPerimeter(vector<Shape *> shapes)
+double sumOfPerimeter(const vector<Shape *> &shapes)
 {
     double areaPerimeter = 0;
 
@@ -40,7 +52,7 @@ double sumOfPerimeter(vector<Shape *> shapes)
     return areaPerimeter;
 }
 
-Shape *findLargestArea(vector<Shape *> shapes)
+Shape *maxArea(const vector<Shape *> &shapes)
 {
     double maxArea = 0;
     Shape* maxAreaShape;
@@ -55,13 +67,13 @@ Shape *findLargestArea(vector<Shape *> shapes)
     return maxAreaShape;
 }
 
-void sortShapes(vector<Shape *> &shapes)
+void sortByDecreasingPerimeter(vector<Shape *> &shapes)
 {
     Shape* tempShape;
 
     for(int i = 0; i < shapes.size(); ++i) {
         for(int j = i + 1; j < shapes.size(); ++j) {
-            if(shapes[i]->area() > shapes[j]->area()) {
+            if(shapes[i]->perimeter() > shapes[j]->perimeter()) {
                 tempShape = shapes[i];
                 shapes[i] = shapes[j];
                 shapes[j] = tempShape;
@@ -69,4 +81,8 @@ void sortShapes(vector<Shape *> &shapes)
         }
     }
 
+}
+
+ostream & operator << (ostream &os, Shape &s) {
+	return os << s.content();
 }

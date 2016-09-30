@@ -14,6 +14,7 @@ class Triangle : public Shape
                  double secondPointX, double secondPointY,
                  double thirdPointX, double thirdPointY);
 
+        string content();
         void computeLength();
         double perimeter() const;
         double area() const;

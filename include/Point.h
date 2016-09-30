@@ -9,6 +9,7 @@ class Point : public Shape
 
     public:
         Point(double x, double y);
+        string content();
         double x();
         double y();
         virtual ~Point();
