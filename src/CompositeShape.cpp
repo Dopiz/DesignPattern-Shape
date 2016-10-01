@@ -3,11 +3,12 @@
 
 CompositeShape::CompositeShape()
     : Shape("CompositeShape") {
-    //ctor
+
 }
 
 string CompositeShape::content() {
     ostringstream oss;
+
     oss << this->getName() << "{";
     for(int i = 0; i < _combo.size(); ++i) {
         if(i < _combo.size() - 1)

@@ -129,7 +129,7 @@ TEST (sortShapes, Shape)
     DOUBLES_EQUAL(10, ss[0]->perimeter(), deviation);
 }
 
-TEST (testCombo, CompositeShape)
+TEST (ComboArea, CompositeShape)
 {
     Circle c(0, 0, 3);              //  Area: 28.26 , Perimeter: 18.84
     Rectangle r(0, 0, 4, 2.5);      //  Area: 10    , Perimeter: 13
@@ -140,4 +140,17 @@ TEST (testCombo, CompositeShape)
 
     DOUBLES_EQUAL(38.26, combo.area(), deviation);
 }
+
+TEST (ComboPerimeter, CompositeShape)
+{
+    Circle c(0, 0, 3);              //  Area: 28.26 , Perimeter: 18.84
+    Rectangle r(0, 0, 4, 2.5);      //  Area: 10    , Perimeter: 13
+
+    CompositeShape combo;
+    combo.addShape(&c, "cSmall");
+    combo.addShape(&r, "rTall");
+
+    DOUBLES_EQUAL(31.84, combo.perimeter(), deviation);
+}
+
 #endif // UTSHAPES_H_INCLUDED
