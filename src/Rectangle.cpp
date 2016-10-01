@@ -20,7 +20,6 @@ double Rectangle::area() const {
     return _length * _width;
 }
 
-Rectangle::~Rectangle()
-{
+Rectangle::~Rectangle() {
     //dtor
 }

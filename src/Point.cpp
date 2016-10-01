@@ -12,15 +12,14 @@ string Point::content() {
     return oss.str();
 }
 
-double Point::x() {
+double Point::x() const {
     return this->_x;
 }
 
-double Point::y() {
+double Point::y() const {
     return this->_y;
 }
 
-Point::~Point()
-{
+Point::~Point() {
     //dtor
 }

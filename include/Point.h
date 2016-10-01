@@ -10,8 +10,8 @@ class Point : public Shape
     public:
         Point(double x, double y);
         string content();
-        double x();
-        double y();
+        double x() const;
+        double y() const;
         virtual ~Point();
 };
 

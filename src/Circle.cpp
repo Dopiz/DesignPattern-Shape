@@ -21,7 +21,6 @@ double Circle::area() const {
     return PI * _radius * _radius;
 }
 
-Circle::~Circle()
-{
+Circle::~Circle() {
     //dtor
 }

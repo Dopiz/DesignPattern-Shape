@@ -20,7 +20,6 @@ double Square::area() const {
     return _length * _length;
 }
 
-Square::~Square()
-{
+Square::~Square() {
     //dtor
 }

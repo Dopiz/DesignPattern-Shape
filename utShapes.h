@@ -107,7 +107,6 @@ TEST (sortShapes, Shape)
     ss.push_back(&t);
 
     sortByDecreasingPerimeter(ss);
-    //  cout << r.content() << endl << c.content() << endl << t.content() << endl;
 
     DOUBLES_EQUAL(10, ss[0]->perimeter(), deviation);
 }
@@ -120,8 +119,6 @@ TEST (testCombo, CompositeShape)
     CompositeShape combo;
     combo.addShape(&c, "cSmall");
     combo.addShape(&r, "rTall");
-
-    cout << combo.content();
 
     DOUBLES_EQUAL(38.26, combo.area(), deviation);
 }

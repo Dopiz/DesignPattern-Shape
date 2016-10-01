@@ -5,16 +5,12 @@ Shape::Shape(string name)
 
 }
 
-string Shape::getName() {
+string Shape::getName() const {
     return this->_name;
 }
 
 void Shape::setName(string name) {
     this->_name = name;
-}
-
-string Shape::content() {
-    return getName();
 }
 
 double Shape::perimeter() const {
@@ -25,8 +21,7 @@ double Shape::area() const {
     return 0;
 }
 
-Shape::~Shape()
-{
+Shape::~Shape() {
     //dtor
 }
 
@@ -83,6 +78,6 @@ void sortByDecreasingPerimeter(vector<Shape *> &shapes)
 
 }
 
-ostream & operator << (ostream &os, Shape &s) {
-	return os << s.content();
-}
+//ostream & operator << (ostream &os, Shape &s) {
+//	return os << s.content();
+//}

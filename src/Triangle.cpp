@@ -35,8 +35,7 @@ double Triangle::area() const {
     return sqrt( s * (s - _lengthA) * (s - _lengthB) * (s - _lengthC)  );
 }
 
-Triangle::~Triangle()
-{
+Triangle::~Triangle() {
     //dtor
 }
 

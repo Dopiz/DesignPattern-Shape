@@ -8,9 +8,18 @@ CompositeShape::CompositeShape()
 
 string CompositeShape::content() {
     ostringstream oss;
+    oss << this->getName() << "{";
+    for(int i = 0; i < _combo.size(); ++i) {
+        if(i < _combo.size() - 1)
+            oss << _combo[i]->getName() << ", ";
+        else oss << _combo[i]->getName();
+    }
+    oss << "}\n";
+
     for(Shape *s: _combo)
-        oss << s->content();
+        oss << "- " << s->content();
     return oss.str();
+
 }
 
 double CompositeShape::perimeter() const {
