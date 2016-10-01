@@ -15,6 +15,15 @@ void Triangle::computeLength() {
     _lengthC = sqrt( pow(_thirdPoint.x() - _secondPoint.x(), 2) + pow(_thirdPoint.y() - _secondPoint.y(), 2) );
 }
 
+bool Triangle::isTriangle() {
+    if(!((_lengthA + _lengthB > _lengthC)&&(_lengthA + _lengthC > _lengthB)&&(_lengthC + _lengthB > _lengthA)))
+    {
+        this->~Triangle();
+        return false;
+    }
+    return true;
+}
+
 string Triangle::content() {
     ostringstream oss;
 

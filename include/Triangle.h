@@ -16,6 +16,7 @@ class Triangle : public Shape
 
         string content();
         void computeLength();
+        bool isTriangle();
         double perimeter() const;
         double area() const;
         virtual ~Triangle();

@@ -38,16 +38,34 @@ TEST (rectangleArea, Rectangle)
 }
 
 // Triangle Test.
+TEST (isTriangle, Triangle)
+{
+    Triangle t(1, 0, 1, 0, 1, 0);   // This is not a triangle !
+
+    if(t.isTriangle()) {
+        DOUBLES_EQUAL(10, t.area(), deviation);
+    }
+    else FAIL("This is not a triangle !");
+}
+
 TEST (trianglePerimeter, Triangle)
 {
     Triangle t(1, 0, 4, 0, 1, 4);
-    DOUBLES_EQUAL(12, t.perimeter(), deviation);
+
+    if(t.isTriangle()) {
+        DOUBLES_EQUAL(12, t.perimeter(), deviation);
+    }
+    else FAIL("This is not a triangle !");
 }
 
 TEST (triangleArea, Triangle)
 {
     Triangle t(1, 0, 4, 0, 1, 4);
-    DOUBLES_EQUAL(6, t.area(), deviation);
+
+    if(t.isTriangle()) {
+        DOUBLES_EQUAL(6, t.area(), deviation);
+    }
+    else FAIL("This is not a triangle !");
 }
 
 // Others.
