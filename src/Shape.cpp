@@ -68,7 +68,7 @@ void sortByDecreasingPerimeter(vector<Shape *> &shapes)
 
     for(int i = 0; i < shapes.size(); ++i) {
         for(int j = i + 1; j < shapes.size(); ++j) {
-            if(shapes[i]->perimeter() > shapes[j]->perimeter()) {
+            if(shapes[i]->perimeter() < shapes[j]->perimeter()) {
                 tempShape = shapes[i];
                 shapes[i] = shapes[j];
                 shapes[j] = tempShape;

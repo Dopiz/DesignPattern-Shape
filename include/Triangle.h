@@ -14,9 +14,9 @@ class Triangle : public Shape
                  double secondPointX, double secondPointY,
                  double thirdPointX, double thirdPointY);
 
-        string content();
         void computeLength();
         bool isTriangle();
+        string content();
         double perimeter() const;
         double area() const;
         virtual ~Triangle();
