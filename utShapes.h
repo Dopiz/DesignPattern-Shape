@@ -40,7 +40,7 @@ TEST (rectangleArea, Rectangle)
 // Triangle Test.
 TEST (isTriangle, Triangle)
 {
-    Triangle t(1, 0, 1, 0, 1, 0);   // This is not a triangle !
+    Triangle t(0, 0, 1, 1, 3, 3);   // This is not a triangle !
 
     if(t.isTriangle()) {
         DOUBLES_EQUAL(10, t.area(), deviation);
@@ -112,6 +112,7 @@ TEST (findLargestArea, Shape)
 //    cout << "Find the shapes in a vector which has the largest area:\n";
 //    cout << "Area: " << maxArea(ss)->area() << ",\t" << maxArea(ss)->content() << endl;
 
+//    CHECK(&c == maxArea(ss));
     DOUBLES_EQUAL(28.26, maxArea(ss)->area(), deviation);
 }
 
@@ -139,12 +140,13 @@ TEST (sortShapes, Shape)
 //    }
 //    cout << endl;
 
+//    CHECK(&c == ss[1]);
     DOUBLES_EQUAL(18.84, ss[0]->perimeter(), deviation);
 }
 
 TEST (ComboArea, CompositeShape)
 {
-    Circle c(0, 0, 10);              //  Area: 28.26 , Perimeter: 18.84
+    Circle c(0, 0, 10);            //  Area: 28.26 , Perimeter: 18.84
     Rectangle r(0, 0, 10, 4);      //  Area: 10    , Perimeter: 13
 
     CompositeShape combo;
@@ -158,7 +160,7 @@ TEST (ComboArea, CompositeShape)
 
 TEST (ComboPerimeter, CompositeShape)
 {
-    Circle c(0, 0, 10);              //  Area: 28.26 , Perimeter: 18.84
+    Circle c(0, 0, 10);            //  Area: 28.26 , Perimeter: 18.84
     Rectangle r(0, 0, 4, 10);      //  Area: 10    , Perimeter: 13
 
     CompositeShape combo;

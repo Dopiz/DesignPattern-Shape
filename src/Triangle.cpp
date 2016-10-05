@@ -7,6 +7,7 @@ Triangle::Triangle( double firstPointX, double firstPointY, double secondPointX,
     : Shape("Triangle"), _firstPoint(Point(firstPointX, firstPointY)), _secondPoint(Point(secondPointX, secondPointY)), _thirdPoint(Point(thirdPointX, thirdPointY))  {
 
     computeLength();
+    computeSlope();
 }
 
 void Triangle::computeLength() {
@@ -15,13 +16,21 @@ void Triangle::computeLength() {
     _lengthC = sqrt( pow(_thirdPoint.x() - _secondPoint.x(), 2) + pow(_thirdPoint.y() - _secondPoint.y(), 2) );
 }
 
+void Triangle::computeSlope() {
+    _slopeAB = (_firstPoint.y()  - _secondPoint.y()) / (_firstPoint.x()  - _secondPoint.x());
+    _slopeBC = (_secondPoint.y() - _thirdPoint.y() ) / (_secondPoint.x() - _thirdPoint.x() );
+    _slopeAC = (_firstPoint.y()  - _thirdPoint.y() ) / (_firstPoint.x()  - _thirdPoint.x() );
+}
+
 bool Triangle::isTriangle() {
-    if(!((_lengthA + _lengthB > _lengthC)&&(_lengthA + _lengthC > _lengthB)&&(_lengthC + _lengthB > _lengthA)))
-    {
-        this->~Triangle();
-        return false;
-    }
-    return true;
+
+    if( !((_lengthA + _lengthB > _lengthC) && (_lengthA + _lengthC > _lengthB) && (_lengthC + _lengthB > _lengthA)) )
+        this->_triangleJudge = false;
+
+    else if((_slopeAB == _slopeAC) && (_slopeAC == _slopeBC))
+        this->_triangleJudge = false;
+
+    return _triangleJudge;
 }
 
 string Triangle::content() {
