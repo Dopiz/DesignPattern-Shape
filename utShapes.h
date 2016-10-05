@@ -40,7 +40,7 @@ TEST (rectangleArea, Rectangle)
 // Triangle Test.
 TEST (isTriangle, Triangle)
 {
-    Triangle t(0, 0, 1, 1, 3, 3);   // This is not a triangle !
+    Triangle t(0, 0, 1, 1, 8, 8);   // This is not a triangle !
 
     try {
         t.isTriangle();

@@ -8,8 +8,6 @@ class Triangle : public Shape
     private:
         Point _firstPoint, _secondPoint, _thirdPoint;
         double _lengthA, _lengthB, _lengthC;
-        double _slopeAB, _slopeBC, _slopeAC;
-        bool _triangleJudge = true;
 
     public:
         Triangle(double firstPointX, double firstPointY,
@@ -17,7 +15,7 @@ class Triangle : public Shape
                  double thirdPointX, double thirdPointY);
 
         void computeLength();
-        void computeSlope();
+        double computeSlope(Point &pointA, Point &pointB);
         bool isTriangle();
         string content();
         double perimeter() const;
