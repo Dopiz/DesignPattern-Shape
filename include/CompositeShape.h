@@ -8,7 +8,7 @@ class CompositeShape : public Shape
         vector<Shape *> _combo;
 
     public:
-        CompositeShape();
+        CompositeShape(string name);
         string content();
         double perimeter() const;
         double area() const;

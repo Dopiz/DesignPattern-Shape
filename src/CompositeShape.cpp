@@ -1,8 +1,8 @@
 #include "CompositeShape.h"
 #include <sstream>
 
-CompositeShape::CompositeShape()
-    : Shape("CompositeShape") {
+CompositeShape::CompositeShape(string name)
+    : Shape(name) {
 
 }
 

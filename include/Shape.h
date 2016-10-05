@@ -25,5 +25,4 @@ double sumOfPerimeter(const vector<Shape *> &shapes);
 Shape *maxArea(const vector<Shape *> &shapes);
 void sortByDecreasingPerimeter(vector<Shape *> &shapes);
 
-//ostream & operator << (ostream &, Shape & s);
 #endif // SHAPE_H

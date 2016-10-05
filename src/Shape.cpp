@@ -1,4 +1,5 @@
 #include "Shape.h"
+#include <algorithm>
 
 Shape::Shape(string name)
     : _name(name) {
@@ -64,20 +65,7 @@ Shape *maxArea(const vector<Shape *> &shapes)
 
 void sortByDecreasingPerimeter(vector<Shape *> &shapes)
 {
-    Shape* tempShape;
-
-    for(int i = 0; i < shapes.size(); ++i) {
-        for(int j = i + 1; j < shapes.size(); ++j) {
-            if(shapes[i]->perimeter() < shapes[j]->perimeter()) {
-                tempShape = shapes[i];
-                shapes[i] = shapes[j];
-                shapes[j] = tempShape;
-            }
-        }
-    }
+    sort(shapes.begin(), shapes.end(),
+         [](Shape* a, Shape* b) { return a->perimeter() > b->perimeter(); });
 
 }
-
-//ostream & operator << (ostream &os, Shape &s) {
-//	return os << s.content();
-//}

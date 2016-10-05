@@ -9,6 +9,8 @@
 #include "Triangle.h"
 #include "CompositeShape.h"
 
+using std::vector;
+
 const double deviation = 0.00001;
 
 // Circle Test.
@@ -68,10 +70,7 @@ TEST (sumOfArea, Shape)
     Rectangle r(0, 0, 4, 2.5);      //  Area: 10
     Triangle t(1, 0, 4, 0, 1, 4);   //  Area: 6
 
-    std::vector<Shape *> ss;
-    ss.push_back(&c);
-    ss.push_back(&r);
-    ss.push_back(&t);
+    vector<Shape *> ss = {&r, &t, &c};
 
     DOUBLES_EQUAL(44.26, sumOfArea(ss), deviation);
 }
@@ -82,10 +81,7 @@ TEST (sumOfPerimeter, Shape)
     Rectangle r(0, 0, 4, 2.5);      //  Perimeter: 13
     Triangle t(1, 0, 4, 0, 1, 4);   //  Perimeter: 12
 
-    std::vector<Shape *> ss;
-    ss.push_back(&c);
-    ss.push_back(&r);
-    ss.push_back(&t);
+    vector<Shape *> ss = {&r, &t, &c};
 
     DOUBLES_EQUAL(43.84, sumOfPerimeter(ss), deviation);
 }
@@ -97,34 +93,30 @@ TEST (findLargestArea, Shape)
     Rectangle r(0, 0, 4, 2.5);      //  Area: 10
     Triangle t(1, 0, 4, 0, 1, 4);   //  Area: 6
 
-    std::vector<Shape *> ss;
-    ss.push_back(&c);
-    ss.push_back(&r);
-    ss.push_back(&t);
+    vector<Shape *> ss = {&r, &t, &c};
 
+    /* Print result */
 //    cout << "Find the shapes in a vector which has the largest area:\n";
 //    cout << "Area: " << maxArea(ss)->area() << ",\t" << maxArea(ss)->content() << endl;
+    /* Print result */
 
-//    CHECK(&c == maxArea(ss));
-    DOUBLES_EQUAL(28.26, maxArea(ss)->area(), deviation);
+    CHECK(&c == maxArea(ss));
 }
 
 // sorts the list of shapes by decreasing order in perimeter, i.e., smallest area first.
 TEST (sortShapes, Shape)
 {
-    Circle c(0, 0, 3);              //  Area: 28.26 , Perimeter: 18.84
     Rectangle r(0, 0, 4, 2.5);      //  Area: 10    , Perimeter: 13
     Rectangle r2(0, 0, 4, 1);       //  Area: 4     , Perimeter: 10
     Triangle t(1, 0, 4, 0, 1, 4);   //  Area: 6     , Perimeter: 12
+    Circle c(0, 0, 3);              //  Area: 28.26 , Perimeter: 18.84
 
-    std::vector<Shape *> ss;
-    ss.push_back(&c);
-    ss.push_back(&r);
-    ss.push_back(&r2);
-    ss.push_back(&t);
+    vector<Shape *> ss = {&r, &r2, &t, &c};
+    vector<Shape *> check = {&c, &r, &t, &r2};  // Sort already .
 
     sortByDecreasingPerimeter(ss);
 
+    /* Print result */
 //    int count = 0;
 //    cout << "Sorts the list of shapes by decreasing order in perimeter\n";
 //    for(Shape *s: ss) {
@@ -132,21 +124,23 @@ TEST (sortShapes, Shape)
 //        cout << count << ". Area: " << s->area() << ",\t" << s->content();
 //    }
 //    cout << endl;
+    /* Print result */
 
-//    CHECK(&c == ss[1]);
-    DOUBLES_EQUAL(18.84, ss[0]->perimeter(), deviation);
+    CHECK(ss == check);
 }
 
 TEST (ComboArea, CompositeShape)
 {
     Circle c(0, 0, 10);            //  Area: 28.26 , Perimeter: 18.84
-    Rectangle r(0, 0, 10, 4);      //  Area: 10    , Perimeter: 13
+    Rectangle r(0, 0, 4, 10);      //  Area: 10    , Perimeter: 13
 
-    CompositeShape combo;
+    CompositeShape combo("Combo");
     combo.addShape(&c, "cSmall");
     combo.addShape(&r, "rTall");
 
+    /* Print result */
 //    cout << combo.content() << endl;
+    /* Print result */
 
     DOUBLES_EQUAL(354, combo.area(), deviation);
 }
@@ -156,11 +150,13 @@ TEST (ComboPerimeter, CompositeShape)
     Circle c(0, 0, 10);            //  Area: 28.26 , Perimeter: 18.84
     Rectangle r(0, 0, 4, 10);      //  Area: 10    , Perimeter: 13
 
-    CompositeShape combo;
+    CompositeShape combo("Combo");
     combo.addShape(&c, "cSmall");
     combo.addShape(&r, "rTall");
 
+    /* Print result */
 //    cout << combo.content() << endl;
+    /* Print result */
 
     DOUBLES_EQUAL(90.8, combo.perimeter(), deviation);
 }
