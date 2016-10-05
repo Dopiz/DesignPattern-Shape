@@ -14,7 +14,7 @@ class Rectangle : public Shape
         string content();
         double perimeter() const;
         double area() const;
-        virtual ~Rectangle();
+        ~Rectangle();
 };
 
 #endif // RECTANGLE_H

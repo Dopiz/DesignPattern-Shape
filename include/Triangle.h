@@ -20,7 +20,7 @@ class Triangle : public Shape
         string content();
         double perimeter() const;
         double area() const;
-        virtual ~Triangle();
+        ~Triangle();
 };
 
 #endif // TRIANGLE_H

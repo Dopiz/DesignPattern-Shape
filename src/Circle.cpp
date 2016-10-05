@@ -1,5 +1,6 @@
 #include "Circle.h"
 #include <sstream>
+
 const double PI = 3.14;
 
 Circle::Circle(double cx, double cy, double radius)

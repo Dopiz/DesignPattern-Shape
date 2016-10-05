@@ -14,7 +14,7 @@ class Circle : public Shape
         string content();
         double perimeter() const;
         double area() const;
-        virtual ~Circle();
+        ~Circle();
 };
 
 #endif // CIRCLE_H

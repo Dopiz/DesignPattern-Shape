@@ -13,7 +13,7 @@ class CompositeShape : public Shape
         double perimeter() const;
         double area() const;
         void addShape(Shape* shape, string name);
-        virtual ~CompositeShape();
+        ~CompositeShape();
 };
 
 #endif // COMPOSITESHAPE_H

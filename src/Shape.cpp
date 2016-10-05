@@ -7,11 +7,11 @@ Shape::Shape(string name)
 }
 
 string Shape::getName() const {
-    return this->_name;
+    return _name;
 }
 
 void Shape::setName(string name) {
-    this->_name = name;
+    _name = name;
 }
 
 Shape::~Shape() {

@@ -1,6 +1,5 @@
 #include "Triangle.h"
 #include <math.h>
-#include <iostream>
 #include <sstream>
 
 Triangle::Triangle( double firstPointX, double firstPointY, double secondPointX, double secondPointY, double thirdPointX, double thirdPointY)
@@ -29,13 +28,16 @@ bool Triangle::isTriangle() {
 
     if( !((_lengthA + _lengthB > _lengthC) && (_lengthA + _lengthC > _lengthB) && (_lengthC + _lengthB > _lengthA)) )
         triangleJudge = false;
-
+    //  is Collinear ?
     else if((slopeAB == slopeAC) && (slopeAC == slopeBC))
         triangleJudge = false;
 
     if(triangleJudge)
         return true;
-    else throw string("This is not a triangle !");
+    else {
+        this->~Triangle();
+        throw string("This is not a triangle !");
+    }
 }
 
 string Triangle::content() {
@@ -54,7 +56,7 @@ double Triangle::perimeter() const {
 }
 
 double Triangle::area() const {
-    double s = this->perimeter() / 2;
+    double s = perimeter() / 2;
     return sqrt( s * (s - _lengthA) * (s - _lengthB) * (s - _lengthC)  );
 }
 

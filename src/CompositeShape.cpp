@@ -9,7 +9,7 @@ CompositeShape::CompositeShape(string name)
 string CompositeShape::content() {
     ostringstream oss;
 
-    oss << this->getName() << "{";
+    oss << getName() << "{";
     for(int i = 0; i < _combo.size(); ++i) {
         if(i < _combo.size() - 1)
             oss << _combo[i]->getName() << ", ";
@@ -20,7 +20,6 @@ string CompositeShape::content() {
     for(Shape *s: _combo)
         oss << "- " << s->content();
     return oss.str();
-
 }
 
 double CompositeShape::perimeter() const {
@@ -33,7 +32,7 @@ double CompositeShape::area() const {
 
 void CompositeShape::addShape(Shape* shape, string name) {
     shape->setName(name);
-    this->_combo.push_back(shape);
+    _combo.push_back(shape);
 }
 
 CompositeShape::~CompositeShape() {

@@ -6,8 +6,6 @@
 #include "Triangle.h"
 #include "CompositeShape.h"
 
-using std::vector;
-
 const double deviation = 0.00001;
 
 // Circle Test.
