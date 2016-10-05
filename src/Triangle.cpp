@@ -10,13 +10,13 @@ Triangle::Triangle( double firstPointX, double firstPointY, double secondPointX,
 }
 
 void Triangle::computeLength() {
-    _lengthA = sqrt( pow(_firstPoint.x() - _secondPoint.x(), 2) + pow(_firstPoint.y() - _secondPoint.y(), 2) );
-    _lengthB = sqrt( pow(_firstPoint.x() - _thirdPoint.x() , 2) + pow(_firstPoint.y() - _thirdPoint.y() , 2) );
-    _lengthC = sqrt( pow(_thirdPoint.x() - _secondPoint.x(), 2) + pow(_thirdPoint.y() - _secondPoint.y(), 2) );
+    _lengthA = sqrt( pow(_firstPoint.x - _secondPoint.x, 2) + pow(_firstPoint.y - _secondPoint.y, 2) );
+    _lengthB = sqrt( pow(_firstPoint.x - _thirdPoint.x , 2) + pow(_firstPoint.y - _thirdPoint.y , 2) );
+    _lengthC = sqrt( pow(_thirdPoint.x - _secondPoint.x, 2) + pow(_thirdPoint.y - _secondPoint.y, 2) );
 }
 
 double Triangle::computeSlope(Point &pointA, Point &pointB) {
-    return (pointA.y() - pointB.y()) / (pointA.x() - pointB.x());
+    return (pointA.y - pointB.y) / (pointA.x - pointB.x);
 }
 
 bool Triangle::isTriangle() {
@@ -42,9 +42,9 @@ string Triangle::content() {
     ostringstream oss;
 
     oss << getName() << "("
-        << _firstPoint.x()  << ", " << _firstPoint.y()  << ", "
-        << _secondPoint.x() << ", " << _secondPoint.y() << ", "
-        << _thirdPoint.x()  << ", " << _thirdPoint.y()  << ")\n";
+        << _firstPoint.x  << ", " << _firstPoint.y  << ", "
+        << _secondPoint.x << ", " << _secondPoint.y << ", "
+        << _thirdPoint.x  << ", " << _thirdPoint.y  << ")\n";
 
     return oss.str();
 }

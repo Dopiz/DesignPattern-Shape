@@ -8,7 +8,7 @@ Rectangle::Rectangle(double ulx, double uly, double length, double width)
 
 string Rectangle::content() {
     ostringstream oss;
-    oss << getName() << "(" << _upperLeftCorner.x() << ", " << _upperLeftCorner.y() << ", " << _length << ", " << _width << ")\n";
+    oss << getName() << "(" << _upperLeftCorner.x << ", " << _upperLeftCorner.y << ", " << _length << ", " << _width << ")\n";
     return oss.str();
 }
 

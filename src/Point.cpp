@@ -1,23 +1,8 @@
 #include "Point.h"
-#include <sstream>
 
 Point::Point(double x, double y)
-    : Shape("Point"), _x(x), _y(y) {
+    : x(x), y(y) {
 
-}
-
-string Point::content() {
-    ostringstream oss;
-    oss << getName() << "(" << _x << ", " << _y << ")";
-    return oss.str();
-}
-
-double Point::x() const {
-    return this->_x;
-}
-
-double Point::y() const {
-    return this->_y;
 }
 
 Point::~Point() {

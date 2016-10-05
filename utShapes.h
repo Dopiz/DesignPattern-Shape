@@ -1,11 +1,8 @@
 #ifndef UTSHAPES_H_INCLUDED
 #define UTSHAPES_H_INCLUDED
-#include <vector>
-#include <iostream>
-#include "Shape.h"
+
 #include "Circle.h"
 #include "Rectangle.h"
-#include "Square.h"
 #include "Triangle.h"
 #include "CompositeShape.h"
 

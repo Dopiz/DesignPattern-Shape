@@ -14,14 +14,6 @@ void Shape::setName(string name) {
     this->_name = name;
 }
 
-double Shape::perimeter() const {
-    return 0;
-}
-
-double Shape::area() const {
-    return 0;
-}
-
 Shape::~Shape() {
     //dtor
 }

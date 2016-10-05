@@ -9,7 +9,7 @@ Circle::Circle(double cx, double cy, double radius)
 
 string Circle::content() {
     ostringstream oss;
-    oss << getName() << "(" << _center.x() << ", " << _center.y() << ", " << _radius << ")\n";
+    oss << getName() << "(" << _center.x << ", " << _center.y << ", " << _radius << ")\n";
     return oss.str();
 }
 

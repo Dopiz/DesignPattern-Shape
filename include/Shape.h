@@ -15,8 +15,8 @@ class Shape
         string getName() const;
         void setName(string name);
         virtual string content() = 0;
-        virtual double perimeter() const;
-        virtual double area() const;
+        virtual double perimeter() const = 0;
+        virtual double area() const = 0;
         virtual ~Shape();
 };
 

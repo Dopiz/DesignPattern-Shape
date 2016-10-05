@@ -1,18 +1,12 @@
 #ifndef POINT_H
 #define POINT_H
-#include "Shape.h"
 
-class Point : public Shape
+class Point
 {
-    private:
-        double _x, _y;
-
     public:
-        Point(double x, double y);
-        string content();
-        double x() const;
-        double y() const;
-        virtual ~Point();
+        double x, y;
+        Point(double x, double y) : x(x), y(y) {};
+        ~Point() {};
 };
 
 #endif // POINT_H
