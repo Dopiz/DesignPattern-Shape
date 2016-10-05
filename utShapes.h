@@ -24,14 +24,14 @@ TEST (circleArea, Circle)
 // Rectangle Test.
 TEST (rectanglePerimeter, Rectangle)
 {
-    Rectangle r(0, 0, 4, 2.5);
-    DOUBLES_EQUAL(13, r.perimeter(), deviation);
+    Rectangle r(0, 0, 4, 6);
+    DOUBLES_EQUAL(20, r.perimeter(), deviation);
 }
 
 TEST (rectangleArea, Rectangle)
 {
-    Rectangle r(0, 0, 4, 2.5);
-    DOUBLES_EQUAL(10.00, r.area(), deviation);
+    Rectangle r(0, 0, 4, 6);
+    DOUBLES_EQUAL(24, r.area(), deviation);
 }
 
 // Triangle Test.
@@ -48,45 +48,45 @@ TEST (isTriangle, Triangle)
 
 TEST (trianglePerimeter, Triangle)
 {
-    Triangle t(1, 0, 4, 0, 1, 4);
+    Triangle t(0, 0, 4, 0, 0, 3);
     DOUBLES_EQUAL(12, t.perimeter(), deviation);
 }
 
 TEST (triangleArea, Triangle)
 {
-    Triangle t(1, 0, 4, 0, 1, 4);
+    Triangle t(0, 0, 4, 0, 0, 3);
     DOUBLES_EQUAL(6, t.area(), deviation);
 }
 
 // Others.
 TEST (sumOfArea, Shape)
 {
-    Circle c(0, 0, 3);              //  Area: 28.26
-    Rectangle r(0, 0, 4, 2.5);      //  Area: 10
-    Triangle t(1, 0, 4, 0, 1, 4);   //  Area: 6
+    Circle c(0, 0, 10);             //  Area: 314
+    Rectangle r(0, 0, 4, 6);        //  Area: 24
+    Triangle t(0, 0, 4, 0, 0, 3);   //  Area: 6
 
     vector<Shape *> ss = {&r, &t, &c};
 
-    DOUBLES_EQUAL(44.26, sumOfArea(ss), deviation);
+    DOUBLES_EQUAL(344, sumOfArea(ss), deviation);
 }
 
 TEST (sumOfPerimeter, Shape)
 {
-    Circle c(0, 0, 3);              //  Perimeter: 18.84
-    Rectangle r(0, 0, 4, 2.5);      //  Perimeter: 13
-    Triangle t(1, 0, 4, 0, 1, 4);   //  Perimeter: 12
+    Circle c(0, 0, 10);             //  Perimeter: 62.8
+    Rectangle r(0, 0, 4, 6);        //  Perimeter: 20
+    Triangle t(0, 0, 4, 0, 0, 3);   //  Perimeter: 12
 
     vector<Shape *> ss = {&r, &t, &c};
 
-    DOUBLES_EQUAL(43.84, sumOfPerimeter(ss), deviation);
+    DOUBLES_EQUAL(94.8, sumOfPerimeter(ss), deviation);
 }
 
 // find the shapes in a vector which has the largest area.
 TEST (findLargestArea, Shape)
 {
-    Circle c(0, 0, 3);              //  Area: 28.26
-    Rectangle r(0, 0, 4, 2.5);      //  Area: 10
-    Triangle t(1, 0, 4, 0, 1, 4);   //  Area: 6
+    Circle c(0, 0, 10);             //  Area: 314
+    Rectangle r(0, 0, 4, 6);        //  Area: 24
+    Triangle t(0, 0, 4, 0, 0, 3);   //  Area: 6
 
     vector<Shape *> ss = {&r, &t, &c};
 
@@ -101,13 +101,13 @@ TEST (findLargestArea, Shape)
 // sorts the list of shapes by decreasing order in perimeter, i.e., smallest area first.
 TEST (sortShapes, Shape)
 {
-    Rectangle r(0, 0, 4, 2.5);      //  Area: 10    , Perimeter: 13
-    Rectangle r2(0, 0, 4, 1);       //  Area: 4     , Perimeter: 10
-    Triangle t(1, 0, 4, 0, 1, 4);   //  Area: 6     , Perimeter: 12
-    Circle c(0, 0, 3);              //  Area: 28.26 , Perimeter: 18.84
+    Rectangle r(0, 0, 4, 6);        //  Area: 24    , Perimeter: 20
+    Rectangle r2(0, 0, 2, 10);      //  Area: 20    , Perimeter: 24
+    Triangle t(0, 0, 4, 0, 0, 3);   //  Area: 6     , Perimeter: 12
+    Circle c(0, 0, 10);             //  Area: 314   , Perimeter: 62.8
 
     vector<Shape *> ss = {&r, &r2, &t, &c};
-    vector<Shape *> check = {&c, &r, &t, &r2};  // Sort already .
+    vector<Shape *> check = {&c, &r2, &r, &t};  // Sort already.
 
     sortByDecreasingPerimeter(ss);
 
@@ -126,8 +126,8 @@ TEST (sortShapes, Shape)
 
 TEST (ComboArea, CompositeShape)
 {
-    Circle c(0, 0, 10);            //  Area: 28.26 , Perimeter: 18.84
-    Rectangle r(0, 0, 4, 10);      //  Area: 10    , Perimeter: 13
+    Circle c(0, 0, 10);            //  Area: 314   , Perimeter: 62.8
+    Rectangle r(0, 0, 4, 6);       //  Area: 24    , Perimeter: 20
 
     CompositeShape combo("Combo");
     combo.addShape(&c, "cSmall");
@@ -137,13 +137,13 @@ TEST (ComboArea, CompositeShape)
 //    cout << combo.content() << endl;
     /* Print result */
 
-    DOUBLES_EQUAL(354, combo.area(), deviation);
+    DOUBLES_EQUAL(338, combo.area(), deviation);
 }
 
 TEST (ComboPerimeter, CompositeShape)
 {
-    Circle c(0, 0, 10);            //  Area: 28.26 , Perimeter: 18.84
-    Rectangle r(0, 0, 4, 10);      //  Area: 10    , Perimeter: 13
+    Circle c(0, 0, 10);            //  Area: 314   , Perimeter: 62.8
+    Rectangle r(0, 0, 4, 6);       //  Area: 24    , Perimeter: 20
 
     CompositeShape combo("Combo");
     combo.addShape(&c, "cSmall");
@@ -153,7 +153,31 @@ TEST (ComboPerimeter, CompositeShape)
 //    cout << combo.content() << endl;
     /* Print result */
 
-    DOUBLES_EQUAL(90.8, combo.perimeter(), deviation);
+    DOUBLES_EQUAL(82.8, combo.perimeter(), deviation);
+}
+
+TEST (ComboTwoCompositeShape, CompositeShape)
+{
+    Circle c(0, 0, 10);          //  Area: 314    , Perimeter: 62.8
+    Rectangle r(0, 0, 4, 6);     //  Area: 24     , Perimeter: 20
+    Circle c2(15, 0, 5);         //  Area: 78.5   , Perimeter: 31.4
+    Rectangle r2(2, 8, 2, 8);    //  Area: 16     , Perimeter: 20
+
+    CompositeShape combo("Combo1");
+    combo.addShape(&c, "Circle");
+    combo.addShape(&r, "Rectangle");
+
+    CompositeShape combo2("Combo2");
+    combo2.addShape(&c2, "Circ");
+    combo2.addShape(&r2, "Rect");
+
+    combo2.addShape(&combo, "Combo1");
+
+    /* Print result */
+//    cout << combo2.content() << endl;
+    /* Print result */
+
+    DOUBLES_EQUAL(134.2, combo2.perimeter(), deviation);
 }
 
 #endif // UTSHAPES_H_INCLUDED
