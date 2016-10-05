@@ -30,7 +30,9 @@ bool Triangle::isTriangle() {
     else if((_slopeAB == _slopeAC) && (_slopeAC == _slopeBC))
         this->_triangleJudge = false;
 
-    return _triangleJudge;
+    if(_triangleJudge)
+        return true;
+    else throw string("This is not a triangle !");
 }
 
 string Triangle::content() {

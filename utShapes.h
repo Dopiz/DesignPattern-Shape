@@ -42,30 +42,23 @@ TEST (isTriangle, Triangle)
 {
     Triangle t(0, 0, 1, 1, 3, 3);   // This is not a triangle !
 
-    if(t.isTriangle()) {
-        DOUBLES_EQUAL(10, t.area(), deviation);
+    try {
+        t.isTriangle();
+    } catch(string s) {
+        CHECK(string("This is not a triangle !") == s);
     }
-    else FAIL("This is not a triangle !");
 }
 
 TEST (trianglePerimeter, Triangle)
 {
     Triangle t(1, 0, 4, 0, 1, 4);
-
-    if(t.isTriangle()) {
-        DOUBLES_EQUAL(12, t.perimeter(), deviation);
-    }
-    else FAIL("This is not a triangle !");
+    DOUBLES_EQUAL(12, t.perimeter(), deviation);
 }
 
 TEST (triangleArea, Triangle)
 {
     Triangle t(1, 0, 4, 0, 1, 4);
-
-    if(t.isTriangle()) {
-        DOUBLES_EQUAL(6, t.area(), deviation);
-    }
-    else FAIL("This is not a triangle !");
+    DOUBLES_EQUAL(6, t.area(), deviation);
 }
 
 // Others.
