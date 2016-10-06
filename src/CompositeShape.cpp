@@ -35,6 +35,11 @@ void CompositeShape::addShape(Shape* shape, string name) {
     _combo.push_back(shape);
 }
 
+void CompositeShape::addShape(vector<Shape *> shapes) {
+    _combo.insert(_combo.begin(), shapes.begin(), shapes.end());
+}
+
+
 CompositeShape::~CompositeShape() {
     //dtor
 }
