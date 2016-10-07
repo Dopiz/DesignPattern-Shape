@@ -132,8 +132,10 @@ TEST (ComputeArea, CompositeShape)
 
     //  add Shape one by one.
     CompositeShape combo("Combo");
-    combo.addShape(&c, "cSmall");
-    combo.addShape(&r, "rTall");
+    c.setName("cSmall");
+    r.setName("rTall");
+    combo.addShape(&c);
+    combo.addShape(&r);
 
     /* Print result */
 //    cout << combo.content() << endl;
@@ -169,17 +171,17 @@ TEST (ComboTwoCompositeShape, CompositeShape)
     Rectangle r2(2, 8, 2, 8);    //  Area: 16     , Perimeter: 20
 
     CompositeShape combo("CompositeShape");
-    combo.addShape(&c, "cSmall");
-    combo.addShape(&r, "rTall");
+    combo.addShape(&c);
+    combo.addShape(&r);
 
     CompositeShape combo2("Combo");
-    combo2.addShape(&c2, "Circ");
-    combo2.addShape(&r2, "Rect");
+    combo2.addShape(&c2);
+    combo2.addShape(&r2);
 
-    combo.addShape(&combo2, combo2.getName());
+    combo.addShape(&combo2);
 
     /* Print result */
-//    cout << combo.content() << endl;
+    cout << combo.content() << endl;
     /* Print result */
 
     DOUBLES_EQUAL(134.2, combo.perimeter(), deviation);
