@@ -14,7 +14,7 @@ class CompositeMedia : public Media
 
     public:
         CompositeMedia();
-
+        void add(Media *m);
         void Accept(AreaVisitor &v);
         void Accept(PerimeterVisitor &v);
         virtual ~CompositeMedia();

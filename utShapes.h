@@ -4,7 +4,6 @@
 #include "Circle.h"
 #include "Rectangle.h"
 #include "Triangle.h"
-#include "CompositeShape.h"
 
 #include "Media.h"
 #include "SimpleMedia.h"
@@ -132,69 +131,7 @@ TEST (sortShapes, Shape)
     CHECK(ss == check);
 }
 
-//  Composite Shape.
-TEST (ComputeArea, CompositeShape)
-{
-    Circle c(0, 0, 10);            //  Area: 314   , Perimeter: 62.8
-    Rectangle r(0, 0, 4, 6);       //  Area: 24    , Perimeter: 20
-
-    //  add Shape one by one.
-    CompositeShape combo("Combo");
-    c.setName("cSmall");
-    r.setName("rTall");
-    combo.addShape(&c);
-    combo.addShape(&r);
-
-    /* Print result */
-//    cout << combo.content() << endl;
-    /* Print result */
-
-    DOUBLES_EQUAL(338, combo.area(), deviation);
-}
-
-TEST (ComputePerimeter, CompositeShape)
-{
-    Circle c(0, 0, 10);            //  Area: 314   , Perimeter: 62.8
-    Rectangle r(0, 0, 4, 6);       //  Area: 24    , Perimeter: 20
-
-    //  add Shape use vector.
-    CompositeShape combo("Combo");
-    c.setName("cSmall");
-    r.setName("rTall");
-    vector<Shape *> ss = {&c, &r};
-    combo.addShape(ss);
-
-    /* Print result */
-//    cout << combo.content() << endl;
-    /* Print result */
-
-    DOUBLES_EQUAL(82.8, combo.perimeter(), deviation);
-}
-
-TEST (ComboTwoCompositeShape, CompositeShape)
-{
-    Circle c(0, 0, 10);          //  Area: 314    , Perimeter: 62.8
-    Rectangle r(0, 0, 4, 6);     //  Area: 24     , Perimeter: 20
-    Circle c2(15, 0, 5);         //  Area: 78.5   , Perimeter: 31.4
-    Rectangle r2(2, 8, 2, 8);    //  Area: 16     , Perimeter: 20
-
-    CompositeShape combo("CompositeShape");
-    combo.addShape(&c);
-    combo.addShape(&r);
-
-    CompositeShape combo2("Combo");
-    combo2.addShape(&c2);
-    combo2.addShape(&r2);
-
-    combo.addShape(&combo2);
-
-    /* Print result */
-//    cout << combo.content() << endl;
-    /* Print result */
-
-    DOUBLES_EQUAL(134.2, combo.perimeter(), deviation);
-}
-
+//  Media
 TEST (SimpleMediaArea, Media)
 {
     Circle c(0, 0, 10);          //  Area: 314    , Perimeter: 62.8
@@ -213,6 +150,36 @@ TEST (SimpleMediaPerimeter, Media)
     m.Accept(pv);
 
     DOUBLES_EQUAL(62.8, pv.getPerimeter(), deviation);
+}
+
+TEST (CompositeMediaArea, Media)
+{
+    Circle c(0, 0, 10);          //  Area: 314    , Perimeter: 62.8
+    Rectangle r(0, 0, 4, 6);     //  Area: 24    , Perimeter: 20
+
+    CompositeMedia m;
+    m.add(new SimpleMedia(&c));
+    m.add(new SimpleMedia(&r));
+
+    AreaVisitor av;
+    m.Accept(av);
+
+    DOUBLES_EQUAL(338, av.getArea(), deviation);
+}
+
+TEST (CompositeMediaPerimeter, Media)
+{
+    Circle c(0, 0, 10);          //  Area: 314    , Perimeter: 62.8
+    Rectangle r(0, 0, 4, 6);     //  Area: 24    , Perimeter: 20
+
+    CompositeMedia m;
+    m.add(new SimpleMedia(&c));
+    m.add(new SimpleMedia(&r));
+
+    PerimeterVisitor pv;
+    m.Accept(pv);
+
+    DOUBLES_EQUAL(82.8, pv.getPerimeter(), deviation);
 }
 
 #endif // UTSHAPES_H_INCLUDED
