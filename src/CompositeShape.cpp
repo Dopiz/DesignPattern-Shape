@@ -30,7 +30,7 @@ double CompositeShape::area() const {
     return sumOfArea(_combo);
 }
 
-void CompositeShape::addShape(Shape* shape) {
+void CompositeShape::addShape(Shape *shape) {
     _combo.push_back(shape);
 }
 

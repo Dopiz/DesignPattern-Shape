@@ -6,6 +6,14 @@
 #include "Triangle.h"
 #include "CompositeShape.h"
 
+#include "Media.h"
+#include "SimpleMedia.h"
+#include "CompositeMedia.h"
+
+#include "Visitor.h"
+#include "AreaVisitor.h"
+#include "PerimeterVisitor.h"
+
 const double deviation = 0.00001;
 
 // Circle Test.
@@ -181,10 +189,30 @@ TEST (ComboTwoCompositeShape, CompositeShape)
     combo.addShape(&combo2);
 
     /* Print result */
-    cout << combo.content() << endl;
+//    cout << combo.content() << endl;
     /* Print result */
 
     DOUBLES_EQUAL(134.2, combo.perimeter(), deviation);
+}
+
+TEST (SimpleMediaArea, Media)
+{
+    Circle c(0, 0, 10);          //  Area: 314    , Perimeter: 62.8
+    SimpleMedia m(&c);
+    AreaVisitor av;
+    m.Accept(av);
+
+    DOUBLES_EQUAL(314, av.getArea(), deviation);
+}
+
+TEST (SimpleMediaPerimeter, Media)
+{
+    Circle c(0, 0, 10);          //  Area: 314    , Perimeter: 62.8
+    SimpleMedia m(&c);
+    PerimeterVisitor pv;
+    m.Accept(pv);
+
+    DOUBLES_EQUAL(62.8, pv.getPerimeter(), deviation);
 }
 
 #endif // UTSHAPES_H_INCLUDED
