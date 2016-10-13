@@ -9,7 +9,7 @@
 #include "SimpleMedia.h"
 #include "CompositeMedia.h"
 
-#include "Visitor.h"
+#include "MediaVisitor.h"
 #include "AreaVisitor.h"
 #include "PerimeterVisitor.h"
 

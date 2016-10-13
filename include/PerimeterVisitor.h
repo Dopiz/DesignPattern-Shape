@@ -1,8 +1,8 @@
 #ifndef PERIMETERVISITOR_H
 #define PERIMETERVISITOR_H
-#include "Visitor.h"
+#include "MediaVisitor.h"
 
-class PerimeterVisitor : public Visitor
+class PerimeterVisitor : public MediaVisitor
 {
     private:
         double _perimeter = 0;

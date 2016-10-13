@@ -1,14 +1,14 @@
-#ifndef VISITOR_H
-#define VISITOR_H
+#ifndef MEDIAVISITOR_H
+#define MEDIAVISITOR_H
 #include "SimpleMedia.h"
 #include "CompositeMedia.h"
 
-class Visitor
+class MediaVisitor
 {
     public:
-        Visitor() {};
+        MediaVisitor() {};
         virtual void visitSimpleMedia(SimpleMedia *s) = 0;
         virtual void visitCompositeMedia(CompositeMedia *c) = 0;
 };
 
-#endif // VISITOR_H
+#endif // MEDIAVISITOR_H

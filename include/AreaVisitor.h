@@ -1,8 +1,8 @@
 #ifndef AREAVISITOR_H
 #define AREAVISITOR_H
-#include "Visitor.h"
+#include "MediaVisitor.h"
 
-class AreaVisitor : public Visitor
+class AreaVisitor : public MediaVisitor
 {
     private:
         double _area = 0;
