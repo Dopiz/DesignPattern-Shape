@@ -42,17 +42,25 @@
 		<Linker>
 			<Add library="cppunitlite/libCppUnitLite.a" />
 		</Linker>
+		<Unit filename="include/AreaVisitor.h" />
 		<Unit filename="include/Circle.h" />
-		<Unit filename="include/CompositeShape.h" />
+		<Unit filename="include/CompositeMedia.h" />
+		<Unit filename="include/PerimeterVisitor.h" />
 		<Unit filename="include/Point.h" />
 		<Unit filename="include/Rectangle.h" />
 		<Unit filename="include/Shape.h" />
+		<Unit filename="include/SimpleMedia.h" />
 		<Unit filename="include/Triangle.h" />
+		<Unit filename="include/Visitor.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/AreaVisitor.cpp" />
 		<Unit filename="src/Circle.cpp" />
-		<Unit filename="src/CompositeShape.cpp" />
+		<Unit filename="src/CompositeMedia.cpp" />
+		<Unit filename="src/Media.cpp" />
+		<Unit filename="src/PerimeterVisitor.cpp" />
 		<Unit filename="src/Rectangle.cpp" />
 		<Unit filename="src/Shape.cpp" />
+		<Unit filename="src/SimpleMedia.cpp" />
 		<Unit filename="src/Triangle.cpp" />
 		<Unit filename="utShapes.h">
 			<Option target="&lt;{~None~}&gt;" />

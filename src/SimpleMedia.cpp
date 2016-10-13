@@ -11,11 +11,11 @@ Shape *SimpleMedia::getShape() {
     return _shape;
 }
 
-void SimpleMedia::Accept(AreaVisitor &v) {
+void SimpleMedia::accept(AreaVisitor &v) {
     v.visitSimpleMedia(this);
 }
 
-void SimpleMedia::Accept(PerimeterVisitor &v) {
+void SimpleMedia::accept(PerimeterVisitor &v) {
     v.visitSimpleMedia(this);
 }
 

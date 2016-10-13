@@ -137,7 +137,7 @@ TEST (SimpleMediaArea, Media)
     Circle c(0, 0, 10);          //  Area: 314    , Perimeter: 62.8
     SimpleMedia m(&c);
     AreaVisitor av;
-    m.Accept(av);
+    m.accept(av);
 
     DOUBLES_EQUAL(314, av.getArea(), deviation);
 }
@@ -147,7 +147,7 @@ TEST (SimpleMediaPerimeter, Media)
     Circle c(0, 0, 10);          //  Area: 314    , Perimeter: 62.8
     SimpleMedia m(&c);
     PerimeterVisitor pv;
-    m.Accept(pv);
+    m.accept(pv);
 
     DOUBLES_EQUAL(62.8, pv.getPerimeter(), deviation);
 }
@@ -162,7 +162,7 @@ TEST (CompositeMediaArea, Media)
     m.add(new SimpleMedia(&r));
 
     AreaVisitor av;
-    m.Accept(av);
+    m.accept(av);
 
     DOUBLES_EQUAL(338, av.getArea(), deviation);
 }
@@ -177,7 +177,7 @@ TEST (CompositeMediaPerimeter, Media)
     m.add(new SimpleMedia(&r));
 
     PerimeterVisitor pv;
-    m.Accept(pv);
+    m.accept(pv);
 
     DOUBLES_EQUAL(82.8, pv.getPerimeter(), deviation);
 }

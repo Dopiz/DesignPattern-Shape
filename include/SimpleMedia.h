@@ -14,8 +14,8 @@ class SimpleMedia : public Media
     public:
         SimpleMedia(Shape *shape);
         Shape *getShape();
-        void Accept(AreaVisitor &v);
-        void Accept(PerimeterVisitor &v);
+        void accept(AreaVisitor &v);
+        void accept(PerimeterVisitor &v);
         virtual ~SimpleMedia();
 };
 

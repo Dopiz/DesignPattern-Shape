@@ -1,18 +1,21 @@
 #include "Media.h"
 
+Media::Media() {
+    //dtor
+}
+
 void Media::add(Media *m) {
     throw string("Cannot add !");
 }
 
-Media::~Media()
-{
+void Media::accept(AreaVisitor &v) {
+
+}
+
+void Media::accept(PerimeterVisitor &v) {
+
+}
+
+Media::~Media() {
     //dtor
-}
-
-void Media::Accept(AreaVisitor &v) {
-
-}
-
-void Media::Accept(PerimeterVisitor &v) {
-
 }

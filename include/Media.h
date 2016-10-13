@@ -10,9 +10,10 @@ class PerimeterVisitor;
 class Media
 {
     public:
+        Media();
         virtual void add(Media *m);
-        virtual void Accept(AreaVisitor& v);
-        virtual void Accept(PerimeterVisitor& v);
+        virtual void accept(AreaVisitor& v);
+        virtual void accept(PerimeterVisitor& v);
         virtual ~Media();
 };
 
