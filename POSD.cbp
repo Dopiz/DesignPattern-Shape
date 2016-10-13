@@ -45,13 +45,13 @@
 		<Unit filename="include/AreaVisitor.h" />
 		<Unit filename="include/Circle.h" />
 		<Unit filename="include/CompositeMedia.h" />
+		<Unit filename="include/MediaVisitor.h" />
 		<Unit filename="include/PerimeterVisitor.h" />
 		<Unit filename="include/Point.h" />
 		<Unit filename="include/Rectangle.h" />
 		<Unit filename="include/Shape.h" />
 		<Unit filename="include/SimpleMedia.h" />
 		<Unit filename="include/Triangle.h" />
-		<Unit filename="include/Visitor.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/AreaVisitor.cpp" />
 		<Unit filename="src/Circle.cpp" />

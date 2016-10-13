@@ -1,6 +1,8 @@
 #ifndef UTSHAPES_H_INCLUDED
 #define UTSHAPES_H_INCLUDED
 
+#include <math.h>
+
 #include "Circle.h"
 #include "Rectangle.h"
 #include "Triangle.h"
@@ -180,6 +182,23 @@ TEST (CompositeMediaPerimeter, Media)
     m.accept(pv);
 
     DOUBLES_EQUAL(82.8, pv.getPerimeter(), deviation);
+}
+
+TEST (Hexagon, ComboMedia)
+{
+    Rectangle r(-1, sqrt(3), 2, 2 * sqrt(3));     //  Area: 24    , Perimeter: 20
+    Triangle t1(-1, sqrt(3), -2, 0, -1, -sqrt(3));
+    Triangle t2(1, sqrt(3), 2, 0, 1, -sqrt(3));
+
+    CompositeMedia comboMedia;
+    comboMedia.add(new SimpleMedia(&r));
+    comboMedia.add(new SimpleMedia(&t1));
+    comboMedia.add(new SimpleMedia(&t2));
+
+    PerimeterVisitor pv;
+    comboMedia.accept(pv);
+
+    DOUBLES_EQUAL(25.856406, pv.getPerimeter(), deviation);
 }
 
 #endif // UTSHAPES_H_INCLUDED
