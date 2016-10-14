@@ -5,6 +5,7 @@
 
 class AreaVisitor;
 class PerimeterVisitor;
+class DescriptionVisitor;
 
 class SimpleMedia : public Media
 {
@@ -16,6 +17,7 @@ class SimpleMedia : public Media
         Shape *getShape();
         void accept(AreaVisitor &v);
         void accept(PerimeterVisitor &v);
+        void accept(DescriptionVisitor &v);
         virtual ~SimpleMedia();
 };
 

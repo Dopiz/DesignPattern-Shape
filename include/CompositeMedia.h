@@ -1,11 +1,11 @@
 #ifndef COMPOSITEMEDIA_H
 #define COMPOSITEMEDIA_H
 #include "Media.h"
-#include "Shape.h"
 #include <vector>
 
 class AreaVisitor;
 class PerimeterVisitor;
+class DescriptionVisitor;
 
 class CompositeMedia : public Media
 {
@@ -15,8 +15,10 @@ class CompositeMedia : public Media
     public:
         CompositeMedia();
         void add(Media *m);
+        vector<Media *> getMediaObj();
         void accept(AreaVisitor &v);
         void accept(PerimeterVisitor &v);
+        void accept(DescriptionVisitor &v);
         virtual ~CompositeMedia();
 };
 

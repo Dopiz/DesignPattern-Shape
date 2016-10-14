@@ -14,8 +14,9 @@
 #include "MediaVisitor.h"
 #include "AreaVisitor.h"
 #include "PerimeterVisitor.h"
+#include "DescriptionVisitor.h"
 
-const double deviation = 0.00001;
+const double deviation = 0.000001;
 
 // Circle Test.
 TEST (circlePerimeter, Circle)
@@ -101,7 +102,7 @@ TEST (findLargestArea, Shape)
 
     /* Print result */
 //    cout << "Find the shapes in a vector which has the largest area:\n";
-//    cout << "Area: " << maxArea(ss)->area() << ",\t" << maxArea(ss)->content() << endl;
+//    cout << "Area: " << maxArea(ss)->area() << ",\t" << maxArea(ss)->description() << endl;
     /* Print result */
 
     CHECK(&c == maxArea(ss));
@@ -125,7 +126,7 @@ TEST (sortShapes, Shape)
 //    cout << "Sorts the list of shapes by decreasing order in perimeter\n";
 //    for(Shape *s: ss) {
 //        ++count;
-//        cout << count << ". Area: " << s->area() << ",\t" << s->content();
+//        cout << count << ". Area: " << s->area() << ",\t" << s->description();
 //    }
 //    cout << endl;
     /* Print result */
@@ -134,7 +135,7 @@ TEST (sortShapes, Shape)
 }
 
 //  Media
-TEST (SimpleMediaArea, Media)
+TEST (Area, SimpleMedia)
 {
     Circle c(0, 0, 10);          //  Area: 314    , Perimeter: 62.8
     SimpleMedia m(&c);
@@ -144,7 +145,7 @@ TEST (SimpleMediaArea, Media)
     DOUBLES_EQUAL(314, av.getArea(), deviation);
 }
 
-TEST (SimpleMediaPerimeter, Media)
+TEST (Perimeter, SimpleMedia)
 {
     Circle c(0, 0, 10);          //  Area: 314    , Perimeter: 62.8
     SimpleMedia m(&c);
@@ -154,51 +155,80 @@ TEST (SimpleMediaPerimeter, Media)
     DOUBLES_EQUAL(62.8, pv.getPerimeter(), deviation);
 }
 
-TEST (CompositeMediaArea, Media)
+TEST (MediaArea, CompositeMedia)
 {
     Circle c(0, 0, 10);          //  Area: 314    , Perimeter: 62.8
     Rectangle r(0, 0, 4, 6);     //  Area: 24    , Perimeter: 20
 
-    CompositeMedia m;
-    m.add(new SimpleMedia(&c));
-    m.add(new SimpleMedia(&r));
+    CompositeMedia cm;
+    cm.add(new SimpleMedia(&c));
+    cm.add(new SimpleMedia(&r));
 
     AreaVisitor av;
-    m.accept(av);
+    cm.accept(av);
 
     DOUBLES_EQUAL(338, av.getArea(), deviation);
 }
 
-TEST (CompositeMediaPerimeter, Media)
+TEST (Perimeter, CompositeMedia)
 {
     Circle c(0, 0, 10);          //  Area: 314    , Perimeter: 62.8
     Rectangle r(0, 0, 4, 6);     //  Area: 24    , Perimeter: 20
 
-    CompositeMedia m;
-    m.add(new SimpleMedia(&c));
-    m.add(new SimpleMedia(&r));
+    CompositeMedia cm;
+    cm.add(new SimpleMedia(&c));
+    cm.add(new SimpleMedia(&r));
 
     PerimeterVisitor pv;
-    m.accept(pv);
+    cm.accept(pv);
 
     DOUBLES_EQUAL(82.8, pv.getPerimeter(), deviation);
 }
 
-TEST (Hexagon, ComboMedia)
+TEST (Hexagon, CompositeMedia)
 {
-    Rectangle r(-1, sqrt(3), 2, 2 * sqrt(3));     //  Area: 24    , Perimeter: 20
-    Triangle t1(-1, sqrt(3), -2, 0, -1, -sqrt(3));
-    Triangle t2(1, sqrt(3), 2, 0, 1, -sqrt(3));
+    Rectangle r(0, 2 * sqrt(3), 2, 2 * sqrt(3));     //  Area: 6.928203    , Perimeter: 10.928203
+    Triangle t1(0, 2 * sqrt(3), 0, 0, -1, sqrt(3));  //  Area: 1.732050    , Perimeter: 7.464101
+    Triangle t2(2, 2 * sqrt(3), 2, 0,  3, sqrt(3));  //  Area: 1.732050    , Perimeter: 7.464101
 
     CompositeMedia comboMedia;
     comboMedia.add(new SimpleMedia(&r));
     comboMedia.add(new SimpleMedia(&t1));
     comboMedia.add(new SimpleMedia(&t2));
 
-    PerimeterVisitor pv;
-    comboMedia.accept(pv);
+//    PerimeterVisitor pv;
+//    comboMedia.accept(pv);
 
-    DOUBLES_EQUAL(25.856406, pv.getPerimeter(), deviation);
+    AreaVisitor av;
+    comboMedia.accept(av);
+
+//    DOUBLES_EQUAL(25.856406, pv.getPerimeter(), deviation);
+    DOUBLES_EQUAL(10.392305, av.getArea(), deviation);
+}
+
+TEST (getDescription, SimpleMedia)
+{
+    Circle c(0, 0, 10);
+    SimpleMedia m(&c);
+    DescriptionVisitor dv;
+    m.accept(dv);
+
+    CHECK(string("Circle(0, 0, 10) ") == dv.getDescription());
+}
+
+TEST (getDescription, CompositeMedia)
+{
+    Circle c(0, 0, 10);
+    Rectangle r(0, 0, 4, 6);
+
+    CompositeMedia cm;
+    cm.add(new SimpleMedia(&c));
+    cm.add(new SimpleMedia(&r));
+
+    DescriptionVisitor dv;
+    cm.accept(dv);
+
+    CHECK(string("ComboMedia(Circle(0, 0, 10) Rectangle(0, 0, 4, 6) )") == dv.getDescription());
 }
 
 #endif // UTSHAPES_H_INCLUDED

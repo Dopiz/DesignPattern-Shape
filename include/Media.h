@@ -6,6 +6,7 @@ using namespace std;
 
 class AreaVisitor;
 class PerimeterVisitor;
+class DescriptionVisitor;
 
 class Media
 {
@@ -14,6 +15,7 @@ class Media
         virtual void add(Media *m);
         virtual void accept(AreaVisitor& v);
         virtual void accept(PerimeterVisitor& v);
+        virtual void accept(DescriptionVisitor& v);
         virtual ~Media();
 };
 

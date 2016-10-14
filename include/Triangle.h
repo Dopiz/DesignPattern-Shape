@@ -17,7 +17,7 @@ class Triangle : public Shape
         void computeLength();
         double computeSlope(Point &pointA, Point &pointB);
         bool isTriangle();
-        string content();
+        string description();
         double perimeter() const;
         double area() const;
         ~Triangle();

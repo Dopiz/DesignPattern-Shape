@@ -1,6 +1,7 @@
 #include "AreaVisitor.h"
 
-AreaVisitor::AreaVisitor() {
+AreaVisitor::AreaVisitor()
+    : _area(0) {
     //ctor
 }
 

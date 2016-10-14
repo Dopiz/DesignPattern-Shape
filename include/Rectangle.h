@@ -11,7 +11,7 @@ class Rectangle : public Shape
 
     public:
         Rectangle(double ulx, double uly, double length, double width);
-        string content();
+        string description();
         double perimeter() const;
         double area() const;
         ~Rectangle();

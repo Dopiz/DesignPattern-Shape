@@ -5,7 +5,7 @@
 class AreaVisitor : public MediaVisitor
 {
     private:
-        double _area = 0;
+        double _area;
 
     public:
         AreaVisitor();

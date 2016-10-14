@@ -40,13 +40,13 @@ bool Triangle::isTriangle() {
     }
 }
 
-string Triangle::content() {
+string Triangle::description() {
     ostringstream oss;
 
     oss << getName() << "("
         << _firstPoint.x  << ", " << _firstPoint.y  << ", "
         << _secondPoint.x << ", " << _secondPoint.y << ", "
-        << _thirdPoint.x  << ", " << _thirdPoint.y  << ")\n";
+        << _thirdPoint.x  << ", " << _thirdPoint.y  << ") ";
 
     return oss.str();
 }

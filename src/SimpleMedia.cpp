@@ -1,6 +1,7 @@
 #include "SimpleMedia.h"
 #include "AreaVisitor.h"
 #include "PerimeterVisitor.h"
+#include "DescriptionVisitor.h"
 
 SimpleMedia::SimpleMedia(Shape *shape)
     : _shape(shape) {
@@ -16,6 +17,10 @@ void SimpleMedia::accept(AreaVisitor &v) {
 }
 
 void SimpleMedia::accept(PerimeterVisitor &v) {
+    v.visitSimpleMedia(this);
+}
+
+void SimpleMedia::accept(DescriptionVisitor &v) {
     v.visitSimpleMedia(this);
 }
 

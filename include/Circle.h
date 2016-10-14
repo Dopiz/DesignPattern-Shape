@@ -11,7 +11,7 @@ class Circle : public Shape
 
     public:
         Circle(double cx, double cy, double radius);
-        string content();
+        string description();
         double perimeter() const;
         double area() const;
         ~Circle();

@@ -1,7 +1,7 @@
 #include "PerimeterVisitor.h"
 
 PerimeterVisitor::PerimeterVisitor()
-{
+    : _perimeter(0) {
     //ctor
 }
 

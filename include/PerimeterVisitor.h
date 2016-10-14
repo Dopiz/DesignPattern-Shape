@@ -5,7 +5,7 @@
 class PerimeterVisitor : public MediaVisitor
 {
     private:
-        double _perimeter = 0;
+        double _perimeter;
 
     public:
         PerimeterVisitor();

@@ -16,6 +16,10 @@ void Media::accept(PerimeterVisitor &v) {
 
 }
 
+void Media::accept(DescriptionVisitor &v) {
+
+}
+
 Media::~Media() {
     //dtor
 }
