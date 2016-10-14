@@ -191,9 +191,12 @@ TEST (Hexagon, CompositeMedia)
     Triangle t1(0, 2 * sqrt(3), 0, 0, -1, sqrt(3));  //  Area: 1.732050    , Perimeter: 7.464101
     Triangle t2(2, 2 * sqrt(3), 2, 0,  3, sqrt(3));  //  Area: 1.732050    , Perimeter: 7.464101
 
+    CompositeMedia combo;
+    combo.add(new SimpleMedia(&r));
+    combo.add(new SimpleMedia(&t1));
+
     CompositeMedia comboMedia;
-    comboMedia.add(new SimpleMedia(&r));
-    comboMedia.add(new SimpleMedia(&t1));
+    comboMedia.add(&combo);
     comboMedia.add(new SimpleMedia(&t2));
 
 //    PerimeterVisitor pv;

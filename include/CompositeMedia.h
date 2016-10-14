@@ -15,7 +15,6 @@ class CompositeMedia : public Media
     public:
         CompositeMedia();
         void add(Media *m);
-        vector<Media *> getMediaObj();
         void accept(AreaVisitor &v);
         void accept(PerimeterVisitor &v);
         void accept(DescriptionVisitor &v);

@@ -12,10 +12,6 @@ void CompositeMedia::add(Media *m) {
     _mediaObj.push_back(m);
 }
 
-vector<Media *> CompositeMedia::getMediaObj() {
-    return _mediaObj;
-}
-
 void CompositeMedia::accept(AreaVisitor &v) {
 
     for(Media *m: _mediaObj)
