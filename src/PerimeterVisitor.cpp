@@ -2,10 +2,10 @@
 
 PerimeterVisitor::PerimeterVisitor()
     : _perimeter(0) {
-    //ctor
+
 }
 
-double PerimeterVisitor::getPerimeter() {
+double PerimeterVisitor::getPerimeter() const {
     return _perimeter;
 }
 
@@ -17,7 +17,6 @@ void PerimeterVisitor::visitCompositeMedia(CompositeMedia *c) {
 
 }
 
-PerimeterVisitor::~PerimeterVisitor()
-{
+PerimeterVisitor::~PerimeterVisitor() {
     //dtor
 }

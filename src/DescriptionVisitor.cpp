@@ -3,10 +3,10 @@
 
 DescriptionVisitor::DescriptionVisitor()
     : _description("") {
-    //ctor
+
 }
 
-string DescriptionVisitor::getDescription() {
+string DescriptionVisitor::getDescription() const {
     return _description;
 }
 
@@ -19,7 +19,6 @@ void DescriptionVisitor::visitCompositeMedia(CompositeMedia *c) {
 
 }
 
-DescriptionVisitor::~DescriptionVisitor()
-{
+DescriptionVisitor::~DescriptionVisitor() {
     //dtor
 }

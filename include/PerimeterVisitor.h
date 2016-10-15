@@ -9,10 +9,10 @@ class PerimeterVisitor : public MediaVisitor
 
     public:
         PerimeterVisitor();
-        double getPerimeter();
+        double getPerimeter() const;
         virtual void visitSimpleMedia(SimpleMedia *s);
         virtual void visitCompositeMedia(CompositeMedia *c);
-        virtual ~PerimeterVisitor();
+        ~PerimeterVisitor();
 };
 
 #endif // PERIMETERVISITOR_H

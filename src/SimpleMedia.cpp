@@ -5,10 +5,10 @@
 
 SimpleMedia::SimpleMedia(Shape *shape)
     : _shape(shape) {
-    //ctor
+
 }
 
-Shape *SimpleMedia::getShape() {
+Shape *SimpleMedia::getShape() const {
     return _shape;
 }
 
@@ -24,7 +24,6 @@ void SimpleMedia::accept(DescriptionVisitor &v) {
     v.visitSimpleMedia(this);
 }
 
-SimpleMedia::~SimpleMedia()
-{
+SimpleMedia::~SimpleMedia() {
     //dtor
 }

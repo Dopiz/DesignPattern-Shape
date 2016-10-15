@@ -14,11 +14,11 @@ class SimpleMedia : public Media
 
     public:
         SimpleMedia(Shape *shape);
-        Shape *getShape();
+        Shape *getShape() const;
         void accept(AreaVisitor &v);
         void accept(PerimeterVisitor &v);
         void accept(DescriptionVisitor &v);
-        virtual ~SimpleMedia();
+        ~SimpleMedia();
 };
 
 #endif // SIMPLEMEDIA_H

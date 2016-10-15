@@ -2,10 +2,10 @@
 
 AreaVisitor::AreaVisitor()
     : _area(0) {
-    //ctor
+
 }
 
-double AreaVisitor::getArea() {
+double AreaVisitor::getArea() const {
     return _area;
 }
 

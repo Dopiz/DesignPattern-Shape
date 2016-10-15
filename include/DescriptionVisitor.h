@@ -9,10 +9,10 @@ class DescriptionVisitor : public MediaVisitor
 
     public:
         DescriptionVisitor();
-        string getDescription();
+        string getDescription() const;
         virtual void visitSimpleMedia(SimpleMedia *s);
         virtual void visitCompositeMedia(CompositeMedia *c);
-        virtual ~DescriptionVisitor();
+        ~DescriptionVisitor();
 };
 
 #endif // DESCRIPTIONVISITOR_H

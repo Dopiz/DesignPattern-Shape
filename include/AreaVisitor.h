@@ -9,10 +9,10 @@ class AreaVisitor : public MediaVisitor
 
     public:
         AreaVisitor();
-        double getArea();
+        double getArea() const;
         virtual void visitSimpleMedia(SimpleMedia *s);
         virtual void visitCompositeMedia(CompositeMedia *c);
-        virtual ~AreaVisitor();
+        ~AreaVisitor();
 };
 
 #endif // AREAVISITOR_H

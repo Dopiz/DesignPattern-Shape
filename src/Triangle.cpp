@@ -14,7 +14,7 @@ void Triangle::computeLength() {
     _lengthC = sqrt( pow(_thirdPoint.x - _secondPoint.x, 2) + pow(_thirdPoint.y - _secondPoint.y, 2) );
 }
 
-double Triangle::computeSlope(Point &pointA, Point &pointB) {
+double Triangle::computeSlope(Point &pointA, Point &pointB) const {
     return (pointA.y - pointB.y) / (pointA.x - pointB.x);
 }
 

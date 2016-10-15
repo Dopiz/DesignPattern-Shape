@@ -19,26 +19,26 @@
 const double deviation = 0.000001;
 
 // Circle Test.
-TEST (circlePerimeter, Circle)
+TEST (Perimeter, Circle)
 {
     Circle c(0, 0, 10);
     DOUBLES_EQUAL(62.8, c.perimeter(), deviation);
 }
 
-TEST (circleArea, Circle)
+TEST (Area, Circle)
 {
     Circle c(0, 0, 10);
     DOUBLES_EQUAL(314, c.area(), deviation);
 }
 
 // Rectangle Test.
-TEST (rectanglePerimeter, Rectangle)
+TEST (Perimeter, Rectangle)
 {
     Rectangle r(0, 0, 4, 6);
     DOUBLES_EQUAL(20, r.perimeter(), deviation);
 }
 
-TEST (rectangleArea, Rectangle)
+TEST (Area, Rectangle)
 {
     Rectangle r(0, 0, 4, 6);
     DOUBLES_EQUAL(24, r.area(), deviation);
@@ -56,13 +56,13 @@ TEST (isTriangle, Triangle)
     }
 }
 
-TEST (trianglePerimeter, Triangle)
+TEST (Perimeter, Triangle)
 {
     Triangle t(0, 0, 4, 0, 0, 3);
     DOUBLES_EQUAL(12, t.perimeter(), deviation);
 }
 
-TEST (triangleArea, Triangle)
+TEST (Area, Triangle)
 {
     Triangle t(0, 0, 4, 0, 0, 3);
     DOUBLES_EQUAL(6, t.area(), deviation);
@@ -155,6 +155,18 @@ TEST (Perimeter, SimpleMedia)
     DOUBLES_EQUAL(62.8, pv.getPerimeter(), deviation);
 }
 
+TEST (AddToMedia, CompositeMedia)
+{
+    Circle c(0, 0, 10);          //  Area: 314    , Perimeter: 62.8
+    Media m;
+
+    try {
+        m.add(new SimpleMedia(&c));
+    } catch(string s) {
+        CHECK(string("Cannot add media!") == s);
+    }
+}
+
 TEST (MediaArea, CompositeMedia)
 {
     Circle c(0, 0, 10);          //  Area: 314    , Perimeter: 62.8
@@ -195,9 +207,10 @@ TEST (Hexagon, CompositeMedia)
     combo.add(new SimpleMedia(&r));
     combo.add(new SimpleMedia(&t1));
 
-    CompositeMedia comboMedia;
-    comboMedia.add(&combo);
-    comboMedia.add(new SimpleMedia(&t2));
+    CompositeMedia comboMedia;              //  comboMedia ---- combo ---- Rectangle (r)
+    comboMedia.add(&combo);                 //    |               |
+    comboMedia.add(new SimpleMedia(&t2));   //    |                ------- Triangle (t1)
+                                            //     ---- Triangle (t2)
 
 //    PerimeterVisitor pv;
 //    comboMedia.accept(pv);
