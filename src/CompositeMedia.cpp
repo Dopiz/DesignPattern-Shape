@@ -3,9 +3,8 @@
 #include "PerimeterVisitor.h"
 #include "DescriptionVisitor.h"
 
-CompositeMedia::CompositeMedia()
-{
-    //ctor
+CompositeMedia::CompositeMedia() {
+
 }
 
 void CompositeMedia::add(Media *m) {
@@ -36,7 +35,6 @@ void CompositeMedia::accept(DescriptionVisitor &v) {
     v.visitCompositeMedia(this);
 }
 
-CompositeMedia::~CompositeMedia()
-{
+CompositeMedia::~CompositeMedia() {
     //dtor
 }

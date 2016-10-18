@@ -3,10 +3,6 @@
 #include "Media.h"
 #include <vector>
 
-class AreaVisitor;
-class PerimeterVisitor;
-class DescriptionVisitor;
-
 class CompositeMedia : public Media
 {
     private:
@@ -18,7 +14,7 @@ class CompositeMedia : public Media
         void accept(AreaVisitor &v);
         void accept(PerimeterVisitor &v);
         void accept(DescriptionVisitor &v);
-        virtual ~CompositeMedia();
+        ~CompositeMedia();
 };
 
 #endif // COMPOSITEMEDIA_H

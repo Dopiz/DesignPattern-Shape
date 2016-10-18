@@ -1,5 +1,4 @@
 #include "DescriptionVisitor.h"
-#include <sstream>
 
 DescriptionVisitor::DescriptionVisitor()
     : _description("") {
@@ -15,7 +14,7 @@ void DescriptionVisitor::visitSimpleMedia(SimpleMedia *s) {
 }
 
 void DescriptionVisitor::visitCompositeMedia(CompositeMedia *c) {
-    _description = "ComboMedia(" + _description + ")";
+    _description = "ComboMedia( " + _description + ")";
 
 }
 

@@ -100,11 +100,6 @@ TEST (findLargestArea, Shape)
 
     vector<Shape *> ss = {&r, &t, &c};
 
-    /* Print result */
-//    cout << "Find the shapes in a vector which has the largest area:\n";
-//    cout << "Area: " << maxArea(ss)->area() << ",\t" << maxArea(ss)->description() << endl;
-    /* Print result */
-
     CHECK(&c == maxArea(ss));
 }
 
@@ -120,16 +115,6 @@ TEST (sortShapes, Shape)
     vector<Shape *> check = {&c, &r2, &r, &t};  // Sort already.
 
     sortByDecreasingPerimeter(ss);
-
-    /* Print result */
-//    int count = 0;
-//    cout << "Sorts the list of shapes by decreasing order in perimeter\n";
-//    for(Shape *s: ss) {
-//        ++count;
-//        cout << count << ". Area: " << s->area() << ",\t" << s->description();
-//    }
-//    cout << endl;
-    /* Print result */
 
     CHECK(ss == check);
 }
@@ -212,13 +197,13 @@ TEST (Hexagon, CompositeMedia)
     comboMedia.add(new SimpleMedia(&t2));   //    |                ------- Triangle (t1)
                                             //     ---- Triangle (t2)
 
-//    PerimeterVisitor pv;
-//    comboMedia.accept(pv);
+    PerimeterVisitor pv;
+    comboMedia.accept(pv);
 
     AreaVisitor av;
     comboMedia.accept(av);
 
-//    DOUBLES_EQUAL(25.856406, pv.getPerimeter(), deviation);
+    DOUBLES_EQUAL(25.856406, pv.getPerimeter(), deviation);
     DOUBLES_EQUAL(10.392305, av.getArea(), deviation);
 }
 
@@ -244,7 +229,7 @@ TEST (getDescription, CompositeMedia)
     DescriptionVisitor dv;
     cm.accept(dv);
 
-    CHECK(string("ComboMedia(Circle(0, 0, 10) Rectangle(0, 0, 4, 6) )") == dv.getDescription());
+    CHECK(string("ComboMedia( Circle(0, 0, 10) Rectangle(0, 0, 4, 6) )") == dv.getDescription());
 }
 
 #endif // UTSHAPES_H_INCLUDED

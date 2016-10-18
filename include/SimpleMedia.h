@@ -3,10 +3,6 @@
 #include "Media.h"
 #include "Shape.h"
 
-class AreaVisitor;
-class PerimeterVisitor;
-class DescriptionVisitor;
-
 class SimpleMedia : public Media
 {
     private:

@@ -16,7 +16,7 @@ class Media
         virtual void accept(AreaVisitor& v);
         virtual void accept(PerimeterVisitor& v);
         virtual void accept(DescriptionVisitor& v);
-        virtual ~Media();
+        ~Media();
 };
 
 #endif // MEDIA_H
