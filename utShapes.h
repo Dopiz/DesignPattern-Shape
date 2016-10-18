@@ -119,7 +119,7 @@ TEST (sortShapes, Shape)
     CHECK(ss == check);
 }
 
-//  Media
+//  Media Visitor Pattern.
 TEST (Area, SimpleMedia)
 {
     Circle c(0, 0, 10);          //  Area: 314    , Perimeter: 62.8
@@ -155,7 +155,7 @@ TEST (AddToMedia, CompositeMedia)
 TEST (MediaArea, CompositeMedia)
 {
     Circle c(0, 0, 10);          //  Area: 314    , Perimeter: 62.8
-    Rectangle r(0, 0, 4, 6);     //  Area: 24    , Perimeter: 20
+    Rectangle r(0, 0, 4, 6);     //  Area: 24     , Perimeter: 20
 
     CompositeMedia cm;
     cm.add(new SimpleMedia(&c));
@@ -170,7 +170,7 @@ TEST (MediaArea, CompositeMedia)
 TEST (Perimeter, CompositeMedia)
 {
     Circle c(0, 0, 10);          //  Area: 314    , Perimeter: 62.8
-    Rectangle r(0, 0, 4, 6);     //  Area: 24    , Perimeter: 20
+    Rectangle r(0, 0, 4, 6);     //  Area: 24     , Perimeter: 20
 
     CompositeMedia cm;
     cm.add(new SimpleMedia(&c));
@@ -184,9 +184,9 @@ TEST (Perimeter, CompositeMedia)
 
 TEST (Hexagon, CompositeMedia)
 {
-    Rectangle r(0, 2 * sqrt(3), 2, 2 * sqrt(3));     //  Area: 6.928203    , Perimeter: 10.928203
-    Triangle t1(0, 2 * sqrt(3), 0, 0, -1, sqrt(3));  //  Area: 1.732050    , Perimeter: 7.464101
-    Triangle t2(2, 2 * sqrt(3), 2, 0,  3, sqrt(3));  //  Area: 1.732050    , Perimeter: 7.464101
+    Rectangle r(0, 2 * sqrt(3), 2, 2 * sqrt(3));     //  Area: 6.928203  , Perimeter: 10.928203
+    Triangle t1(0, 2 * sqrt(3), 0, 0, -1, sqrt(3));  //  Area: 1.732050  , Perimeter: 7.464101
+    Triangle t2(2, 2 * sqrt(3), 2, 0,  3, sqrt(3));  //  Area: 1.732050  , Perimeter: 7.464101
 
     CompositeMedia combo;
     combo.add(new SimpleMedia(&r));
