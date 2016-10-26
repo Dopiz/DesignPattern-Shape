@@ -11,9 +11,10 @@ class CompositeMedia : public Media
     public:
         CompositeMedia();
         void add(Media *m);
-        void accept(AreaVisitor &v);
-        void accept(PerimeterVisitor &v);
-        void accept(DescriptionVisitor &v);
+        void accept(MediaVisitor &v);
+        double area() const;
+        double perimeter() const;
+        string description() const;
         ~CompositeMedia();
 };
 

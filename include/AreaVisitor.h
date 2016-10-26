@@ -5,11 +5,11 @@
 class AreaVisitor : public MediaVisitor
 {
     private:
-        double _area;
+        vector<double> _area;
 
     public:
         AreaVisitor();
-        double getArea() const;
+        vector<double> getArea() const;
         virtual void visitSimpleMedia(SimpleMedia *s);
         virtual void visitCompositeMedia(CompositeMedia *c);
         ~AreaVisitor();

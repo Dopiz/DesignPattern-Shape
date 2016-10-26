@@ -11,9 +11,10 @@ class SimpleMedia : public Media
     public:
         SimpleMedia(Shape *shape);
         Shape *getShape() const;
-        void accept(AreaVisitor &v);
-        void accept(PerimeterVisitor &v);
-        void accept(DescriptionVisitor &v);
+        void accept(MediaVisitor &v);
+        double area() const;
+        double perimeter() const;
+        string description() const;
         ~SimpleMedia();
 };
 

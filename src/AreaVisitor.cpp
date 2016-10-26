@@ -1,20 +1,19 @@
 #include "AreaVisitor.h"
 
-AreaVisitor::AreaVisitor()
-    : _area(0) {
+AreaVisitor::AreaVisitor() {
 
 }
 
-double AreaVisitor::getArea() const {
+vector<double> AreaVisitor::getArea() const {
     return _area;
 }
 
 void AreaVisitor::visitSimpleMedia(SimpleMedia *s) {
-    _area += s->getShape()->area();
+    _area.push_back(s->area());
 }
 
 void AreaVisitor::visitCompositeMedia(CompositeMedia *c) {
-
+    _area.push_back(c->area());
 }
 
 AreaVisitor::~AreaVisitor() {

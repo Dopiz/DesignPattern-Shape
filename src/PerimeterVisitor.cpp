@@ -5,16 +5,16 @@ PerimeterVisitor::PerimeterVisitor()
 
 }
 
-double PerimeterVisitor::getPerimeter() const {
+vector<double> PerimeterVisitor::getPerimeter() const {
     return _perimeter;
 }
 
 void PerimeterVisitor::visitSimpleMedia(SimpleMedia *s) {
-    _perimeter += s->getShape()->perimeter();
+    _perimeter.push_back(s->perimeter());
 }
 
 void PerimeterVisitor::visitCompositeMedia(CompositeMedia *c) {
-
+    _perimeter.push_back(c->perimeter());
 }
 
 PerimeterVisitor::~PerimeterVisitor() {

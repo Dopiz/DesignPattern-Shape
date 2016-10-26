@@ -10,12 +10,11 @@ string DescriptionVisitor::getDescription() const {
 }
 
 void DescriptionVisitor::visitSimpleMedia(SimpleMedia *s) {
-    _description += s->getShape()->description();
+    _description = s->description();
 }
 
 void DescriptionVisitor::visitCompositeMedia(CompositeMedia *c) {
-    _description = "ComboMedia( " + _description + ")";
-
+    _description = "ComboMedia( " + c->description() + ")";
 }
 
 DescriptionVisitor::~DescriptionVisitor() {

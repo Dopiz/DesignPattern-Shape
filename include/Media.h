@@ -4,19 +4,18 @@
 #include <string>
 using namespace std;
 
-class AreaVisitor;
-class PerimeterVisitor;
-class DescriptionVisitor;
+class MediaVisitor;
 
 class Media
 {
     public:
         Media();
         virtual void add(Media *m);
-        virtual void accept(AreaVisitor& v);
-        virtual void accept(PerimeterVisitor& v);
-        virtual void accept(DescriptionVisitor& v);
-        ~Media();
+        virtual void accept(MediaVisitor& v);
+        virtual double area() const;
+        virtual double perimeter() const;
+        virtual string description() const;
+        virtual ~Media();
 };
 
 #endif // MEDIA_H

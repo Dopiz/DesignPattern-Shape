@@ -7,12 +7,21 @@ Media::Media() {
 void Media::add(Media *m) {
     throw string("Cannot add media!");
 }
+void Media::accept(MediaVisitor& v) {
 
-void Media::accept(AreaVisitor &v) {}
+}
 
-void Media::accept(PerimeterVisitor &v) {}
+double Media::area() const {
 
-void Media::accept(DescriptionVisitor &v) {}
+}
+
+double Media::perimeter() const {
+
+}
+
+string Media::description() const {
+
+}
 
 Media::~Media() {
     //dtor

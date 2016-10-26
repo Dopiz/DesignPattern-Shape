@@ -5,11 +5,11 @@
 class PerimeterVisitor : public MediaVisitor
 {
     private:
-        double _perimeter;
+        vector<double> _perimeter;
 
     public:
         PerimeterVisitor();
-        double getPerimeter() const;
+        vector<double> getPerimeter() const;
         virtual void visitSimpleMedia(SimpleMedia *s);
         virtual void visitCompositeMedia(CompositeMedia *c);
         ~PerimeterVisitor();
