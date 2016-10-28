@@ -1,30 +1,26 @@
 #ifndef UTSHAPES_H_INCLUDED
 #define UTSHAPES_H_INCLUDED
 
-#include <math.h>
-#include <vector>
 #include <stack>
 
 #include "Circle.h"
 #include "Rectangle.h"
 #include "Triangle.h"
 
-#include "Media.h"
 #include "SimpleMedia.h"
 #include "CompositeMedia.h"
 #include "TextMedia.h"
 
-#include "MediaVisitor.h"
 #include "AreaVisitor.h"
 #include "PerimeterVisitor.h"
 #include "DescriptionVisitor.h"
 
-#include "MediaBuilder.h"
 #include "SimpleMediaBuilder.h"
 #include "CompositeMediaBuilder.h"
 
 const double deviation = 0.00001;
 
+/*HW4*/
 //  Builder Pattern.
 TEST (buildCircle, SimpleMedia)
 {
@@ -76,17 +72,19 @@ TEST (boungingBox, TextMedia)
 
     CHECK(string("This is text !") == dv.getDescription());
 
+    //  boungingBox area.
     AreaVisitor av;
     tm.accept(av);
     DOUBLES_EQUAL(24, av.getArea().front(), deviation);
 
+    //  boungingBox perimeter.
     PerimeterVisitor pv;
     tm.accept(pv);
     DOUBLES_EQUAL(20, pv.getPerimeter().front(), deviation);
 
 }
 
-TEST (remove, CompositeMedia)
+TEST (removeMedia, CompositeMedia)
 {
     Circle c(0, 0, 10);          //  Area: 314    , Perimeter: 62.8
     Rectangle r(0, 0, 4, 6);     //  Area: 24     , Perimeter: 20
@@ -110,7 +108,7 @@ TEST (remove, CompositeMedia)
 }
 
 //  can not found media to remove.
-TEST (removeError, CompositeMedia)
+TEST (removeMediaException, CompositeMedia)
 {
     Circle c(0, 0, 10);          //  Area: 314    , Perimeter: 62.8
     Rectangle r(0, 0, 4, 6);     //  Area: 24     , Perimeter: 20
@@ -127,7 +125,9 @@ TEST (removeError, CompositeMedia)
         CHECK(string("Cannot found media !") == s);
     }
 }
+/*HW4*/
 
+/*HW3*/
 //  Visitor Pattern.
 TEST (Area, CompositeMedia)
 {
@@ -234,7 +234,9 @@ TEST (getDescription, CompositeMedia)
 
     CHECK(string("Combo( Circle(0, 0, 10) Rectangle(0, 0, 4, 6) ) ") == dv.getDescription());
 }
+/*HW3*/
 
+/*HW2*/
 TEST (Area, SimpleMedia)
 {
     Circle c(0, 0, 10);          //  Area: 314    , Perimeter: 62.8
@@ -317,7 +319,9 @@ TEST (sortShapes, Shape)
 
     CHECK(ss == check);
 }
+/*HW2*/
 
+/*HW1*/
 // Circle Test.
 TEST (Perimeter, Circle)
 {
@@ -367,6 +371,6 @@ TEST (Area, Triangle)
     Triangle t(0, 0, 4, 0, 0, 3);
     DOUBLES_EQUAL(6, t.area(), deviation);
 }
-
+/*HW1*/
 
 #endif // UTSHAPES_H_INCLUDED

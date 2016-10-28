@@ -56,6 +56,7 @@
 		<Unit filename="include/Shape.h" />
 		<Unit filename="include/SimpleMedia.h" />
 		<Unit filename="include/SimpleMediaBuilder.h" />
+		<Unit filename="include/TextMedia.h" />
 		<Unit filename="include/Triangle.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/AreaVisitor.cpp" />
@@ -69,6 +70,7 @@
 		<Unit filename="src/Shape.cpp" />
 		<Unit filename="src/SimpleMedia.cpp" />
 		<Unit filename="src/SimpleMediaBuilder.cpp" />
+		<Unit filename="src/TextMedia.cpp" />
 		<Unit filename="src/Triangle.cpp" />
 		<Unit filename="utShapes.h">
 			<Option target="&lt;{~None~}&gt;" />
