@@ -10,8 +10,9 @@ class DescriptionVisitor : public MediaVisitor
     public:
         DescriptionVisitor();
         string getDescription() const;
-        virtual void visitSimpleMedia(SimpleMedia *s);
-        virtual void visitCompositeMedia(CompositeMedia *c);
+        void visitSimpleMedia(SimpleMedia *sm);
+        void visitCompositeMedia(CompositeMedia *cm);
+        void visitTextMedia(TextMedia *tm);
         ~DescriptionVisitor();
 };
 

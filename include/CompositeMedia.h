@@ -6,11 +6,13 @@
 class CompositeMedia : public Media
 {
     private:
-        vector<Media *> _mediaObj;
+        vector<Media *> _media;
 
     public:
         CompositeMedia();
+        CompositeMedia(vector<Media *> m);
         void add(Media *m);
+        void removeMedia(Media *m);
         void accept(MediaVisitor &v);
         double area() const;
         double perimeter() const;

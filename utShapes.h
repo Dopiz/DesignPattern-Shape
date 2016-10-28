@@ -2,6 +2,8 @@
 #define UTSHAPES_H_INCLUDED
 
 #include <math.h>
+#include <vector>
+#include <stack>
 
 #include "Circle.h"
 #include "Rectangle.h"
@@ -10,14 +12,104 @@
 #include "Media.h"
 #include "SimpleMedia.h"
 #include "CompositeMedia.h"
+#include "TextMedia.h"
 
 #include "MediaVisitor.h"
 #include "AreaVisitor.h"
 #include "PerimeterVisitor.h"
 #include "DescriptionVisitor.h"
 
+#include "MediaBuilder.h"
+#include "SimpleMediaBuilder.h"
+#include "CompositeMediaBuilder.h"
+
 const double deviation = 0.00001;
 
+//  Builder Pattern.
+TEST (buildCircle, SimpleMedia)
+{
+    Circle c(0, 0, 5);          //  Area: 314    , Perimeter: 62.8
+
+    SimpleMediaBuilder mb;
+    mb.buildSimpleMedia(&c);
+
+    SimpleMedia *m = mb.getMedia();
+    DescriptionVisitor dv;
+    m->accept(dv);
+    CHECK(string("Circle(0, 0, 5) ") == dv.getDescription());
+}
+
+TEST (buildHouse, CompositeMedia)
+{
+    Circle c(12, 5, 2);
+    Rectangle r1(10, 0, 15, 5);
+    Rectangle r2(0, 0, 25, 20);
+    Triangle t(0, 20, 16, 32, 25, 20);
+
+    stack<MediaBuilder *> mbs;
+    mbs.push(new CompositeMediaBuilder);
+    mbs.top()->buildSimpleMedia(&r1);
+    mbs.top()->buildSimpleMedia(&c);                //  combo ---- combo ---- combo ---- Rectangle (r1)
+    Media *cm = mbs.top()->getMedia();              //    |          |          |
+                                                    //    |          |           ---- Circle (c)
+    mbs.push(new CompositeMediaBuilder);            //    |           ---- Rectangle (r2)
+    mbs.top()->buildCompositeMedia(cm);             //     ---- Triangle (t)
+    mbs.top()->buildSimpleMedia(&r2);
+    cm = mbs.top()->getMedia();
+
+    mbs.push(new CompositeMediaBuilder);
+    mbs.top()->buildCompositeMedia(cm);
+    mbs.top()->buildSimpleMedia(&t);
+
+    DescriptionVisitor dv;
+    mbs.top()->getMedia()->accept(dv);
+//    cout << dv.getDescription() << endl;
+    CHECK(string("Combo( Combo( Combo( Rectangle(10, 0, 15, 5) Circle(12, 5, 2) ) Rectangle(0, 0, 25, 20) ) Triangle(0, 20, 16, 32, 25, 20) ) ") == dv.getDescription());
+}
+
+TEST (boungingBox, TextMedia)
+{
+    Rectangle r(0, 0, 4, 6);     //  Area: 24     , Perimeter: 20
+    TextMedia tm(r, "This is text !");
+
+    DescriptionVisitor dv;
+    tm.accept(dv);
+
+    CHECK(string("This is text !") == dv.getDescription());
+
+    AreaVisitor av;
+    tm.accept(av);
+    DOUBLES_EQUAL(24, av.getArea().front(), deviation);
+
+    PerimeterVisitor pv;
+    tm.accept(pv);
+    DOUBLES_EQUAL(20, pv.getPerimeter().front(), deviation);
+
+}
+
+TEST (remove, CompositeMedia)
+{
+    Circle c(0, 0, 10);          //  Area: 314    , Perimeter: 62.8
+    Rectangle r(0, 0, 4, 6);     //  Area: 24     , Perimeter: 20
+
+    CompositeMedia cm;
+    cm.add(new SimpleMedia(&c));
+    cm.add(new SimpleMedia(&r));
+
+    //  before removeMedia.
+    DescriptionVisitor dv;
+    cm.accept(dv);
+    CHECK(string("Combo( Circle(0, 0, 10) Rectangle(0, 0, 4, 6) ) ") == dv.getDescription());
+
+    cm.removeMedia(new SimpleMedia(&r));
+
+    //  After removeMedia.
+    DescriptionVisitor dv2;
+    cm.accept(dv2);
+    CHECK(string("Combo( Circle(0, 0, 10) ) ") == dv2.getDescription());
+}
+
+//  Visitor Pattern.
 TEST (Area, CompositeMedia)
 {
     Circle c(0, 0, 10);          //  Area: 314    , Perimeter: 62.8
@@ -121,29 +213,28 @@ TEST (getDescription, CompositeMedia)
     DescriptionVisitor dv;
     cm.accept(dv);
 
-    CHECK(string("ComboMedia( Circle(0, 0, 10) Rectangle(0, 0, 4, 6) )") == dv.getDescription());
+    CHECK(string("Combo( Circle(0, 0, 10) Rectangle(0, 0, 4, 6) ) ") == dv.getDescription());
 }
 
-////  Visitor Pattern.
-//TEST (Area, SimpleMedia)
-//{
-//    Circle c(0, 0, 10);          //  Area: 314    , Perimeter: 62.8
-//    SimpleMedia m(&c);
-//    AreaVisitor av;
-//    m.accept(av);
-//
-//    DOUBLES_EQUAL(314, av.getArea(), deviation);
-//}
-//
-//TEST (Perimeter, SimpleMedia)
-//{
-//    Circle c(0, 0, 10);          //  Area: 314    , Perimeter: 62.8
-//    SimpleMedia m(&c);
-//    PerimeterVisitor pv;
-//    m.accept(pv);
-//
-//    DOUBLES_EQUAL(62.8, pv.getPerimeter(), deviation);
-//}
+TEST (Area, SimpleMedia)
+{
+    Circle c(0, 0, 10);          //  Area: 314    , Perimeter: 62.8
+    SimpleMedia m(&c);
+    AreaVisitor av;
+    m.accept(av);
+
+    DOUBLES_EQUAL(314, av.getArea().front(), deviation);
+}
+
+TEST (Perimeter, SimpleMedia)
+{
+    Circle c(0, 0, 10);          //  Area: 314    , Perimeter: 62.8
+    SimpleMedia m(&c);
+    PerimeterVisitor pv;
+    m.accept(pv);
+
+    DOUBLES_EQUAL(62.8, pv.getPerimeter().front(), deviation);
+}
 
 TEST (AddToMedia, CompositeMedia)
 {

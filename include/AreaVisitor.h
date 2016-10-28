@@ -10,8 +10,9 @@ class AreaVisitor : public MediaVisitor
     public:
         AreaVisitor();
         vector<double> getArea() const;
-        virtual void visitSimpleMedia(SimpleMedia *s);
-        virtual void visitCompositeMedia(CompositeMedia *c);
+        void visitSimpleMedia(SimpleMedia *sm);
+        void visitCompositeMedia(CompositeMedia *cm);
+        void visitTextMedia(TextMedia *tm);
         ~AreaVisitor();
 };
 

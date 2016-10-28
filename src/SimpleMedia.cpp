@@ -1,9 +1,12 @@
 #include "SimpleMedia.h"
 #include "MediaVisitor.h"
 
+SimpleMedia::SimpleMedia() {
 
-SimpleMedia::SimpleMedia(Shape *shape)
-    : _shape(shape) {
+}
+
+SimpleMedia::SimpleMedia(Shape *s)
+    : _shape(s) {
 
 }
 

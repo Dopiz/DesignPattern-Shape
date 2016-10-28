@@ -10,8 +10,9 @@ class PerimeterVisitor : public MediaVisitor
     public:
         PerimeterVisitor();
         vector<double> getPerimeter() const;
-        virtual void visitSimpleMedia(SimpleMedia *s);
-        virtual void visitCompositeMedia(CompositeMedia *c);
+        void visitSimpleMedia(SimpleMedia *sm);
+        void visitCompositeMedia(CompositeMedia *cm);
+        void visitTextMedia(TextMedia *tm);
         ~PerimeterVisitor();
 };
 

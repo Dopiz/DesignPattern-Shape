@@ -9,7 +9,8 @@ class SimpleMedia : public Media
         Shape *_shape;
 
     public:
-        SimpleMedia(Shape *shape);
+        SimpleMedia();
+        SimpleMedia(Shape *s);
         Shape *getShape() const;
         void accept(MediaVisitor &v);
         double area() const;
