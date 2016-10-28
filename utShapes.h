@@ -28,7 +28,7 @@ const double deviation = 0.00001;
 //  Builder Pattern.
 TEST (buildCircle, SimpleMedia)
 {
-    Circle c(0, 0, 5);          //  Area: 314    , Perimeter: 62.8
+    Circle c(0, 0, 5);
 
     SimpleMediaBuilder mb;
     mb.buildSimpleMedia(&c);
@@ -49,11 +49,11 @@ TEST (buildHouse, CompositeMedia)
     stack<MediaBuilder *> mbs;
     mbs.push(new CompositeMediaBuilder);
     mbs.top()->buildSimpleMedia(&r1);
-    mbs.top()->buildSimpleMedia(&c);                //  combo ---- combo ---- combo ---- Rectangle (r1)
-    Media *cm = mbs.top()->getMedia();              //    |          |          |
-                                                    //    |          |           ---- Circle (c)
-    mbs.push(new CompositeMediaBuilder);            //    |           ---- Rectangle (r2)
-    mbs.top()->buildCompositeMedia(cm);             //     ---- Triangle (t)
+    mbs.top()->buildSimpleMedia(&c);         //  combo ---- combo ---- combo ---- Rectangle (r1)
+    Media *cm = mbs.top()->getMedia();       //    |          |          |
+                                             //    |          |           ------- Circle (c)
+    mbs.push(new CompositeMediaBuilder);     //    |           ------- Rectangle (r2)
+    mbs.top()->buildCompositeMedia(cm);      //     ------- Triangle (t)
     mbs.top()->buildSimpleMedia(&r2);
     cm = mbs.top()->getMedia();
 
@@ -63,7 +63,6 @@ TEST (buildHouse, CompositeMedia)
 
     DescriptionVisitor dv;
     mbs.top()->getMedia()->accept(dv);
-//    cout << dv.getDescription() << endl;
     CHECK(string("Combo( Combo( Combo( Rectangle(10, 0, 15, 5) Circle(12, 5, 2) ) Rectangle(0, 0, 25, 20) ) Triangle(0, 20, 16, 32, 25, 20) ) ") == dv.getDescription());
 }
 
@@ -91,6 +90,7 @@ TEST (remove, CompositeMedia)
 {
     Circle c(0, 0, 10);          //  Area: 314    , Perimeter: 62.8
     Rectangle r(0, 0, 4, 6);     //  Area: 24     , Perimeter: 20
+    Rectangle r2(0, 0, 4, 5);
 
     CompositeMedia cm;
     cm.add(new SimpleMedia(&c));
@@ -107,6 +107,25 @@ TEST (remove, CompositeMedia)
     DescriptionVisitor dv2;
     cm.accept(dv2);
     CHECK(string("Combo( Circle(0, 0, 10) ) ") == dv2.getDescription());
+}
+
+//  can not found media to remove.
+TEST (removeError, CompositeMedia)
+{
+    Circle c(0, 0, 10);          //  Area: 314    , Perimeter: 62.8
+    Rectangle r(0, 0, 4, 6);     //  Area: 24     , Perimeter: 20
+    Rectangle r2(0, 0, 4, 5);
+
+    CompositeMedia cm;
+    cm.add(new SimpleMedia(&c));
+    cm.add(new SimpleMedia(&r));
+
+    try {
+        cm.removeMedia(new SimpleMedia(&r2));
+        FAIL("Should not be here!");
+    } catch(string s) {
+        CHECK(string("Cannot found media !") == s);
+    }
 }
 
 //  Visitor Pattern.

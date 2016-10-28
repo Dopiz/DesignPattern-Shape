@@ -20,6 +20,8 @@ void CompositeMedia::removeMedia(Media *m) {
             _media.erase(it);
             break;
         }
+        else if(it == _media.end() - 1)
+            throw string("Cannot found media !");
     }
 }
 
