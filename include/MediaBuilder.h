@@ -6,8 +6,8 @@
 class MediaBuilder
 {
     public:
-        virtual void buildCompositeMedia(Media * m) {};
-        virtual void buildSimpleMedia(Shape *s) {};
+        virtual void buildCompositeMedia(Media * m) = 0;
+        virtual void buildSimpleMedia(Shape *s) = 0;
         virtual Media *getMedia() const = 0;
 };
 

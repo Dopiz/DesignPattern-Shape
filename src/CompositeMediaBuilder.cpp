@@ -8,11 +8,12 @@ CompositeMediaBuilder::CompositeMediaBuilder()
 void CompositeMediaBuilder::buildCompositeMedia(Media *m) {
     _cMedia->add(m);
 }
+
 void CompositeMediaBuilder::buildSimpleMedia(Shape *s) {
     _cMedia->add(new SimpleMedia(s));
 }
 
-CompositeMedia *CompositeMediaBuilder::getMedia() const{
+Media *CompositeMediaBuilder::getMedia() const{
     return _cMedia;
 }
 

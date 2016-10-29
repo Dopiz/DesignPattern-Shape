@@ -51,7 +51,7 @@ string CompositeMedia::description() const {
     string allDescription;
     for(Media *m: _media)
         allDescription += m->description();
-    return allDescription;
+    return string("Combo( ") + allDescription + string(") ");
 }
 
 CompositeMedia::~CompositeMedia() {

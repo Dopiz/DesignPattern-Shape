@@ -13,7 +13,7 @@ class CompositeMediaBuilder : public MediaBuilder
         CompositeMediaBuilder();
         void buildCompositeMedia(Media * m);
         void buildSimpleMedia(Shape *s);
-        CompositeMedia *getMedia() const;
+        Media *getMedia() const;
         ~CompositeMediaBuilder();
 };
 

@@ -7,6 +7,9 @@ Media::Media() {
 void Media::add(Media *m) {
     throw string("Cannot add media!");
 }
+
+void Media::removeMedia(Media *m) {}
+
 void Media::accept(MediaVisitor& v) {}
 
 double Media::area() const {}

@@ -29,7 +29,7 @@ TEST (buildCircle, SimpleMedia)
     SimpleMediaBuilder mb;
     mb.buildSimpleMedia(&c);
 
-    SimpleMedia *m = mb.getMedia();
+    Media *m = mb.getMedia();
     DescriptionVisitor dv;
     m->accept(dv);
     CHECK(string("Circle(0, 0, 5) ") == dv.getDescription());
@@ -37,23 +37,54 @@ TEST (buildCircle, SimpleMedia)
 
 TEST (buildHouse, CompositeMedia)
 {
+    stack<MediaBuilder *> mbs;
+
     Circle c(12, 5, 2);
     Rectangle r1(10, 0, 15, 5);
     Rectangle r2(0, 0, 25, 20);
     Triangle t(0, 20, 16, 32, 25, 20);
 
-    stack<MediaBuilder *> mbs;
+    mbs.push(new CompositeMediaBuilder);
+    mbs.top()->buildSimpleMedia(&t);
+    mbs.push(new CompositeMediaBuilder);
+    mbs.top()->buildSimpleMedia(&r2);
     mbs.push(new CompositeMediaBuilder);
     mbs.top()->buildSimpleMedia(&r1);
-    mbs.top()->buildSimpleMedia(&c);         //  combo ---- combo ---- combo ---- Rectangle (r1)
-    Media *cm = mbs.top()->getMedia();       //    |          |          |
-                                             //    |          |           ------- Circle (c)
-    mbs.push(new CompositeMediaBuilder);     //    |           ------- Rectangle (r2)
-    mbs.top()->buildCompositeMedia(cm);      //     ------- Triangle (t)
-    mbs.top()->buildSimpleMedia(&r2);
+    mbs.top()->buildSimpleMedia(&c);
+    Media *cm = mbs.top()->getMedia();
+    mbs.pop();
+    mbs.top()->buildCompositeMedia(cm);
     cm = mbs.top()->getMedia();
+    mbs.pop();
+    mbs.top()->buildCompositeMedia(cm);
+
+    DescriptionVisitor dv;
+    mbs.top()->getMedia()->accept(dv);
+    CHECK(string("Combo( Triangle(0, 20, 16, 32, 25, 20) Combo( Rectangle(0, 0, 25, 20) Combo( Rectangle(10, 0, 15, 5) Circle(12, 5, 2) ) ) ) ") == dv.getDescription());
+}
+
+TEST (buildHouse1, CompositeMedia)
+{
+    stack<MediaBuilder *> mbs;
+
+    Circle c(12, 5, 2);
+    Rectangle r1(10, 0, 15, 5);
+    Rectangle r2(0, 0, 25, 20);
+    Triangle t(0, 20, 16, 32, 25, 20);
 
     mbs.push(new CompositeMediaBuilder);
+    mbs.push(new CompositeMediaBuilder);
+    mbs.push(new CompositeMediaBuilder);
+    mbs.top()->buildSimpleMedia(&r1);
+    mbs.top()->buildSimpleMedia(&c);
+    Media *cm = mbs.top()->getMedia();
+    mbs.pop();
+
+    mbs.top()->buildCompositeMedia(cm);
+    mbs.top()->buildSimpleMedia(&r2);
+    cm = mbs.top()->getMedia();
+    mbs.pop();
+
     mbs.top()->buildCompositeMedia(cm);
     mbs.top()->buildSimpleMedia(&t);
 
@@ -61,6 +92,13 @@ TEST (buildHouse, CompositeMedia)
     mbs.top()->getMedia()->accept(dv);
     CHECK(string("Combo( Combo( Combo( Rectangle(10, 0, 15, 5) Circle(12, 5, 2) ) Rectangle(0, 0, 25, 20) ) Triangle(0, 20, 16, 32, 25, 20) ) ") == dv.getDescription());
 }
+
+//    try {
+//        cm->removeMedia(new SimpleMedia(&r2));
+//        FAIL("Should not be here!");
+//    } catch(string s) {
+//        CHECK(string("Cannot found media !") == s);
+//    }
 
 TEST (boungingBox, TextMedia)
 {

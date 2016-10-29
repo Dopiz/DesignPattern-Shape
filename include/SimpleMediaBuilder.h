@@ -10,8 +10,9 @@ class SimpleMediaBuilder : public MediaBuilder
 
     public:
         SimpleMediaBuilder();
+        void buildCompositeMedia(Media * m);
         void buildSimpleMedia(Shape *s);
-        SimpleMedia *getMedia() const;
+        Media *getMedia() const;
         ~SimpleMediaBuilder();
 };
 

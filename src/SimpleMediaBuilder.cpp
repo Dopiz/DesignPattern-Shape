@@ -5,11 +5,15 @@ SimpleMediaBuilder::SimpleMediaBuilder()
     //ctor
 }
 
+void SimpleMediaBuilder::buildCompositeMedia(Media * m) {
+
+}
+
 void SimpleMediaBuilder::buildSimpleMedia(Shape *s) {
     _sMedia = new SimpleMedia(s);
 }
 
-SimpleMedia *SimpleMediaBuilder::getMedia() const{
+Media *SimpleMediaBuilder::getMedia() const{
     return _sMedia;
 }
 

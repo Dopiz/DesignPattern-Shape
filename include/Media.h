@@ -11,6 +11,7 @@ class Media
     public:
         Media();
         virtual void add(Media *m);
+        virtual void removeMedia(Media *m);
         virtual void accept(MediaVisitor& v);
         virtual double area() const;
         virtual double perimeter() const;
