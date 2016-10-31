@@ -16,6 +16,7 @@ class Media
         virtual double area() const;
         virtual double perimeter() const;
         virtual string description() const;
+        virtual bool isCompositeMedia() const;
         virtual ~Media();
 };
 

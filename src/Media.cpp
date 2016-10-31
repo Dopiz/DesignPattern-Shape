@@ -18,6 +18,8 @@ double Media::perimeter() const {}
 
 string Media::description() const {}
 
+bool Media::isCompositeMedia() const {}
+
 Media::~Media() {
     //dtor
 }

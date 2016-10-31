@@ -16,6 +16,7 @@ class SimpleMedia : public Media
         double area() const;
         double perimeter() const;
         string description() const;
+        bool isCompositeMedia() const;
         ~SimpleMedia();
 };
 

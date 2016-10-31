@@ -14,14 +14,30 @@ void CompositeMedia::add(Media *m) {
     _media.push_back(m);
 }
 
+//void CompositeMedia::removeMedia(Media *m) {
+//    for(vector<Media *>::iterator it = _media.begin(); it != _media.end(); ++it) {
+//        if((*it)->description() == m->description())
+//        {
+//            _media.erase(it);
+//            break;
+//        }
+//        else if(it == _media.end() - 1)
+//            throw string("Cannot found media !");
+//    }
+//
+//}
+
 void CompositeMedia::removeMedia(Media *m) {
+
     for(vector<Media *>::iterator it = _media.begin(); it != _media.end(); ++it) {
-        if((*it)->description() == m->description()) {
+        if((*it)->isCompositeMedia()) {
+            (*it)->removeMedia(m);
+        }
+
+        else if((*it)->description() == m->description()) {
             _media.erase(it);
             break;
         }
-        else if(it == _media.end() - 1)
-            throw string("Cannot found media !");
     }
 }
 
@@ -52,6 +68,10 @@ string CompositeMedia::description() const {
     for(Media *m: _media)
         allDescription += m->description();
     return string("Combo( ") + allDescription + string(") ");
+}
+
+bool CompositeMedia::isCompositeMedia() const {
+    return true;
 }
 
 CompositeMedia::~CompositeMedia() {
