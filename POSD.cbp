@@ -72,9 +72,11 @@
 		<Unit filename="src/SimpleMediaBuilder.cpp" />
 		<Unit filename="src/TextMedia.cpp" />
 		<Unit filename="src/Triangle.cpp" />
+		<Unit filename="utBuilder.h" />
 		<Unit filename="utShapes.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="utVisitor.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
