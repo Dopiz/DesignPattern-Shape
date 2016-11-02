@@ -1,13 +1,13 @@
 #include "TextMedia.h"
 #include "MediaVisitor.h"
 
-TextMedia::TextMedia(Rectangle bBox, string text)
-    : _boundingBox(bBox), _text(text) {
-    //ctor
+TextMedia::TextMedia() {
+
 }
 
-Rectangle TextMedia::getBoundingBox() const {
-    return _boundingBox;
+TextMedia::TextMedia(Text *t)
+    : _text(t) {
+
 }
 
 void TextMedia::accept(MediaVisitor &v) {
@@ -15,15 +15,15 @@ void TextMedia::accept(MediaVisitor &v) {
 }
 
 double TextMedia::perimeter() const {
-    return _boundingBox.perimeter();
+    return _text->getBoundingBox().perimeter();
 }
 
 double TextMedia::area() const {
-    return _boundingBox.area();
+    return _text->getBoundingBox().area();
 }
 
 string TextMedia::description() const {
-    return _text;
+    return _text->getText();
 }
 
 TextMedia::~TextMedia() {

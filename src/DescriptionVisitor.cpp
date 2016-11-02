@@ -18,7 +18,7 @@ void DescriptionVisitor::visitCompositeMedia(CompositeMedia *cm) {
 }
 
 void DescriptionVisitor::visitTextMedia(TextMedia *tm) {
-    _description += tm->description();
+    _description = tm->description();
 }
 
 DescriptionVisitor::~DescriptionVisitor() {

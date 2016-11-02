@@ -1,17 +1,16 @@
 #ifndef TEXTMEDIA_H
 #define TEXTMEDIA_H
 #include "Media.h"
-#include "Rectangle.h"
+#include "Text.h"
 
 class TextMedia : public Media
 {
     private:
-        Rectangle _boundingBox;
-        string _text;
+        Text *_text;
 
     public:
-        TextMedia(Rectangle bBox, string text);
-        Rectangle getBoundingBox() const;
+        TextMedia();
+        TextMedia(Text *t);
         void accept(MediaVisitor &v);
         double perimeter() const;
         double area() const;
