@@ -30,10 +30,6 @@ string SimpleMedia::description() const {
     return _shape->description();
 }
 
-bool SimpleMedia::isCompositeMedia() const {
-    return false;
-}
-
 SimpleMedia::~SimpleMedia() {
     //dtor
 }
