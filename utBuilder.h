@@ -112,7 +112,7 @@ TEST (buildHouse1, CompositeMediaBuilder)  //  Combo ---- Triangle  (&t)
 TEST (textAndBoundingBox, TextMedia)
 {
     Rectangle bBox(0, 0, 10, 10);     //  Area: 24     , Perimeter: 20
-    Text t(bBox, "This is text !");
+    Text t(&bBox, "This is text !");
     TextMedia tm(&t);
 
     DescriptionVisitor dv;

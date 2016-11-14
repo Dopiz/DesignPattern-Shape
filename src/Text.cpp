@@ -1,11 +1,11 @@
 #include "Text.h"
 
-Text::Text(Rectangle boundingBox, string text)
+Text::Text(Rectangle *boundingBox, string text)
     : _bBox(boundingBox), _text(text) {
 
 }
 
-Rectangle Text::getBoundingBox() const {
+Rectangle *Text::getBoundingBox() const {
     return _bBox;
 }
 

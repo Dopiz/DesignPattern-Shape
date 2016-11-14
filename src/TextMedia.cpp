@@ -15,11 +15,11 @@ void TextMedia::accept(MediaVisitor &v) {
 }
 
 double TextMedia::perimeter() const {
-    return _text->getBoundingBox().perimeter();
+    return _text->getBoundingBox()->perimeter();
 }
 
 double TextMedia::area() const {
-    return _text->getBoundingBox().area();
+    return _text->getBoundingBox()->area();
 }
 
 string TextMedia::description() const {

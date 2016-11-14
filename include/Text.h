@@ -9,11 +9,11 @@ class Text
 {
     private:
         string _text;
-        Rectangle _bBox;
+        Rectangle *_bBox;
 
     public:
-        Text(Rectangle boundingBox, string text);
-        Rectangle getBoundingBox() const;
+        Text(Rectangle *boundingBox, string text);
+        Rectangle *getBoundingBox() const;
         string getText() const;
         ~Text();
 };
