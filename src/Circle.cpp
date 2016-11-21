@@ -4,7 +4,7 @@
 const double PI = 3.14;
 
 Circle::Circle(double cx, double cy, double radius)
-    : Shape("Circle"), _center(Point(cx, cy)), _radius(radius) {
+    : Shape("c"), _center(Point(cx, cy)), _radius(radius) {
 
 }
 

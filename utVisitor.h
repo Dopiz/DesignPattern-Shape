@@ -94,7 +94,7 @@ TEST (getDescription, SimpleMedia)
     DescriptionVisitor dv;
     m.accept(dv);
 
-    CHECK(string("Circle(0, 0, 10) ") == dv.getDescription());
+    CHECK(string("c(0, 0, 10) ") == dv.getDescription());
 }
 
 TEST (getDescription, CompositeMedia)
@@ -109,7 +109,7 @@ TEST (getDescription, CompositeMedia)
     DescriptionVisitor dv;
     cm.accept(dv);
 
-    CHECK(string("Combo( Circle(0, 0, 10) Rectangle(0, 0, 4, 6) ) ") == dv.getDescription());
+    CHECK(string("X( c(0, 0, 10) r(0, 0, 4, 6) ) ") == dv.getDescription());
 }
 
 TEST (getArea, SimpleMedia)

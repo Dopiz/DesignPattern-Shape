@@ -2,6 +2,7 @@
 #include "utShapes.h"
 #include "utVisitor.h"
 #include "utBuilder.h"
+#include "utFile.h"
 #include <iostream>
 
 using namespace std;

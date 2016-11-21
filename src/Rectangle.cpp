@@ -2,7 +2,7 @@
 #include <sstream>
 
 Rectangle::Rectangle(double ulx, double uly, double length, double width)
-    : Shape("Rectangle"), _upperLeftCorner(Point(ulx, uly)), _length(length), _width(width) {
+    : Shape("r"), _upperLeftCorner(Point(ulx, uly)), _length(length), _width(width) {
 
 }
 

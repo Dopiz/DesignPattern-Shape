@@ -37,8 +37,9 @@ void CompositeMedia::accept(MediaVisitor &v) {
 
 double CompositeMedia::area() const {
     double sumOfArea = 0;
-    for(Media *m: _media)
+    for(Media *m: _media) {
         sumOfArea += m->area();
+    }
     return sumOfArea;
 }
 
@@ -53,7 +54,7 @@ string CompositeMedia::description() const {
     string allDescription;
     for(Media *m: _media)
         allDescription += m->description();
-    return string("Combo( ") + allDescription + string(") ");
+    return string("X( ") + allDescription + string(") ");
 }
 
 CompositeMedia::~CompositeMedia() {

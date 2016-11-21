@@ -2,10 +2,44 @@
 #define UTBUILDER_H_INCLUDED
 
 #include <stack>
-
 #include "TextMedia.h"
 #include "SimpleMediaBuilder.h"
 #include "CompositeMediaBuilder.h"
+
+TEST (buildTest, Director)
+{
+    stack<MediaBuilder *> mbs;
+
+    Circle c1(0, 0, 5);
+    Circle c2(0, 0, 10);
+    Circle c3(0, 1, 10);
+    Rectangle r1(0, 0, 3, 2);
+    Rectangle r2(0, 0, 5, 4);
+    Rectangle r3(0, 1, 8, 7);
+
+    mbs.push(new CompositeMediaBuilder);
+    mbs.top()->buildSimpleMedia(&r1);
+    mbs.top()->buildSimpleMedia(&c1);
+
+    mbs.push(new CompositeMediaBuilder);
+    mbs.top()->buildSimpleMedia(&r2);
+    mbs.top()->buildSimpleMedia(&c2);
+    Media *cm = mbs.top()->getMedia();
+    mbs.pop();
+    mbs.top()->buildCompositeMedia(cm);
+
+    mbs.push(new CompositeMediaBuilder);
+    mbs.top()->buildSimpleMedia(&r3);
+    mbs.top()->buildSimpleMedia(&c3);
+    cm = mbs.top()->getMedia();
+    mbs.pop();
+    mbs.top()->buildCompositeMedia(cm);
+
+    DescriptionVisitor dv;
+    mbs.top()->getMedia()->accept(dv);
+
+    CHECK(string("X( r(0, 0, 3, 2) c(0, 0, 5) X( r(0, 0, 5, 4) c(0, 0, 10) ) X( r(0, 1, 8, 7) c(0, 1, 10) ) ) ") == dv.getDescription());
+}
 
 //  Builder Pattern.
 TEST (buildCircle, SimpleMediaBuilder)
@@ -18,7 +52,7 @@ TEST (buildCircle, SimpleMediaBuilder)
     Media *m = mb.getMedia();
     DescriptionVisitor dv;
     m->accept(dv);
-    CHECK(string("Circle(0, 0, 5) ") == dv.getDescription());
+    CHECK(string("c(0, 0, 5) ") == dv.getDescription());
 }
 
 TEST (buildHouse, CompositeMediaBuilder)   //  Combo ---- Combo ---- Combo ---- Rectangle (&r1)
@@ -47,7 +81,7 @@ TEST (buildHouse, CompositeMediaBuilder)   //  Combo ---- Combo ---- Combo ---- 
     //  Before remove.
     DescriptionVisitor dv;
     mbs.top()->getMedia()->accept(dv);
-    CHECK(string("Combo( Triangle(0, 20, 16, 32, 25, 20) Combo( Rectangle(0, 0, 25, 20) Combo( Rectangle(10, 0, 15, 5) Circle(12, 5, 2) ) ) ) ") == dv.getDescription());
+    CHECK(string("X( t(0, 20, 16, 32, 25, 20) X( r(0, 0, 25, 20) X( r(10, 0, 15, 5) c(12, 5, 2) ) ) ) ") == dv.getDescription());
 
     //  Remove media.
     SimpleMediaBuilder smb;
@@ -57,7 +91,7 @@ TEST (buildHouse, CompositeMediaBuilder)   //  Combo ---- Combo ---- Combo ---- 
     // After remove.
     DescriptionVisitor dv2;
     mbs.top()->getMedia()->accept(dv2);
-    CHECK(string("Combo( Triangle(0, 20, 16, 32, 25, 20) Combo( Combo( Rectangle(10, 0, 15, 5) Circle(12, 5, 2) ) ) ) ") == dv2.getDescription());
+    CHECK(string("X( t(0, 20, 16, 32, 25, 20) X( X( r(10, 0, 15, 5) c(12, 5, 2) ) ) ) ") == dv2.getDescription());
 }
 
 TEST (buildHouse1, CompositeMediaBuilder)  //  Combo ---- Triangle  (&t)
@@ -88,7 +122,7 @@ TEST (buildHouse1, CompositeMediaBuilder)  //  Combo ---- Triangle  (&t)
     //  Before remove.
     DescriptionVisitor dv;
     mbs.top()->getMedia()->accept(dv);
-    CHECK(string("Combo( Combo( Combo( Rectangle(10, 0, 15, 5) Circle(12, 5, 2) ) Rectangle(0, 0, 25, 20) ) Triangle(0, 20, 16, 32, 25, 20) ) ") == dv.getDescription());
+    CHECK(string("X( X( X( r(10, 0, 15, 5) c(12, 5, 2) ) r(0, 0, 25, 20) ) t(0, 20, 16, 32, 25, 20) ) ") == dv.getDescription());
 
     //  Remove media.
     SimpleMediaBuilder smb;
@@ -98,16 +132,8 @@ TEST (buildHouse1, CompositeMediaBuilder)  //  Combo ---- Triangle  (&t)
     // After remove.
     DescriptionVisitor dv2;
     mbs.top()->getMedia()->accept(dv2);
-    CHECK(string("Combo( Combo( Combo( Rectangle(10, 0, 15, 5) Circle(12, 5, 2) ) ) Triangle(0, 20, 16, 32, 25, 20) ) ") == dv2.getDescription());
+    CHECK(string("X( X( X( r(10, 0, 15, 5) c(12, 5, 2) ) ) t(0, 20, 16, 32, 25, 20) ) ") == dv2.getDescription());
 }
-
-//    //  Remove invalid Shape.
-//    try {
-//        mbs.top()->getMedia()->removeMedia(new SimpleMedia(&c2));
-//        FAIL("Should not be here!");
-//    } catch(string s) {
-//        CHECK(string("Cannot found media !") == s);
-//    }
 
 TEST (textAndBoundingBox, TextMedia)
 {
