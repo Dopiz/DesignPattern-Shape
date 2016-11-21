@@ -13,7 +13,7 @@ void CompositeMediaBuilder::buildSimpleMedia(Shape *s) {
     _cMedia->add(new SimpleMedia(s));
 }
 
-Media *CompositeMediaBuilder::getMedia() const{
+Media *CompositeMediaBuilder::getMedia() const {
     return _cMedia;
 }
 

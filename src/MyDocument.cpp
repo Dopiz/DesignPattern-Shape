@@ -22,7 +22,7 @@ string MyDocument::readFile() {
 
     return buffer;
 
-//    // char have Garbled !!!!
+/***** char have Garbled !!!! *****/
 //    char buffer[200];
 //    _file.read(buffer, sizeof(buffer));
 //    string result(buffer);

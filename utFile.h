@@ -28,13 +28,20 @@ TEST (buildMedia, Document)
 {
     MyDocument doc;
     string fileName = "test.txt";
-    MediaDirector md;
+    MediaDirector direct;
 
     stack<MediaBuilder *> mb;
-    md.setMediaBuilder(&mb);
-    md.concrete(doc.openDocument(fileName));
-    // do something.
-    cout << mb.size() << endl;
+    direct.setMediaBuilder(&mb);
+    direct.concrete(doc.openDocument(fileName));
+
+//    mb.top()->getMedia()->description();
+    /*
+    **  pure virtual method called
+    **  terminate called without an active exception
+    **  This application has requested the Runtime to terminate it in an unusual way.
+    **  Please contact the application's support team for more information.
+    */
+
 }
 
 #endif // UTFILE_H_INCLUDED

@@ -12,10 +12,10 @@ class Media
         Media();
         virtual void add(Media *m);
         virtual void removeMedia(Media *m);
-        virtual void accept(MediaVisitor& v);
-        virtual double area() const;
-        virtual double perimeter() const;
-        virtual string description() const;
+        virtual void accept(MediaVisitor& v) = 0;
+        virtual double area() const = 0;
+        virtual double perimeter() const = 0;
+        virtual string description() const = 0;
         virtual ~Media();
 };
 

@@ -10,14 +10,6 @@ void Media::add(Media *m) {
 
 void Media::removeMedia(Media *m) {}
 
-void Media::accept(MediaVisitor& v) {}
-
-double Media::area() const {}
-
-double Media::perimeter() const {}
-
-string Media::description() const {}
-
 Media::~Media() {
     //dtor
 }

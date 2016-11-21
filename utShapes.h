@@ -11,17 +11,18 @@
 const double deviation = 0.00001;
 
 //  Composite Pattern.
-TEST (AddInvalidMedia, CompositeMedia)
-{
-    Circle c(0, 0, 10);             //  Area: 314    , Perimeter: 62.8
-    Media m;
 
-    try {
-        m.add(new SimpleMedia(&c));
-    } catch(string s) {
-        CHECK(string("Cannot add media!") == s);
-    }
-}
+//TEST (AddInvalidMedia, CompositeMedia)
+//{
+//    Circle c(0, 0, 10);             //  Area: 314    , Perimeter: 62.8
+//    Media m;
+//
+//    try {
+//        m.add(new SimpleMedia(&c));
+//    } catch(string s) {
+//        CHECK(string("Cannot add media!") == s);
+//    }
+//}
 
 TEST (sumOfArea, Shape)
 {
