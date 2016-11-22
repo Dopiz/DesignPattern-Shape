@@ -1,8 +1,9 @@
 #ifndef UTFILE_H_INCLUDED
 #define UTFILE_H_INCLUDED
 
-#include <MyDocument.h>
-#include <MediaDirector.h>
+#include "MyDocument.h"
+#include "MediaDirector.h"
+#include "DescriptionVisitor.h"
 
 TEST (openDocFail, Document)
 {
@@ -27,21 +28,17 @@ TEST (openDoc, Document)
 TEST (buildMedia, Document)
 {
     MyDocument doc;
-    string fileName = "test.txt";
+    string fileName = "myShape.txt";
     MediaDirector direct;
 
-    stack<MediaBuilder *> mb;
-    direct.setMediaBuilder(&mb);
+    stack<MediaBuilder *> mbs;
+    direct.setMediaBuilder(&mbs);
     direct.concrete(doc.openDocument(fileName));
 
-//    mb.top()->getMedia()->description();
-    /*
-    **  pure virtual method called
-    **  terminate called without an active exception
-    **  This application has requested the Runtime to terminate it in an unusual way.
-    **  Please contact the application's support team for more information.
-    */
-
+    DescriptionVisitor dv;
+    mbs.top()->getMedia()->accept(dv);
+    CHECK(string("X( r(0, 0, 3, 2) c(0, 0, 5) X( r(0, 0, 5, 4) c(0, 0, 10) ) X( r(0, 1, 8, 7) c(0, 1, 10) ) ) ") == dv.getDescription());
 }
+
 
 #endif // UTFILE_H_INCLUDED

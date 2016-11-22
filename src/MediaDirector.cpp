@@ -11,24 +11,26 @@ MediaDirector::MediaDirector() {
 }
 
 void MediaDirector::setMediaBuilder(stack<MediaBuilder *> *mbs) {
-    mb = mbs;
+    _mb = mbs;
 }
 
 void MediaDirector::concrete(string content) {
 
-    int i, j;
+    int i, j, flag = 0;
     string p;
+    Media *cm;
 
     char *contents = new char[content.size()];
     strcpy(contents, content.c_str());
 
-    for(i = 0; contents[i + 1] != '\0'; ++i)
+    for(i = 0; contents[i] != '\0'; ++i)
     {
         switch(contents[i])
         {
             // ComboMedia.
             case 'X': {
-                mb->push(new CompositeMediaBuilder);
+                ++flag;
+                _mb->push(new CompositeMediaBuilder);
                 break;
             }
 
@@ -52,21 +54,18 @@ void MediaDirector::concrete(string content) {
                 }
 
                 if(contents[i] == 'c') {
-//                    cout << "Circle(" << parameters[0] << ", " << parameters[1] << ", " << parameters[2] << ") \n";
-                    Circle c(parameters[0], parameters[1], parameters[2]);
-                    mb->top()->buildSimpleMedia(&c);
+                    Circle *c = new Circle(parameters[0], parameters[1], parameters[2]);
+                    _mb->top()->buildSimpleMedia(c);
                 }
 
                 else if(contents[i] == 't') {
-//                    cout << "Triangle(" << parameters[0] << ", " << parameters[1] << ", " << parameters[2] << ", " << parameters[3] << ", " << parameters[4] << ", " << parameters[5] << ") \n";
-                    Triangle t(parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5]);
-                    mb->top()->buildSimpleMedia(&t);
+                    Triangle *t = new Triangle(parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5]);
+                    _mb->top()->buildSimpleMedia(t);
                 }
 
                 else if(contents[i] == 'r') {
-//                    cout << "Rectangle(" << parameters[0] << ", " << parameters[1] << ", " << parameters[2] << ", " << parameters[3] << ") \n";
-                    Rectangle r(parameters[0], parameters[1], parameters[2], parameters[3]);
-                    mb->top()->buildSimpleMedia(&r);
+                    Rectangle *r = new Rectangle(parameters[0], parameters[1], parameters[2], parameters[3]);
+                    _mb->top()->buildSimpleMedia(r);
                 }
 
                 i = j;
@@ -74,9 +73,12 @@ void MediaDirector::concrete(string content) {
             }
 
             case ')': {
-                Media *cm = mb->top()->getMedia();
-                mb->pop();
-                mb->top()->buildCompositeMedia(cm);
+                if(--flag) {
+                    cm = _mb->top()->getMedia();
+                    _mb->pop();
+                    _mb->top()->buildCompositeMedia(cm);
+                }
+
                 break;
             }
 
@@ -84,8 +86,6 @@ void MediaDirector::concrete(string content) {
                 break;
         }
     }
-
-//    cout << this->mb->top()->getMedia()->description() << endl;
 }
 
 MediaDirector::~MediaDirector() {
