@@ -17,18 +17,20 @@ void MediaDirector::setMediaBuilder(stack<MediaBuilder *> *mbs) {
 void MediaDirector::concrete(string content){
 
     for(int i = 0; i < content.size(); ++i) {
+
         switch(content[i]) {
+
             case 'c':
             case 'r':
             case 't':
             {
                 // is Combo Media.
-                if(content[i + 1] == 'o') {
+                if(content[i + 1] == 'o')
                     _mb->push(new CompositeMediaBuilder);
-                }
 
                 // is Shape Media.
                 else {
+
                     int left = content.find_first_of('(', i);
                     int right = content.find_first_of(')', i);
 
@@ -55,6 +57,7 @@ void MediaDirector::concrete(string content){
                     _mb->top()->buildSimpleMedia(shape);
                     i = right;
                 }
+
                 break;
             }
 
