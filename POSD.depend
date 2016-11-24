@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1479970196 source:d:\project\posd\main.cpp
+1479983624 source:c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\main.cpp
 	"cppunitlite/TestHarness.h"
 	"utShapes.h"
 	"utVisitor.h"
@@ -7,188 +7,188 @@
 	"utFile.h"
 	<iostream>
 
-1479970196 d:\project\posd\cppunitlite\testharness.h
+1479983624 c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\cppunitlite\testharness.h
 	"Test.h"
 	"TestResult.h"
 	"Failure.h"
 	"TestRegistry.h"
 
-1479970196 d:\project\posd\cppunitlite\test.h
+1479983624 c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\cppunitlite\test.h
 	<cmath>
 	"SimpleString.h"
 
-1479970196 d:\project\posd\cppunitlite\simplestring.h
+1479983624 c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\cppunitlite\simplestring.h
 
-1479970196 d:\project\posd\cppunitlite\testresult.h
+1479983624 c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\cppunitlite\testresult.h
 
-1479970196 d:\project\posd\cppunitlite\failure.h
+1479983624 c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\cppunitlite\failure.h
 	"SimpleString.h"
 
-1479970196 d:\project\posd\cppunitlite\testregistry.h
+1479983624 c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\cppunitlite\testregistry.h
 
-1479970196 d:\project\posd\utshapes.h
+1479983624 c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\utshapes.h
 	"Circle.h"
 	"Rectangle.h"
 	"Triangle.h"
 	"SimpleMedia.h"
 	"CompositeMedia.h"
 
-1479970197 d:\project\posd\include\circle.h
+1479983625 c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\include\circle.h
 	"Shape.h"
 	"Point.h"
 
-1479970197 d:\project\posd\include\shape.h
+1479983625 c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\include\shape.h
 	<iostream>
 	<string>
 	<vector>
 
-1479970197 d:\project\posd\include\point.h
+1479983625 c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\include\point.h
 
-1479970197 d:\project\posd\include\rectangle.h
+1479983625 c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\include\rectangle.h
 	"Shape.h"
 	"Point.h"
 
-1479970197 d:\project\posd\include\triangle.h
+1479983625 c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\include\triangle.h
 	"Shape.h"
 	"Point.h"
 
-1479970197 d:\project\posd\include\simplemedia.h
+1479983625 c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\include\simplemedia.h
 	"Media.h"
 	"Shape.h"
 
-1479970197 d:\project\posd\include\media.h
+1479983625 c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\include\media.h
 	<iostream>
 	<string>
 
-1479970197 d:\project\posd\include\compositemedia.h
+1479983625 c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\include\compositemedia.h
 	"Media.h"
 	<vector>
 
-1479981723 d:\project\posd\utvisitor.h
+1479983624 c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\utvisitor.h
 	"AreaVisitor.h"
 	"PerimeterVisitor.h"
 	"DescriptionVisitor.h"
 
-1479970197 d:\project\posd\include\areavisitor.h
+1479983625 c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\include\areavisitor.h
 	"MediaVisitor.h"
 
-1479970197 d:\project\posd\include\mediavisitor.h
+1479983625 c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\include\mediavisitor.h
 	"SimpleMedia.h"
 	"CompositeMedia.h"
 	"TextMedia.h"
 
-1479970197 d:\project\posd\include\textmedia.h
+1479983625 c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\include\textmedia.h
 	"Media.h"
 	"Text.h"
 
-1479970197 d:\project\posd\include\text.h
+1479983625 c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\include\text.h
 	<iostream>
 	<string>
 	"Rectangle.h"
 
-1479970197 d:\project\posd\include\perimetervisitor.h
+1479983625 c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\include\perimetervisitor.h
 	"MediaVisitor.h"
 
-1479970197 d:\project\posd\include\descriptionvisitor.h
+1479983625 c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\include\descriptionvisitor.h
 	"MediaVisitor.h"
 
-1479981698 d:\project\posd\utbuilder.h
+1479983624 c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\utbuilder.h
 	<stack>
 	"TextMedia.h"
 	"SimpleMediaBuilder.h"
 	"CompositeMediaBuilder.h"
 
-1479970197 d:\project\posd\include\simplemediabuilder.h
+1479983625 c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\include\simplemediabuilder.h
 	"MediaBuilder.h"
 	"SimpleMedia.h"
 
-1479970197 d:\project\posd\include\mediabuilder.h
+1479983625 c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\include\mediabuilder.h
 	"Media.h"
 	"Shape.h"
 
-1479970197 d:\project\posd\include\compositemediabuilder.h
+1479983625 c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\include\compositemediabuilder.h
 	"MediaBuilder.h"
 	"SimpleMedia.h"
 	"CompositeMedia.h"
 
-1479983177 d:\project\posd\utfile.h
+1479983698 c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\utfile.h
 	"MyDocument.h"
 	"MediaDirector.h"
 	"DescriptionVisitor.h"
 
-1479970197 d:\project\posd\include\mydocument.h
+1479983625 c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\include\mydocument.h
 	"Document.h"
 	<fstream>
 
-1479970197 d:\project\posd\include\document.h
+1479983625 c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\include\document.h
 	<iostream>
 	<string>
 
-1479970197 d:\project\posd\include\mediadirector.h
+1479983625 c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\include\mediadirector.h
 	"CompositeMediaBuilder.h"
 	"SimpleMediaBuilder.h"
 	<stack>
 
-1479970197 source:d:\project\posd\src\areavisitor.cpp
+1479983625 source:c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\src\areavisitor.cpp
 	"AreaVisitor.h"
 
-1479970197 source:d:\project\posd\src\circle.cpp
+1479983625 source:c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\src\circle.cpp
 	"Circle.h"
 	<sstream>
 
-1479981654 source:d:\project\posd\src\compositemedia.cpp
+1479983625 source:c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\src\compositemedia.cpp
 	"CompositeMedia.h"
 	"MediaVisitor.h"
 
-1479970197 source:d:\project\posd\src\compositemediabuilder.cpp
+1479983625 source:c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\src\compositemediabuilder.cpp
 	"CompositeMediaBuilder.h"
 
-1479970197 source:d:\project\posd\src\descriptionvisitor.cpp
+1479983625 source:c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\src\descriptionvisitor.cpp
 	"DescriptionVisitor.h"
 
-1479970197 source:d:\project\posd\src\media.cpp
+1479983625 source:c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\src\media.cpp
 	"Media.h"
 
-1479982948 source:d:\project\posd\src\mediadirector.cpp
+1479983625 source:c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\src\mediadirector.cpp
 	"MediaDirector.h"
+	"Shape.h"
 	"Circle.h"
 	"Rectangle.h"
 	"Triangle.h"
 	"Media.h"
-	<cstring>
-	<cstdlib>
+	<sstream>
 
-1479971787 source:d:\project\posd\src\mydocument.cpp
+1479983625 source:c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\src\mydocument.cpp
 	"MyDocument.h"
 	<sys/stat.h>
 	<cstring>
 
-1479970197 source:d:\project\posd\src\perimetervisitor.cpp
+1479983625 source:c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\src\perimetervisitor.cpp
 	"PerimeterVisitor.h"
 
-1479970197 source:d:\project\posd\src\rectangle.cpp
+1479983625 source:c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\src\rectangle.cpp
 	"Rectangle.h"
 	<sstream>
 
-1479970197 source:d:\project\posd\src\shape.cpp
+1479983625 source:c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\src\shape.cpp
 	"Shape.h"
 	<algorithm>
 
-1479970197 source:d:\project\posd\src\simplemedia.cpp
+1479983625 source:c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\src\simplemedia.cpp
 	"SimpleMedia.h"
 	"MediaVisitor.h"
 
-1479970197 source:d:\project\posd\src\simplemediabuilder.cpp
+1479983625 source:c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\src\simplemediabuilder.cpp
 	"SimpleMediaBuilder.h"
 
-1479970197 source:d:\project\posd\src\text.cpp
+1479983625 source:c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\src\text.cpp
 	"Text.h"
 
-1479970197 source:d:\project\posd\src\textmedia.cpp
+1479983625 source:c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\src\textmedia.cpp
 	"TextMedia.h"
 	"MediaVisitor.h"
 
-1479970197 source:d:\project\posd\src\triangle.cpp
+1479983625 source:c:\users\r.j.liu\desktop\0fdfe3b4e0ee37e05e01fa81b63682b9\posd\src\triangle.cpp
 	"Triangle.h"
 	<math.h>
 	<sstream>
