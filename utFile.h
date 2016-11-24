@@ -22,7 +22,7 @@ TEST (openDoc, Document)
 {
     MyDocument doc;
     string fileName = "myShape.txt";
-    CHECK(string("X( r(0, 0, 3, 2) c(0, 0, 5) X( r(0, 0, 5, 4) c(0, 0, 10) ) X( r(0, 1, 8, 7) c(0, 1, 10) ) ) ") == doc.openDocument(fileName));
+    CHECK(string("combo(r(0 0 3 2) c(0 0 5) combo(r(0 0 5 4) c(0 0 10) )combo(r(0 1 8 7) c(0 1 10) ))") == doc.openDocument(fileName));
 }
 
 TEST (buildMedia, Document)
@@ -37,7 +37,7 @@ TEST (buildMedia, Document)
 
     DescriptionVisitor dv;
     mbs.top()->getMedia()->accept(dv);
-    CHECK(string("X( r(0, 0, 3, 2) c(0, 0, 5) X( r(0, 0, 5, 4) c(0, 0, 10) ) X( r(0, 1, 8, 7) c(0, 1, 10) ) ) ") == dv.getDescription());
+    CHECK(string("combo( r(0, 0, 3, 2) c(0, 0, 5) combo( r(0, 0, 5, 4) c(0, 0, 10) ) combo( r(0, 1, 8, 7) c(0, 1, 10) ) ) ") == dv.getDescription());
 }
 
 

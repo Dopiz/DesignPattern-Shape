@@ -37,7 +37,7 @@ TEST (buildTest, Director)
 
     DescriptionVisitor dv;
     mbs.top()->getMedia()->accept(dv);
-    CHECK(string("X( r(0, 0, 3, 2) c(0, 0, 5) X( r(0, 0, 5, 4) c(0, 0, 10) ) X( r(0, 1, 8, 7) c(0, 1, 10) ) ) ") == dv.getDescription());
+    CHECK(string("combo( r(0, 0, 3, 2) c(0, 0, 5) combo( r(0, 0, 5, 4) c(0, 0, 10) ) combo( r(0, 1, 8, 7) c(0, 1, 10) ) ) ") == dv.getDescription());
 }
 
 //  Builder Pattern.
@@ -80,7 +80,7 @@ TEST (buildHouse, CompositeMediaBuilder)   //  Combo ---- Combo ---- Combo ---- 
     //  Before remove.
     DescriptionVisitor dv;
     mbs.top()->getMedia()->accept(dv);
-    CHECK(string("X( t(0, 20, 16, 32, 25, 20) X( r(0, 0, 25, 20) X( r(10, 0, 15, 5) c(12, 5, 2) ) ) ) ") == dv.getDescription());
+    CHECK(string("combo( t(0, 20, 16, 32, 25, 20) combo( r(0, 0, 25, 20) combo( r(10, 0, 15, 5) c(12, 5, 2) ) ) ) ") == dv.getDescription());
 
     //  Remove media.
     SimpleMediaBuilder smb;
@@ -90,7 +90,7 @@ TEST (buildHouse, CompositeMediaBuilder)   //  Combo ---- Combo ---- Combo ---- 
     // After remove.
     DescriptionVisitor dv2;
     mbs.top()->getMedia()->accept(dv2);
-    CHECK(string("X( t(0, 20, 16, 32, 25, 20) X( X( r(10, 0, 15, 5) c(12, 5, 2) ) ) ) ") == dv2.getDescription());
+    CHECK(string("combo( t(0, 20, 16, 32, 25, 20) combo( combo( r(10, 0, 15, 5) c(12, 5, 2) ) ) ) ") == dv2.getDescription());
 }
 
 TEST (buildHouse1, CompositeMediaBuilder)  //  Combo ---- Triangle  (&t)
@@ -121,7 +121,7 @@ TEST (buildHouse1, CompositeMediaBuilder)  //  Combo ---- Triangle  (&t)
     //  Before remove.
     DescriptionVisitor dv;
     mbs.top()->getMedia()->accept(dv);
-    CHECK(string("X( X( X( r(10, 0, 15, 5) c(12, 5, 2) ) r(0, 0, 25, 20) ) t(0, 20, 16, 32, 25, 20) ) ") == dv.getDescription());
+    CHECK(string("combo( combo( combo( r(10, 0, 15, 5) c(12, 5, 2) ) r(0, 0, 25, 20) ) t(0, 20, 16, 32, 25, 20) ) ") == dv.getDescription());
 
     //  Remove media.
     SimpleMediaBuilder smb;
@@ -131,7 +131,7 @@ TEST (buildHouse1, CompositeMediaBuilder)  //  Combo ---- Triangle  (&t)
     // After remove.
     DescriptionVisitor dv2;
     mbs.top()->getMedia()->accept(dv2);
-    CHECK(string("X( X( X( r(10, 0, 15, 5) c(12, 5, 2) ) ) t(0, 20, 16, 32, 25, 20) ) ") == dv2.getDescription());
+    CHECK(string("combo( combo( combo( r(10, 0, 15, 5) c(12, 5, 2) ) ) t(0, 20, 16, 32, 25, 20) ) ") == dv2.getDescription());
 }
 
 TEST (textAndBoundingBox, TextMedia)

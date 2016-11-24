@@ -109,7 +109,7 @@ TEST (getDescription, CompositeMedia)
     DescriptionVisitor dv;
     cm.accept(dv);
 
-    CHECK(string("X( c(0, 0, 10) r(0, 0, 4, 6) ) ") == dv.getDescription());
+    CHECK(string("combo( c(0, 0, 10) r(0, 0, 4, 6) ) ") == dv.getDescription());
 }
 
 TEST (getArea, SimpleMedia)

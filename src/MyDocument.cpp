@@ -21,13 +21,6 @@ string MyDocument::readFile() {
     _file.close();
 
     return buffer;
-
-/***** char have Garbled !!!! *****/
-//    char buffer[200];
-//    _file.read(buffer, sizeof(buffer));
-//    string result(buffer);
-//    _file.close();
-//    return result;
 }
 
 string MyDocument::openDocument(const string name) {
