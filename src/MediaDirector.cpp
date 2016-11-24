@@ -34,8 +34,10 @@ void MediaDirector::concrete(string content){
 
                     Shape *shape;
                     string parameters = content.substr(left + 1, right - left - 1);
+
                     vector<double> number;
                     stringstream ss(parameters);
+
                     double value;
                     while(ss >> value) {
                         number.push_back(value);
