@@ -25,8 +25,10 @@ void MediaDirector::concrete(string content){
             case 't':
             {
                 // is Combo Media.
-                if(content[i + 1] == 'o')
+                if(content[i + 1] == 'o') {
                     _mb->push(new CompositeMediaBuilder);
+                    break;
+                }
 
                 // is Shape Media.
                 else {
@@ -56,9 +58,8 @@ void MediaDirector::concrete(string content){
 
                     _mb->top()->buildSimpleMedia(shape);
                     i = right;
+                    break;
                 }
-
-                break;
             }
 
             case ')':
