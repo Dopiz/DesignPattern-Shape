@@ -1,0 +1,246 @@
+#include "TextUI.h"
+
+TextUI::TextUI() {
+    //ctor
+}
+
+void TextUI::processCommand() {
+
+    _action.clear();
+
+    cout << ":- ";
+
+    string action;
+    while(getline(cin, action)) {
+
+        cin.clear();
+
+        if(action == "") processCommand();
+
+        else {
+
+            char *str = new char[action.size()];
+            strcpy(str, action.c_str());
+
+            char *delim = " =.?{}";
+            char *token = strtok(str, delim);
+
+            while(token != NULL)
+            {
+                string temp(token);
+                _action.push_back(temp);
+                token = strtok(NULL, delim);
+            }
+
+            string Case = _action[0];
+
+            if(Case == "def")
+                this->defineMedia();
+
+            else if(Case == "show")
+                this->showMedia();
+
+            else if(Case == "add")
+                this->addMedia();
+
+            else if(Case == "delete")
+                this->deleteMedia();
+
+            else if(Case == "save")
+                this->saveFile();
+
+            else if(Case == "load")
+                this->loadFile();
+
+            else
+                this->askProperties();
+        }
+    }
+}
+
+void TextUI::defineMedia() {
+
+    string mediaName = _action[1];
+    string media = _action[2];
+
+    char *contents = new char[media.size()];
+    strcpy(contents, media.c_str());
+
+    switch(contents[0])
+    {
+        // Shape Media.
+        case 'C':
+        case 'T':
+        case 'R':
+        {
+            double parameters[6];
+            int index = 0;
+            bool isNegative = false;
+            string p;
+
+            for(int j = 1; contents[j] != ')'; j++) {
+
+                if(contents[j] == '-')
+                    isNegative = true;
+
+                else if((contents[j] >= '0' && contents[j] <= '9') || contents[j] == '.') {
+
+                    p += contents[j];
+
+                    if(!((contents[j + 1] >= '0' && contents[j + 1] <= '9') || contents[j + 1] == '.')) {
+                        double temp = atof(p.c_str());
+                        parameters[index++] = isNegative ? -1 * temp : temp;
+                        isNegative = false;
+                        p.clear();
+                    }
+                }
+            }
+
+            Shape *shape;
+
+            if(contents[0] == 'C')
+                shape = new Circle(parameters[0], parameters[1], parameters[2]);
+
+            else if(contents[0] == 'T')
+                shape = new Triangle(parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5]);
+
+            else if(contents[0] == 'R')
+                shape = new Rectangle(parameters[0], parameters[1], parameters[2], parameters[3]);
+
+            SimpleMediaBuilder smb;
+            smb.buildSimpleMedia(shape);
+            smb.getMedia()->setName(mediaName);
+
+            _ms.push_back(smb.getMedia());
+
+            cout << ">> " << media << endl;
+            break;
+        }
+
+        // combo media.
+        case 'c': {
+
+            CompositeMediaBuilder cmb;
+            cmb.getMedia()->setName(mediaName);
+
+            string shape = _action[3];
+
+            char *str = new char[shape.size()];
+            strcpy(str, shape.c_str());
+
+            char *delim = " ,";
+            char *token = strtok(str, delim);
+
+            while(token != NULL)
+            {
+                string temp(token);
+                _action.push_back(temp);
+
+                int number = findMedia(temp);
+                cmb.buildCompositeMedia(_ms[number]);
+
+                token = strtok(NULL, delim);
+            }
+
+            _ms.push_back(cmb.getMedia());
+
+            break;
+        }
+
+        default:
+            break;
+    }
+
+    processCommand();
+}
+
+void TextUI::askProperties() {
+
+    string mediaName = _action[0];
+    int number = findMedia(mediaName);
+
+    if(number > -1) {
+
+        string propertie = _action[1];
+
+        if(propertie == "area")
+            cout << ">> " << _ms[number]->area() << endl;
+
+        else if(propertie == "perimeter")
+            cout << ">> " << _ms[number]->perimeter() << endl;
+
+        else cout << "*** Invalid type ! ***\n";
+    }
+
+    else cout << "*** Invalid type ! ***\n";
+
+    processCommand();
+}
+
+void TextUI::addMedia() {
+
+    string shape = _action[1];
+    string media = _action[3];
+
+    int sNumber = findMedia(shape);
+    int mNumber = findMedia(media);
+
+    _ms[mNumber]->add(_ms[sNumber]);
+
+    cout << _ms[mNumber]->getName() << " = ";
+    cout << _ms[mNumber]->description() << endl;
+
+    processCommand();
+}
+
+void TextUI::deleteMedia() {
+
+    string shape = _action[1];
+    //  delete from combo media.
+    if(_action.size() > 2) {
+        string media = _action[3];
+        int sNumber = findMedia(shape);
+        int mNumber = findMedia(media);
+
+        _ms[mNumber]->removeMedia(_ms[sNumber]);
+    }
+
+    // delete shape media.
+    else
+        _ms.erase(_ms.begin() + findMedia(shape));
+
+    processCommand();
+}
+
+void TextUI::saveFile() {
+    cout << "save File!\n";
+    processCommand();
+}
+
+void TextUI::loadFile() {
+    cout << "load File!\n";
+    processCommand();
+}
+
+void TextUI::showMedia() {
+
+    for(Media *m: _ms) {
+        cout << m->getName() << endl;
+    }
+
+    processCommand();
+}
+
+int TextUI::findMedia(string name) {
+
+    for(int i = 0; i < _ms.size(); i++) {
+        if(name.compare(_ms[i]->getName()) == 0)
+            return i;
+    }
+
+    return -1;
+}
+
+TextUI::~TextUI() {
+    //dtor
+}
