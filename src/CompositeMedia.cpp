@@ -10,6 +10,14 @@ CompositeMedia::CompositeMedia(vector<Media *> m)
 
 }
 
+void CompositeMedia::setName(string name) {
+    _name = name;
+}
+
+string CompositeMedia::getName() const {
+    return _name;
+}
+
 void CompositeMedia::add(Media *m) {
     _media.push_back(m);
 }

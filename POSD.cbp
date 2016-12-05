@@ -63,6 +63,8 @@
 		<Unit filename="include/SimpleMediaBuilder.h" />
 		<Unit filename="include/Text.h" />
 		<Unit filename="include/TextMedia.h" />
+		<Unit filename="include/TextUI.h" />
+		<Unit filename="include/TextUIHeader.h" />
 		<Unit filename="include/Triangle.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/AreaVisitor.cpp" />
@@ -80,6 +82,7 @@
 		<Unit filename="src/SimpleMediaBuilder.cpp" />
 		<Unit filename="src/Text.cpp" />
 		<Unit filename="src/TextMedia.cpp" />
+		<Unit filename="src/TextUI.cpp" />
 		<Unit filename="src/Triangle.cpp" />
 		<Unit filename="utBuilder.h" />
 		<Unit filename="utFile.h" />

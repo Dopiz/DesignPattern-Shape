@@ -4,6 +4,10 @@ Media::Media() {
 
 }
 
+void Media::setName(string name) {}
+
+string Media::getName() const {}
+
 void Media::add(Media *m) {
     throw string("Cannot add media!");
 }
