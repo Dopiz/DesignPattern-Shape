@@ -1,7 +1,6 @@
 #ifndef COMPOSITEMEDIA_H
 #define COMPOSITEMEDIA_H
 #include "Media.h"
-#include <vector>
 
 class CompositeMedia : public Media
 {
@@ -14,6 +13,7 @@ class CompositeMedia : public Media
         CompositeMedia(vector<Media *> m);
         void setName(string name);
         string getName() const;
+        vector<Media *> getVector() const;
         void add(Media *m);
         void removeMedia(Media *m);
         void accept(MediaVisitor &v);

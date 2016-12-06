@@ -4,7 +4,7 @@
 class TextUI
 {
     private:
-        vector<string> _action;
+        vector<string> _content;
         vector<Media *> _ms;
 
     public:

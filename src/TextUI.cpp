@@ -6,33 +6,34 @@ TextUI::TextUI() {
 
 void TextUI::processCommand() {
 
-    _action.clear();
-
     cout << ":- ";
 
-    string action;
-    while(getline(cin, action)) {
+    _content.clear();
+    string instruction;
+
+    while(getline(cin, instruction)) {
 
         cin.clear();
 
-        if(action == "") processCommand();
+        if(instruction == "")
+            processCommand();
 
         else {
 
-            char *str = new char[action.size()];
-            strcpy(str, action.c_str());
+            char *str = new char[instruction.size()];
+            strcpy(str, instruction.c_str());
 
-            char *delim = " =.?{}";
+            char *delim = " =.?{}\"";
             char *token = strtok(str, delim);
 
             while(token != NULL)
             {
                 string temp(token);
-                _action.push_back(temp);
+                _content.push_back(temp);
                 token = strtok(NULL, delim);
             }
 
-            string Case = _action[0];
+            string Case = _content[0];
 
             if(Case == "def")
                 this->defineMedia();
@@ -60,13 +61,13 @@ void TextUI::processCommand() {
 
 void TextUI::defineMedia() {
 
-    string mediaName = _action[1];
-    string media = _action[2];
+    string mediaName = _content[1];
+    string media = _content[2];
 
-    char *contents = new char[media.size()];
-    strcpy(contents, media.c_str());
+    char *mediaContent = new char[media.size()];
+    strcpy(mediaContent, media.c_str());
 
-    switch(contents[0])
+    switch(mediaContent[0])
     {
         // Shape Media.
         case 'C':
@@ -78,16 +79,16 @@ void TextUI::defineMedia() {
             bool isNegative = false;
             string p;
 
-            for(int j = 1; contents[j] != ')'; j++) {
+            for(int j = 1; mediaContent[j] != ')'; j++) {
 
-                if(contents[j] == '-')
+                if(mediaContent[j] == '-')
                     isNegative = true;
 
-                else if((contents[j] >= '0' && contents[j] <= '9') || contents[j] == '.') {
+                else if((mediaContent[j] >= '0' && mediaContent[j] <= '9') || mediaContent[j] == '.') {
 
-                    p += contents[j];
+                    p += mediaContent[j];
 
-                    if(!((contents[j + 1] >= '0' && contents[j + 1] <= '9') || contents[j + 1] == '.')) {
+                    if(!((mediaContent[j + 1] >= '0' && mediaContent[j + 1] <= '9') || mediaContent[j + 1] == '.')) {
                         double temp = atof(p.c_str());
                         parameters[index++] = isNegative ? -1 * temp : temp;
                         isNegative = false;
@@ -98,13 +99,13 @@ void TextUI::defineMedia() {
 
             Shape *shape;
 
-            if(contents[0] == 'C')
+            if(mediaContent[0] == 'C')
                 shape = new Circle(parameters[0], parameters[1], parameters[2]);
 
-            else if(contents[0] == 'T')
+            else if(mediaContent[0] == 'T')
                 shape = new Triangle(parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5]);
 
-            else if(contents[0] == 'R')
+            else if(mediaContent[0] == 'R')
                 shape = new Rectangle(parameters[0], parameters[1], parameters[2], parameters[3]);
 
             SimpleMediaBuilder smb;
@@ -123,7 +124,7 @@ void TextUI::defineMedia() {
             CompositeMediaBuilder cmb;
             cmb.getMedia()->setName(mediaName);
 
-            string shape = _action[3];
+            string shape = _content[3];
 
             char *str = new char[shape.size()];
             strcpy(str, shape.c_str());
@@ -134,7 +135,7 @@ void TextUI::defineMedia() {
             while(token != NULL)
             {
                 string temp(token);
-                _action.push_back(temp);
+                _content.push_back(temp);
 
                 int number = findMedia(temp);
                 cmb.buildCompositeMedia(_ms[number]);
@@ -156,31 +157,30 @@ void TextUI::defineMedia() {
 
 void TextUI::askProperties() {
 
-    string mediaName = _action[0];
+    string mediaName = _content[0];
     int number = findMedia(mediaName);
 
     if(number > -1) {
 
-        string propertie = _action[1];
+        string content = _content[1];
 
-        if(propertie == "area")
+        if(content == "area")
             cout << ">> " << _ms[number]->area() << endl;
 
-        else if(propertie == "perimeter")
+        else if(content == "perimeter")
             cout << ">> " << _ms[number]->perimeter() << endl;
-
-        else cout << "*** Invalid type ! ***\n";
     }
 
-    else cout << "*** Invalid type ! ***\n";
+    else
+        cout << ">> Invalid type !" << endl;
 
     processCommand();
 }
 
 void TextUI::addMedia() {
 
-    string shape = _action[1];
-    string media = _action[3];
+    string shape = _content[1];
+    string media = _content[3];
 
     int sNumber = findMedia(shape);
     int mNumber = findMedia(media);
@@ -188,17 +188,21 @@ void TextUI::addMedia() {
     _ms[mNumber]->add(_ms[sNumber]);
 
     cout << _ms[mNumber]->getName() << " = ";
-    cout << _ms[mNumber]->description() << endl;
+    cout << _ms[mNumber]->getName() << "{ ";
+    for(Media *m: _ms[mNumber]->getVector())
+        cout << m->getName() << " ";
+    cout << "} = " << _ms[mNumber]->description() << endl;
 
     processCommand();
 }
 
 void TextUI::deleteMedia() {
 
-    string shape = _action[1];
+    string shape = _content[1];
+
     //  delete from combo media.
-    if(_action.size() > 2) {
-        string media = _action[3];
+    if(_content.size() > 2) {
+        string media = _content[3];
         int sNumber = findMedia(shape);
         int mNumber = findMedia(media);
 
@@ -213,20 +217,50 @@ void TextUI::deleteMedia() {
 }
 
 void TextUI::saveFile() {
-    cout << "save File!\n";
+
+    string media = _content[1];
+    string fileName = _content[3] + "." + _content[4];
+
+    int number = findMedia(media);
+
+    string content;
+    content  = _ms[number]->description() + "\n";
+    content += _ms[number]->getName() + "{ ";
+    for(Media *m: _ms[number]->getVector())
+        content += m->getName() + " ";
+    content += "}";
+
+    fstream file;
+    file.open(fileName, ios::out | ios::trunc);
+
+    file.write(content.c_str(), content.size());
+    cout << ">> " << media << " saved to " << fileName << endl;
+
+    file.close();
     processCommand();
 }
 
 void TextUI::loadFile() {
-    cout << "load File!\n";
+
+    fstream file;
+    string fileName = _content[1] + "." + _content[2];
+    MyDocument doc;
+
+    cout << ">> loading " << fileName << " ..." << endl;
+
+    file.open(fileName, ios::in);
+    string buffer;
+    while(getline(file, buffer))
+        cout << buffer << endl;
+
+    file.close();
     processCommand();
 }
 
 void TextUI::showMedia() {
 
-    for(Media *m: _ms) {
+    for(Media *m: _ms)
         cout << m->getName() << endl;
-    }
 
     processCommand();
 }

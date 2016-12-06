@@ -8,6 +8,8 @@ void Media::setName(string name) {}
 
 string Media::getName() const {}
 
+vector<Media *> Media::getVector() const {}
+
 void Media::add(Media *m) {
     throw string("Cannot add media!");
 }

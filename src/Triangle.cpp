@@ -43,7 +43,7 @@ bool Triangle::isTriangle() {
 string Triangle::description() {
     ostringstream oss;
 
-    oss << getName() << "("
+    oss << "t("
         << _firstPoint.x  << ", " << _firstPoint.y  << ", "
         << _secondPoint.x << ", " << _secondPoint.y << ", "
         << _thirdPoint.x  << ", " << _thirdPoint.y  << ") ";

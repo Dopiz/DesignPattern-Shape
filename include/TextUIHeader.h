@@ -10,17 +10,18 @@
 
 #include <cstring>
 #include <cstdlib>
+#include <fstream>
 
 #include "Shape.h"
 #include "Circle.h"
 #include "Rectangle.h"
 #include "Triangle.h"
-#include "Media.h"
 
-#include "MediaDirector.h"
 #include "CompositeMediaBuilder.h"
 #include "SimpleMediaBuilder.h"
-#include "MediaBuilder.h"
+
+#include "MyDocument.h"
+
 using namespace std;
 
 
