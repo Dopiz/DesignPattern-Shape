@@ -24,7 +24,7 @@ void TextUI::processCommand() {
             char *str = new char[instruction.size() + 1];
             strcpy(str, instruction.c_str());
 
-            char *delim = " =.?{}\"";
+            char *delim = " =?{}\"";
             char *token = strtok(str, delim);
 
             while(token != NULL)
@@ -39,6 +39,9 @@ void TextUI::processCommand() {
             if(Case == "show")
                 this->showMedia();
 
+            else if(_content.size() == 1)
+                this->askProperties();
+
             else if(_content.size() > 1) {
 
                 if(Case == "def" && (_content.size() == 4 || _content.size() == 3))
@@ -50,14 +53,11 @@ void TextUI::processCommand() {
                 else if(Case == "delete" && (_content.size() == 4 || _content.size() == 2))
                     this->deleteMedia();
 
-                else if(Case == "save" && _content.size() == 5)
+                else if(Case == "save" && _content.size() == 4)
                     this->saveFile();
 
-                else if(Case == "load" && _content.size() == 3)
+                else if(Case == "load" && _content.size() == 2)
                     this->loadFile();
-
-                else
-                    this->askProperties();
             }
 
             else {
@@ -165,22 +165,40 @@ void TextUI::defineMedia() {
 
 void TextUI::askProperties() {
 
-    string mediaName = _content[0];
-    string content = _content[1];
+    char *str = new char[_content[0].size() + 1];
+    strcpy(str, _content[0].c_str());
 
-    int index = findMedia(mediaName);
+    char *delim = ".";
+    char *token = strtok(str, delim);
 
-    if(index > -1) {
-
-        if(content == "area")
-            cout << ">> " << _ms[index]->area() << endl;
-
-        else if(content == "perimeter")
-            cout << ">> " << _ms[index]->perimeter() << endl;
-
-        else
-            cout << ">> Error: Invalid type !" << endl;
+    while(token != NULL)
+    {
+        string temp(token);
+        _content.push_back(temp);
+        token = strtok(NULL, delim);
     }
+
+    if(_content.size() > 1) {
+        string mediaName = _content[1];
+        string content = _content[2];
+
+        int index = findMedia(mediaName);
+
+        if(index > -1) {
+
+            if(content == "area")
+                cout << ">> " << _ms[index]->area() << endl;
+
+            else if(content == "perimeter")
+                cout << ">> " << _ms[index]->perimeter() << endl;
+
+            else
+                cout << ">> Error: Invalid type !" << endl;
+        }
+    }
+
+    else
+        cout << ">> Error: Invalid type !" << endl;
 
     processCommand();
 }
@@ -232,7 +250,7 @@ void TextUI::deleteMedia() {
 void TextUI::saveFile() {
 
     string media = _content[1];
-    string fileName = _content[3] + "." + _content[4];
+    string fileName = _content[3];
 
     int index = findMedia(media);
 
@@ -259,7 +277,7 @@ void TextUI::saveFile() {
 void TextUI::loadFile() {
 
     fstream file;
-    string fileName = _content[1] + "." + _content[2];
+    string fileName = _content[1];
 
     struct stat fileStatus;
     bool status = stat(fileName.c_str(), &fileStatus);
