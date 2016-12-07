@@ -11,6 +11,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <fstream>
+#include <sys/stat.h>
 
 #include "Shape.h"
 #include "Circle.h"

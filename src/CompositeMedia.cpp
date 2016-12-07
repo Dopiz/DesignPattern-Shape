@@ -30,7 +30,7 @@ void CompositeMedia::removeMedia(Media *m) {
 
     for(vector<Media *>::iterator it = _media.begin(); it != _media.end(); ++it) {
 
-        if((*it)->description() == m->description()) {
+        if((*it)->description() == m->description() && (*it)->getName() == m->getName()) {
             _media.erase(it);
             break;
         }

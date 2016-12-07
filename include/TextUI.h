@@ -20,5 +20,4 @@ class TextUI
         int findMedia(string name);
         virtual ~TextUI();
 };
-
 #endif // TEXTUI_H
