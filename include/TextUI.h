@@ -7,9 +7,9 @@ class TextUI
         vector<string> _content;
         vector<Media *> _ms;
 
-    public:
-        TextUI();
-        void processCommand();
+    protected:
+        void processCommand(string instruction);
+        void instructionAnalysis(string instruction, char *delim);
         void defineMedia();
         void askProperties();
         void addMedia();
@@ -18,6 +18,10 @@ class TextUI
         void loadFile();
         void showMedia();
         int findMedia(string name);
+
+    public:
+        TextUI();
+        void enterInstruction();
         virtual ~TextUI();
 };
 #endif // TEXTUI_H

@@ -22,6 +22,7 @@
 #include "SimpleMediaBuilder.h"
 
 #include "MyDocument.h"
+#include "MediaDirector.h"
 
 using namespace std;
 

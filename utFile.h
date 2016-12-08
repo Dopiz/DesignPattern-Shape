@@ -44,7 +44,7 @@ TEST (buildMedia, Document)
 TEST (TextUI, TextUI)
 {
     TextUI ui;
-    ui.processCommand();
+    ui.enterInstruction();
 }
 
 #endif // UTFILE_H_INCLUDED
