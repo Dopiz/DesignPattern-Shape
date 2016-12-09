@@ -5,7 +5,11 @@
 #include <vector>
 using namespace std;
 
-class MediaVisitor;
+class AreaVisitor;
+class PerimeterVisitor;
+class DescriptionVisitor;
+class NameVisitor;
+class ShapeVisitor;
 
 class Media
 {
@@ -16,7 +20,11 @@ class Media
         virtual vector<Media *> getVector() const;
         virtual void add(Media *m);
         virtual void removeMedia(Media *m);
-        virtual void accept(MediaVisitor& v) = 0;
+        virtual void accept(NameVisitor &v) = 0;
+        virtual void accept(AreaVisitor &v) = 0;
+        virtual void accept(PerimeterVisitor &v) = 0;
+        virtual void accept(DescriptionVisitor &v) = 0;
+        virtual void accept(ShapeVisitor &v) = 0;
         virtual double area() const = 0;
         virtual double perimeter() const = 0;
         virtual string description() const = 0;

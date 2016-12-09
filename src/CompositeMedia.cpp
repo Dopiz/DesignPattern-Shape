@@ -1,5 +1,9 @@
 #include "CompositeMedia.h"
-#include "MediaVisitor.h"
+#include "AreaVisitor.h"
+#include "PerimeterVisitor.h"
+#include "DescriptionVisitor.h"
+#include "NameVisitor.h"
+#include "ShapeVisitor.h"
 
 CompositeMedia::CompositeMedia() {
 
@@ -39,7 +43,41 @@ void CompositeMedia::removeMedia(Media *m) {
     }
 }
 
-void CompositeMedia::accept(MediaVisitor &v) {
+void CompositeMedia::accept(NameVisitor &v) {
+
+    v.visitCompositeMediaPre(this);
+
+    for(Media *m: _media)
+        m->accept(v);
+
+    v.visitCompositeMediaPost(this);
+}
+
+void CompositeMedia::accept(AreaVisitor &v) {
+
+    for(Media *m: _media)
+        m->accept(v);
+
+    v.visitCompositeMedia(this);
+}
+
+void CompositeMedia::accept(ShapeVisitor &v) {
+
+    for(Media *m: _media)
+        m->accept(v);
+
+    v.visitCompositeMedia(this);
+}
+
+void CompositeMedia::accept(PerimeterVisitor &v) {
+
+    for(Media *m: _media)
+        m->accept(v);
+
+    v.visitCompositeMedia(this);
+}
+
+void CompositeMedia::accept(DescriptionVisitor &v) {
 
     for(Media *m: _media)
         m->accept(v);

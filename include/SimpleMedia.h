@@ -15,7 +15,11 @@ class SimpleMedia : public Media
         Shape *getShape() const;
         void setName(string name);
         string getName() const;
-        void accept(MediaVisitor &v);
+        void accept(NameVisitor &v);
+        void accept(AreaVisitor &v);
+        void accept(PerimeterVisitor &v);
+        void accept(DescriptionVisitor &v);
+        void accept(ShapeVisitor &v);
         double area() const;
         double perimeter() const;
         string description() const;

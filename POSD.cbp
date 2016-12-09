@@ -55,10 +55,12 @@
 		<Unit filename="include/MediaDirector.h" />
 		<Unit filename="include/MediaVisitor.h" />
 		<Unit filename="include/MyDocument.h" />
+		<Unit filename="include/NameVisitor.h" />
 		<Unit filename="include/PerimeterVisitor.h" />
 		<Unit filename="include/Point.h" />
 		<Unit filename="include/Rectangle.h" />
 		<Unit filename="include/Shape.h" />
+		<Unit filename="include/ShapeVisitor.h" />
 		<Unit filename="include/SimpleMedia.h" />
 		<Unit filename="include/SimpleMediaBuilder.h" />
 		<Unit filename="include/Text.h" />
@@ -75,9 +77,11 @@
 		<Unit filename="src/Media.cpp" />
 		<Unit filename="src/MediaDirector.cpp" />
 		<Unit filename="src/MyDocument.cpp" />
+		<Unit filename="src/NameVisitor.cpp" />
 		<Unit filename="src/PerimeterVisitor.cpp" />
 		<Unit filename="src/Rectangle.cpp" />
 		<Unit filename="src/Shape.cpp" />
+		<Unit filename="src/ShapeVisitor.cpp" />
 		<Unit filename="src/SimpleMedia.cpp" />
 		<Unit filename="src/SimpleMediaBuilder.cpp" />
 		<Unit filename="src/Text.cpp" />

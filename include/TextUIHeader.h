@@ -21,6 +21,9 @@
 #include "CompositeMediaBuilder.h"
 #include "SimpleMediaBuilder.h"
 
+#include "NameVisitor.h"
+#include "ShapeVisitor.h"
+
 #include "MyDocument.h"
 #include "MediaDirector.h"
 

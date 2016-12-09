@@ -1,5 +1,9 @@
 #include "SimpleMedia.h"
-#include "MediaVisitor.h"
+#include "AreaVisitor.h"
+#include "PerimeterVisitor.h"
+#include "DescriptionVisitor.h"
+#include "NameVisitor.h"
+#include "ShapeVisitor.h"
 
 SimpleMedia::SimpleMedia() {
 
@@ -23,7 +27,23 @@ string SimpleMedia::getName() const {
     return _name;
 }
 
-void SimpleMedia::accept(MediaVisitor &v) {
+void SimpleMedia::accept(NameVisitor &v) {
+    v.visitSimpleMedia(this);
+}
+
+void SimpleMedia::accept(DescriptionVisitor &v) {
+    v.visitSimpleMedia(this);
+}
+
+void SimpleMedia::accept(ShapeVisitor &v) {
+    v.visitSimpleMedia(this);
+}
+
+void SimpleMedia::accept(AreaVisitor &v) {
+    v.visitSimpleMedia(this);
+}
+
+void SimpleMedia::accept(PerimeterVisitor &v) {
     v.visitSimpleMedia(this);
 }
 

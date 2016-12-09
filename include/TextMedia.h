@@ -11,7 +11,11 @@ class TextMedia : public Media
     public:
         TextMedia();
         TextMedia(Text *t);
-        void accept(MediaVisitor &v);
+        void accept(NameVisitor &v);
+        void accept(AreaVisitor &v);
+        void accept(PerimeterVisitor &v);
+        void accept(DescriptionVisitor &v);
+        void accept(ShapeVisitor &v);
         double perimeter() const;
         double area() const;
         string description() const;

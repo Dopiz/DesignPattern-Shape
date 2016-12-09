@@ -7,10 +7,8 @@ TextUI::TextUI() {
 void TextUI::enterInstruction() {
 
     cout << ":- ";
-
     string instruction;
     while(getline(cin, instruction)) {
-        cin.clear();
         if(instruction != "")
             processCommand(instruction);
     }
@@ -69,7 +67,7 @@ void TextUI::processCommand(string instruction) {
 
     else {
         cout << ">> Error: Invalid type !" << endl;
-        enterInstruction();
+        return enterInstruction();
     }
 }
 
@@ -171,7 +169,7 @@ void TextUI::defineMedia() {
         }
     }
 
-    enterInstruction();
+    return enterInstruction();
 }
 
 void TextUI::askProperties() {
@@ -184,8 +182,6 @@ void TextUI::askProperties() {
         string content   = _content[1];
 
         int index = findMedia(mediaName);
-
-        cout << mediaName << endl;
 
         if(index != -1) {
 
@@ -206,7 +202,7 @@ void TextUI::askProperties() {
     else
         cout << ">> Error: Invalid type !" << endl;
 
-    enterInstruction();
+    return enterInstruction();
 }
 
 void TextUI::addMedia() {
@@ -228,22 +224,22 @@ void TextUI::addMedia() {
         _ms[mNumber]->add(_ms[sNumber]);
 
         cout << _ms[mNumber]->getName() << " = ";
-        cout << _ms[mNumber]->getName() << "{ ";
 
-        for(Media *m: _ms[mNumber]->getVector())
-            cout << m->getName() << " ";
-        cout << "} = " << _ms[mNumber]->description() << endl;
+        NameVisitor nv;
+        _ms[mNumber]->accept(nv);
+
+        cout << nv.getName() << " = " << _ms[mNumber]->description() << endl;
     }
 
-    enterInstruction();
+    return enterInstruction();
 }
 
 void TextUI::deleteMedia() {
 
     string shape = _content[1];
 
-    //  delete from combo media.
     if(_content.size() > 2 && !(findMedia(shape) == -1)) {
+
         string media = _content[3];
         int sNumber = findMedia(shape);
         int mNumber = findMedia(media);
@@ -255,9 +251,13 @@ void TextUI::deleteMedia() {
             cout << ">> Error: Can not find this media: '" << media << "' !" << endl;
     }
 
-    // delete shape media.
-    else if(!(findMedia(shape) == -1))
+    else if(!(findMedia(shape) == -1)) {
+
+        for(Media *m: _ms)
+            m->removeMedia(_ms[findMedia(shape)]);
+
         _ms.erase(_ms.begin() + findMedia(shape));
+    }
 
     else if(findMedia(shape) == -1)
         cout << ">> Error: Can not find this media: '" << shape << "' !" << endl;
@@ -274,11 +274,12 @@ void TextUI::saveFile() {
 
     if(!(index == -1)) {
         string content;
+
+        NameVisitor nv;
+        _ms[index]->accept(nv);
+
         content  = _ms[index]->description() + "\n";
-        content += _ms[index]->getName() + "{ ";
-        for(Media *m: _ms[index]->getVector())
-            content += m->getName() + " ";
-        content += "}";
+        content += nv.getName();
 
         fstream file;
         file.open(fileName, ios::out | ios::trunc);
@@ -304,9 +305,6 @@ void TextUI::loadFile() {
     bool status = stat(fileName.c_str(), &fileStatus);
     bool flag = true;
 
-    MediaDirector direct;
-    stack<MediaBuilder *> mbs;
-
     if(!status) {
 
         cout << ">> loading " << fileName << " ..." << endl;
@@ -316,42 +314,38 @@ void TextUI::loadFile() {
         while(getline(file, buffer)) {
 
             if(flag)
-            {
                 buffer2 = buffer;
-            }
 
             else
             {
-                int index = 0;
                 instructionAnalysis(buffer, " ,{}");
+
+                MediaDirector direct;
+                stack<MediaBuilder *> mbs;
                 direct.setMediaBuilder(&mbs);
                 direct.concrete(buffer2);
 
-                mbs.top()->getMedia()->setName(_content[index]);
+                mbs.top()->getMedia()->setName(_content[0]);
 
-                if(findMedia(_content[index]) != -1) {
-                    cout << ">> Error: This media '" << _content[index] << "' is existed" << endl;
+                if(findMedia(_content[0]) != -1) {
+                    cout << ">> Error: This media '" << _content[0] << "' is existed" << endl;
                     break;
                 }
 
-                _ms.push_back(mbs.top()->getMedia());
+                ShapeVisitor sv;
+                mbs.top()->getMedia()->accept(sv);
+                int index = sv.getShape().size() - 1;
 
-                for(Media *m: mbs.top()->getMedia()->getVector()) {
-
-                    if(findMedia(_content[++index]) == -1){
-                        m->setName(_content[index]);
+                for(Media *m: sv.getShape()) {
+                        m->setName(_content[index--]);
                         _ms.push_back(m);
-                    }
-
-                    else {
-                        cout << ">> Error: This media '" << _content[index] << "' is existed" << endl;
-                        break;
-                    }
                 }
             }
 
             flag = false;
         }
+
+        cout << _ms[findMedia(_content[0])]->getName() << " = " << buffer << " = " << buffer2 << endl;
 
         file.close();
     }
@@ -359,15 +353,18 @@ void TextUI::loadFile() {
     else
         cout << ">> Error: file is not existed !" << endl;
 
-    enterInstruction();
+    return enterInstruction();
 }
 
 void TextUI::showMedia() {
 
-    for(Media *m: _ms)
-        cout << m->getName() << endl;
+    for(Media *m: _ms) {
+        NameVisitor nv;
+        m->accept(nv);
+        cout << nv.getName() << endl;
+    }
 
-    enterInstruction();
+    return enterInstruction();
 }
 
 int TextUI::findMedia(string name) {

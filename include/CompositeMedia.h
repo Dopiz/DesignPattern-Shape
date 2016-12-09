@@ -16,7 +16,11 @@ class CompositeMedia : public Media
         vector<Media *> getVector() const;
         void add(Media *m);
         void removeMedia(Media *m);
-        void accept(MediaVisitor &v);
+        void accept(NameVisitor &v);
+        void accept(AreaVisitor &v);
+        void accept(PerimeterVisitor &v);
+        void accept(DescriptionVisitor &v);
+        void accept(ShapeVisitor &v);
         double area() const;
         double perimeter() const;
         string description() const;

@@ -8,7 +8,7 @@ class MediaVisitor
 {
     public:
         virtual void visitSimpleMedia(SimpleMedia *s) = 0;
-        virtual void visitCompositeMedia(CompositeMedia *c) = 0;
+        virtual void visitCompositeMedia(CompositeMedia *c) {}
         virtual void visitTextMedia(TextMedia *tm) = 0;
 };
 

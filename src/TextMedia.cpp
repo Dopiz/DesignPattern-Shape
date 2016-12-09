@@ -1,5 +1,9 @@
 #include "TextMedia.h"
-#include "MediaVisitor.h"
+#include "AreaVisitor.h"
+#include "NameVisitor.h"
+#include "PerimeterVisitor.h"
+#include "DescriptionVisitor.h"
+#include "ShapeVisitor.h"
 
 TextMedia::TextMedia() {
 
@@ -10,7 +14,23 @@ TextMedia::TextMedia(Text *t)
 
 }
 
-void TextMedia::accept(MediaVisitor &v) {
+void TextMedia::accept(NameVisitor &v) {
+    v.visitTextMedia(this);
+}
+
+void TextMedia::accept(AreaVisitor &v) {
+    v.visitTextMedia(this);
+}
+
+void TextMedia::accept(PerimeterVisitor &v) {
+    v.visitTextMedia(this);
+}
+
+void TextMedia::accept(DescriptionVisitor &v) {
+    v.visitTextMedia(this);
+}
+
+void TextMedia::accept(ShapeVisitor &v) {
     v.visitTextMedia(this);
 }
 
