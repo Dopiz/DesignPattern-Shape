@@ -1,16 +1,9 @@
-#include "cppunitlite/TestHarness.h"
-#include "utShapes.h"
-#include "utVisitor.h"
-#include "utBuilder.h"
-#include "utFile.h"
-#include <iostream>
-
-using namespace std;
+#include "TextUI.h"
 
 int main()
 {
-    TestResult tr;
-    TestRegistry::runAllTests(tr);
+    TextUI ui;
+    ui.enterInstruction();
 
     return 0;
 }

@@ -1,31 +1,33 @@
-#ifndef TEXTUI_H
-#define TEXTUI_H
+#ifndef TESTUI_H
+#define TESTUI_H
 #include "TextUIHeader.h"
 #include "CommandManager.h"
+#include <string>
+using namespace std;
 
-class TextUI
+class TestUI
 {
     private:
         vector<string> _content;
         vector<Media *> _ms;
-        CommandManager _commandManager;
 
     protected:
         void instructionAnalysis(string instruction, char *delim);
-        void defineMedia();
-        void askProperties();
-        void addMedia();
+        string defineMedia();
+        string askProperties();
+        string addMedia();
         void deleteMedia();
         void deleteFromCompositeMedia();
         void saveFile();
         void loadFile();
-        void showMedia();
         int findMedia(string name);
 
     public:
-        TextUI();
+        CommandManager _commandManager;
+        TestUI();
         void enterInstruction();
-        void processCommand(string instruction);
-        virtual ~TextUI();
+        string processCommand(string instruction);
+        string showMedia();
+        virtual ~TestUI();
 };
-#endif // TEXTUI_H
+#endif // TESTUI_H

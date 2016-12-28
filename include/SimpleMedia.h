@@ -6,6 +6,7 @@
 class SimpleMedia : public Media
 {
     private:
+        vector<Media *> _tmp;
         Shape *_shape;
         string _name;
 
@@ -15,6 +16,7 @@ class SimpleMedia : public Media
         Shape *getShape() const;
         void setName(string name);
         string getName() const;
+        vector<Media *> *getVector();
         void accept(NameVisitor &v);
         void accept(AreaVisitor &v);
         void accept(PerimeterVisitor &v);

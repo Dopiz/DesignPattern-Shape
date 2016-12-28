@@ -22,8 +22,8 @@ string CompositeMedia::getName() const {
     return _name;
 }
 
-vector<Media *> CompositeMedia::getVector() const {
-    return _media;
+vector<Media *> *CompositeMedia::getVector() {
+    return &_media;
 }
 
 void CompositeMedia::add(Media *m) {

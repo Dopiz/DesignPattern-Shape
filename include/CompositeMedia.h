@@ -13,7 +13,7 @@ class CompositeMedia : public Media
         CompositeMedia(vector<Media *> m);
         void setName(string name);
         string getName() const;
-        vector<Media *> getVector() const;
+        vector<Media *> *getVector();
         void add(Media *m);
         void removeMedia(Media *m);
         void accept(NameVisitor &v);

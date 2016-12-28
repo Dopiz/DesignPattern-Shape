@@ -27,6 +27,11 @@ string SimpleMedia::getName() const {
     return _name;
 }
 
+vector<Media *> *SimpleMedia::getVector() {
+    return &_tmp;
+}
+
+
 void SimpleMedia::accept(NameVisitor &v) {
     v.visitSimpleMedia(this);
 }

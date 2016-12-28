@@ -1,14 +1,14 @@
-#include "TextUI.h"
+#include "TestUI.h"
 #include "addCommand.h"
 #include "defCommand.h"
 #include "deleteCommand.h"
 #include "deleteFromCommand.h"
 
-TextUI::TextUI() {
+TestUI::TestUI() {
     //ctor
 }
 
-void TextUI::enterInstruction() {
+void TestUI::enterInstruction() {
 
     string instruction;
     while(instruction != "exit") {
@@ -32,7 +32,7 @@ void TextUI::enterInstruction() {
     }
 }
 
-void TextUI::instructionAnalysis(string instruction, char *delim) {
+void TestUI::instructionAnalysis(string instruction, char *delim) {
 
     _content.clear();
 
@@ -46,25 +46,24 @@ void TextUI::instructionAnalysis(string instruction, char *delim) {
         _content.push_back(temp);
         token = strtok(NULL, delim);
     }
-
 }
 
-void TextUI::processCommand(string instruction) {
+string TestUI::processCommand(string instruction) {
 
     instructionAnalysis(instruction, " ={}\"");
 
     string Case = _content[0];
 
     if (Case == "show") {
-        this->showMedia();
+        return this->showMedia();
     }
 
     else if (Case == "def" && _content.size() >= 3) {
-        this->defineMedia();
+        return this->defineMedia();
     }
 
     else if (Case == "add" && _content.size() == 4) {
-        this->addMedia();
+        return this->addMedia();
     }
 
     else if (Case == "delete" && _content.size() > 1) {
@@ -73,6 +72,8 @@ void TextUI::processCommand(string instruction) {
 
         else if(_content.size() == 2)
             this->deleteMedia();
+
+        return "";
     }
 
     else if (Case == "save" && _content.size() == 4) {
@@ -84,24 +85,21 @@ void TextUI::processCommand(string instruction) {
     }
 
     else if (Case.find('?') != string::npos) {
-        this->askProperties();
+        return this->askProperties();
     }
 
-    else {
-        cout << ">> Error: Invalid type !" << endl;
-        return enterInstruction();
-    }
-
-    return enterInstruction();
+    else cout << ">> Error: Invalid type !" << endl;
 }
 
-void TextUI::defineMedia() {
+string TestUI::defineMedia() {
 
+    string output;
     string mediaName = _content[1];
     string media     = _content[2];
 
     if(findMedia(mediaName) != -1) {
         cout << "Error: Media is existed !" << endl;
+        output = "Error: Media is existed !";
     }
 
     else {
@@ -149,7 +147,7 @@ void TextUI::defineMedia() {
                 else if(mediaContent[0] == 'R')
                     shape = new Rectangle(parameters[0], parameters[1], parameters[2], parameters[3]);
 
-                cout << ">> " << media << endl;
+                output = media;
 
                 SimpleMediaBuilder smb;
                 smb.buildSimpleMedia(shape);
@@ -199,10 +197,12 @@ void TextUI::defineMedia() {
         }
     }
 
-    return enterInstruction();
+    return output;
 }
 
-void TextUI::askProperties() {
+string TestUI::askProperties() {
+
+    string output;
 
     instructionAnalysis(_content[0], " .?");
 
@@ -215,28 +215,33 @@ void TextUI::askProperties() {
 
         if(index != -1) {
 
-            if(content == "area")
-                cout << ">> " << _ms[index]->area() << endl;
+            if(content == "area") {
+                output = _ms[index]->area();
+                return output;
+            }
 
-            else if(content == "perimeter")
-                cout << ">> " << _ms[index]->perimeter() << endl;
+            else if(content == "perimeter") {
+                output = _ms[index]->perimeter();
+
+            }
 
             else
-                cout << ">> Error: Invalid type !" << endl;
+                output = ">> Error: Invalid type !";
         }
 
         else
-            cout << ">> Error: Can not find this media: '" << mediaName << "' !" << endl;
+            output = ">> Error: Can not find this media: '" + mediaName + "' !";
     }
 
     else
-        cout << ">> Error: Invalid type !" << endl;
+        output = ">> Error: Invalid type !";
 
-    return enterInstruction();
+    return output;
 }
 
-void TextUI::addMedia() {
+string TestUI::addMedia() {
 
+    string output;
     string shape = _content[1];
     string media = _content[3];
 
@@ -244,10 +249,10 @@ void TextUI::addMedia() {
     int mNumber = findMedia(media);
 
     if(sNumber == -1)
-        cout << ">> Error: Can not find this media: '" << shape << "' !" << endl;
+        output = ">> Error: Can not find this media: '" + shape + "' !";
 
     else if(mNumber == -1)
-        cout << ">> Error: Can not find this media: '" << media << "' !" << endl;
+        output = ">> Error: Can not find this media: '" + media + "' !";
 
     else if(!(sNumber == -1 || mNumber == -1)) {
 
@@ -256,18 +261,18 @@ void TextUI::addMedia() {
 
         // _ms[mNumber]->add(_ms[sNumber]);
 
-        cout << _ms[mNumber]->getName() << " = ";
+        output += _ms[mNumber]->getName() + " = ";
 
         NameVisitor nv;
         _ms[mNumber]->accept(nv);
 
-        cout << nv.getName() << " = " << _ms[mNumber]->description() << endl;
+        output += nv.getName() + " = " + _ms[mNumber]->description();
     }
 
-    return enterInstruction();
+    return output;
 }
 
-void TextUI::deleteMedia() {
+void TestUI::deleteMedia() {
 
     string shape = _content[1];
     int sNumber = findMedia(shape);
@@ -281,7 +286,7 @@ void TextUI::deleteMedia() {
 
 }
 
-void TextUI::deleteFromCompositeMedia() {
+void TestUI::deleteFromCompositeMedia() {
 
     string shape = _content[1];
     string media = _content[3];
@@ -296,7 +301,7 @@ void TextUI::deleteFromCompositeMedia() {
     else cout << ">> Error: Can not find this media !" << endl;
 }
 
-void TextUI::saveFile() {
+void TestUI::saveFile() {
 
     string media = _content[1];
     string fileName = _content[3];
@@ -324,10 +329,9 @@ void TextUI::saveFile() {
     else
        cout << ">> Error: Can not find this media: '" << media << "' !" << endl;
 
-    enterInstruction();
 }
 
-void TextUI::loadFile() {
+void TestUI::loadFile() {
 
     fstream file;
     string fileName = _content[1];
@@ -383,22 +387,22 @@ void TextUI::loadFile() {
 
     else
         cout << ">> Error: file is not existed !" << endl;
-
-    return enterInstruction();
 }
 
-void TextUI::showMedia() {
+string TestUI::showMedia() {
+
+    string output;
 
     for(Media *m: _ms) {
         NameVisitor nv;
         m->accept(nv);
-        cout << nv.getName() << endl;
+        output += nv.getName() + "\n";
     }
 
-    return enterInstruction();
+    return output;
 }
 
-int TextUI::findMedia(string name) {
+int TestUI::findMedia(string name) {
 
     for(int i = 0; i < _ms.size(); i++) {
         if(name.compare(_ms[i]->getName()) == 0)
@@ -408,7 +412,6 @@ int TextUI::findMedia(string name) {
     return -1;
 }
 
-TextUI::~TextUI() {
+TestUI::~TestUI() {
     //dtor
-    cout << "\n----- Exit Program Mode -----\n" << endl;
 }

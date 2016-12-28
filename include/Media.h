@@ -17,7 +17,7 @@ class Media
         Media();
         virtual void setName(string name);
         virtual string getName() const;
-        virtual vector<Media *> getVector() const;
+        virtual vector<Media *> *getVector();
         virtual void add(Media *m);
         virtual void removeMedia(Media *m);
         virtual void accept(NameVisitor &v) = 0;

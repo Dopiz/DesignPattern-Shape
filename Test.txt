@@ -1,2 +1,0 @@
-combo( r(1, 10, 2, 8) t(0, 0, 4, 0, 0, 3) ) 
-comboExclamation{ rTall tTest }

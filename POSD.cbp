@@ -35,6 +35,35 @@
 					<Add library="cppunitlite/libCppUnitLite.a" />
 				</Linker>
 			</Target>
+			<Target title="test_Debug">
+				<Option output="bin/Debug/testPOSD" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-std=c++11" />
+					<Add option="-g" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add library="cppunitlite/libCppUnitLite.a" />
+				</Linker>
+			</Target>
+			<Target title="test_Release">
+				<Option output="bin/Release/testPOSD" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-std=c++11" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="cppunitlite/libCppUnitLite.a" />
+				</Linker>
+			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
@@ -46,6 +75,8 @@
 		</Linker>
 		<Unit filename="include/AreaVisitor.h" />
 		<Unit filename="include/Circle.h" />
+		<Unit filename="include/Command.h" />
+		<Unit filename="include/CommandManager.h" />
 		<Unit filename="include/CompositeMedia.h" />
 		<Unit filename="include/CompositeMediaBuilder.h" />
 		<Unit filename="include/DescriptionVisitor.h" />
@@ -63,14 +94,26 @@
 		<Unit filename="include/ShapeVisitor.h" />
 		<Unit filename="include/SimpleMedia.h" />
 		<Unit filename="include/SimpleMediaBuilder.h" />
+		<Unit filename="include/TestUI.h">
+			<Option target="test_Debug" />
+			<Option target="test_Release" />
+		</Unit>
 		<Unit filename="include/Text.h" />
 		<Unit filename="include/TextMedia.h" />
 		<Unit filename="include/TextUI.h" />
 		<Unit filename="include/TextUIHeader.h" />
 		<Unit filename="include/Triangle.h" />
-		<Unit filename="main.cpp" />
+		<Unit filename="include/addCommand.h" />
+		<Unit filename="include/defCommand.h" />
+		<Unit filename="include/deleteCommand.h" />
+		<Unit filename="include/deleteFromCommand.h" />
+		<Unit filename="main.cpp">
+			<Option target="Release" />
+			<Option target="Debug" />
+		</Unit>
 		<Unit filename="src/AreaVisitor.cpp" />
 		<Unit filename="src/Circle.cpp" />
+		<Unit filename="src/CommandManager.cpp" />
 		<Unit filename="src/CompositeMedia.cpp" />
 		<Unit filename="src/CompositeMediaBuilder.cpp" />
 		<Unit filename="src/DescriptionVisitor.cpp" />
@@ -84,16 +127,42 @@
 		<Unit filename="src/ShapeVisitor.cpp" />
 		<Unit filename="src/SimpleMedia.cpp" />
 		<Unit filename="src/SimpleMediaBuilder.cpp" />
+		<Unit filename="src/TestUI.cpp">
+			<Option target="test_Debug" />
+			<Option target="test_Release" />
+		</Unit>
 		<Unit filename="src/Text.cpp" />
 		<Unit filename="src/TextMedia.cpp" />
 		<Unit filename="src/TextUI.cpp" />
 		<Unit filename="src/Triangle.cpp" />
-		<Unit filename="utBuilder.h" />
-		<Unit filename="utFile.h" />
-		<Unit filename="utShapes.h">
-			<Option target="&lt;{~None~}&gt;" />
+		<Unit filename="src/addCommand.cpp" />
+		<Unit filename="src/defCommand.cpp" />
+		<Unit filename="src/deleteCommand.cpp" />
+		<Unit filename="src/deleteFromCommand.cpp" />
+		<Unit filename="testMain.cpp">
+			<Option target="test_Debug" />
+			<Option target="test_Release" />
 		</Unit>
-		<Unit filename="utVisitor.h" />
+		<Unit filename="utBuilder.h">
+			<Option target="test_Debug" />
+			<Option target="test_Release" />
+		</Unit>
+		<Unit filename="utCommand.h">
+			<Option target="test_Debug" />
+			<Option target="test_Release" />
+		</Unit>
+		<Unit filename="utFile.h">
+			<Option target="test_Debug" />
+			<Option target="test_Release" />
+		</Unit>
+		<Unit filename="utShapes.h">
+			<Option target="test_Debug" />
+			<Option target="test_Release" />
+		</Unit>
+		<Unit filename="utVisitor.h">
+			<Option target="test_Debug" />
+			<Option target="test_Release" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 			<envvars />
