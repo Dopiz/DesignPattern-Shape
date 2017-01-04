@@ -7,14 +7,14 @@ deleteCommand::deleteCommand(vector<Media *> *ms, Media *m, int number)
 
 void deleteCommand::excute() {
 
-    _postion = -1;
-
+    int postion = -1;
     for(Media *m: *_tmpVector) {
         for(Media *mm: *m->getVector()) {
-            _postion++;
+            postion++;
             if(mm == _media) {
-                _comboMedia = m;
-                _comboMedia->removeMedia(_media);
+                _map.insert(pair<Media *, int>(m, postion));
+                m->removeMedia(_media);
+                postion = -1;
                 break;
             }
         }
@@ -27,8 +27,13 @@ void deleteCommand::excute() {
 void deleteCommand::undo() {
 
     _tmpVector->insert(_tmpVector->begin() + _mediaNum, _media);
-    if(_postion != -1)
-        _comboMedia->getVector()->insert(_comboMedia->getVector()->begin() + _postion, _media);
+
+    if(!_map.empty()) {
+        map<Media *, int>::iterator it;
+        for(it = _map.begin(); it != _map.end(); it++) {
+            it->first->getVector()->insert(it->first->getVector()->begin() + it->second, _media);
+        }
+    }
 }
 
 void deleteCommand::redo() {
